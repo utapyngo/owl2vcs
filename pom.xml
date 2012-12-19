@@ -7,6 +7,7 @@
 	<version>0</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<buildVersion>${build-tag}.${build-tag-delta}</buildVersion>
 	</properties>
 	<scm>
 		<developerConnection>scm:git:[fetch=]https://github.com/utapyngo/owl2vcs[push=]ssh://git@github.com:utapyngo/owl2vcs.git</developerConnection>
@@ -32,10 +33,10 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<finalName>${project.name}-${build-version}</finalName>
+					<finalName>${project.name}-${buildVersion}</finalName>
 					<archive>
 						<manifestEntries>
-							<Version>${build-version}</Version>
+							<Version>${buildVersion}</Version>
 						</manifestEntries>
 						<manifest>
 							<mainClass>owl2vcs.tools.Diff</mainClass>
@@ -67,7 +68,7 @@
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.2-beta-2</version>
 				<configuration>
-					<finalName>${project.name}-${build-version}</finalName>
+					<finalName>${project.name}-${buildVersion}</finalName>
 					<descriptor>${basedir}/src/main/assembly/dist.xml</descriptor>
 				</configuration>
 				<executions>
@@ -100,7 +101,7 @@
 						<argument>ontovcs</argument>
 						<argument>-l</argument>
 						<argument>Type-Archive,OpSys-All</argument>
-						<argument>${project.build.directory}/${project.name}-${build-version}-bin.zip</argument>
+						<argument>${project.build.directory}/${project.name}-${buildVersion}-bin.zip</argument>
 					</arguments>
 				</configuration>
 			</plugin>
