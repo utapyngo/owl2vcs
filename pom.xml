@@ -3,24 +3,20 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>owl2vcs</groupId>
 	<artifactId>owl2vcs</artifactId>
-	<version>1.0</version>
 	<name>owl2vcs</name>
+	<version>0</version>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<scm>
-		<developerConnection>utapyngo@gmail.com</developerConnection>
-		<url>https://github.com/utapyngo/owl2vcs</url>
+		<developerConnection>scm:git:[fetch=]https://github.com/utapyngo/owl2vcs[push=]ssh://git@github.com:utapyngo/owl2vcs.git</developerConnection>
+		<url>scm:git:https://github.com/utapyngo/owl2vcs</url>
 	</scm>
 	<issueManagement>
 		<url>https://github.com/utapyngo/owl2vcs/issues</url>
 		<system>GitHub</system>
 	</issueManagement>
 	<url>https://github.com/utapyngo/owl2vcs</url>
-	<repositories>
-		<repository>
-			<id>Snapshots</id>
-			<name>Sonatype Snapshots</name>
-			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-		</repository>
-	</repositories>
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
@@ -36,10 +32,10 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<!--finalName>${project.name}</finalName-->
+					<finalName>${project.name}-${build-version}</finalName>
 					<archive>
 						<manifestEntries>
-							<Version>${project.version}</Version>
+							<Version>${build-version}</Version>
 						</manifestEntries>
 						<manifest>
 							<mainClass>owl2vcs.tools.Diff</mainClass>
@@ -71,8 +67,54 @@
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.2-beta-2</version>
 				<configuration>
+					<finalName>${project.name}-${build-version}</finalName>
 					<descriptor>${basedir}/src/main/assembly/dist.xml</descriptor>
 				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.2.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<executable>gcupload.cmd</executable>
+					<arguments>
+						<argument>-s</argument>
+						<argument>Binaries</argument>
+						<argument>-p</argument>
+						<argument>ontovcs</argument>
+						<argument>-l</argument>
+						<argument>Type-Archive,OpSys-All</argument>
+						<argument>${project.build.directory}/${project.name}-${build-version}-bin.zip</argument>
+					</arguments>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.code54.mojo</groupId>
+				<artifactId>buildversion-plugin</artifactId>
+				<version>1.0.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>set-properties</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 		<pluginManagement>
@@ -95,6 +137,25 @@
 									</pluginExecutionFilter>
 									<action>
 										<execute />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											com.code54.mojo
+										</groupId>
+										<artifactId>
+											buildversion-plugin
+										</artifactId>
+										<versionRange>
+											[1.0.1,)
+										</versionRange>
+										<goals>
+											<goal>set-properties</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
@@ -152,7 +213,18 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>sonatype-releases</id>
+			<url>https://oss.sonatype.org/content/repositories/releases/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>clojars.org</id>
+			<url>http://clojars.org/repo</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>sonatype-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</pluginRepository>
+	</pluginRepositories>
 </project>
