@@ -6,10 +6,5 @@ target/
 *.war
 *.ear
 
-# Derived files
-src/main/java/owl2vcs/io/FunctionalChangesetLexer.java
-src/main/java/owl2vcs/io/FunctionalChangesetParser.java
-*.tokens
-
 # Protege catalog
 catalog-v001.xml
