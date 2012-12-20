@@ -1,6 +1,11 @@
 target/
 *.class
 
+.classpath
+.project
+.checkstyle
+.settings/
+
 # Package Files #
 *.jar
 *.war
