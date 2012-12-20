@@ -1,11 +1,3 @@
 #!/bin/sh
 DIR="$( cd "$( dirname "$0" )" && pwd )"
-SWTDIR="$( cd "$( dirname "$DIR/../lib/swt/" )" && pwd )/swt/"
-if [ -f "$SWTDIR/swt.jar" ]
-then
-    java -Xmx$("$DIR/javamem")m -jar "$DIR/owl2merge.jar" $@
-else
-    echo "Please download SWT for your operating system"
-    echo "from http://www.eclipse.org/swt/"
-    echo "and copy swt.jar to $SWTDIR"
-fi
+java -Xmx$("$DIR/javamem")m -jar "$DIR/owl2vcs.jar" owl2vcs.tools.Merge $@

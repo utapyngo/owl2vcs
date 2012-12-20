@@ -13,7 +13,7 @@ if exist .git (
 		git config diff.owl2diff.command "owl2diff.git.sh"
 		git config merge.owl2merge.driver "owl2merge.git.sh %%O %%A %%B %%A"
 		echo owl2vcs is now enabled for *.owl, *.rdf and *.ttl files in this Git repository.
-        echo Edit .git/info/attributes to enable it for other file types.
+		echo Edit .git/info/attributes to enable it for other file types.
 	) else (
 		echo owl2vcs is already enabled for this Git repository.
 	)	
@@ -26,7 +26,7 @@ if exist .git (
 			echo !line: owl2diff= "%~dp0owl2diff.cmd"!>>.hg/hgrc
 		)
 		echo owl2vcs is now enabled for *.owl, *.rdf and *.ttl files in this Mercurial repository.
-        echo Edit .hg/hgrc to enable it for other file types.
+		echo Edit .hg/hgrc to enable it for other file types.
 	) else (
 		echo owl2vcs is already enabled for this Mercurial repository.
 	)
