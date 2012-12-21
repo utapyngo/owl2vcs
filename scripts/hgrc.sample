@@ -5,21 +5,11 @@ hgext.extdiff =
 cmd.owl2diff = owl2diff
 
 [diff-patterns]
-**.rdf = owl2merge
-**.ttl = owl2merge
-**.owl = owl2merge
-
-[merge-patterns]
-**.rdf = owl2merge
-**.ttl = owl2merge
-**.owl = owl2merge
+**.rdf = owl2diff
+**.ttl = owl2diff
+**.owl = owl2diff
 
 [merge-tools]
 owl2diff.priority=-100
 owl2diff.gui=False
 owl2diff.diffargs=$parent $child
-
-owl2merge.priority=-100
-owl2merge.gui=True
-owl2merge.args=$base $local $other -o $output --auto
-owl2merge.diffargs=$parent $child

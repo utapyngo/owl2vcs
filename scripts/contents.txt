@@ -23,19 +23,6 @@ owl2diff.svn.cmd
 owl2enable
 owl2enable.cmd
 	Shell script that enables owl2vcs for a Git or Mercurial repository
-	
-owl2merge
-owl2merge.cmd
-	Merge tool runner
-	
-owl2merge.git.sh
-	owl2merge wrapper for Git.
-	owl2enable configures Git repository to use this file.
-	
-owl2merge.svn.sh
-owl2merge.svn.cmd
-	owl2merge wrapper for Subversion.
-	Usage: svn merge ... --diff3-cmd owl2merge.svn.cmd
 
 hgrc.sample
 	Mercurial config sample. owl2enable appends contents of this file to your .hg/hgrc.

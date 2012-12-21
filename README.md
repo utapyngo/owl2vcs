@@ -5,8 +5,6 @@ ontologies][1] using version control systems.
 
 -   owl2diff - a command line diff tool for OWL 2 ontologies;
 
--   owl2merge - a three-way merge tool for OWL 2 ontologies;
-
 -   a set of scripts to integrate the tools with [Git][2],
     [Mercurial][3] and [Subversion][4].
 
