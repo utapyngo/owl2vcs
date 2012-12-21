@@ -2,21 +2,25 @@
 if [ -d .git ]
 then
 	echo Enabling owl2vcs for this Git repository
-	if grep -q "owl2diff" .git/info/attributes 2>/dev/null
+	if grep -q "owl2merge" .git/info/attributes 2>/dev/null
 	then
 		echo "owl2vcs is already enabled for this Git repository"
 	else
 		echo "*.rdf	diff=owl2diff">>.git/info/attributes
 		echo "*.ttl	diff=owl2diff">>.git/info/attributes
 		echo "*.owl	diff=owl2diff">>.git/info/attributes
+		echo "*.rdf	merge=owl2merge">>.git/info/attributes
+		echo "*.ttl	merge=owl2merge">>.git/info/attributes
+		echo "*.owl	merge=owl2merge">>.git/info/attributes
 		git config diff.owl2diff.command "owl2diff.git.sh"
+		git config merge.owl2merge.driver "owl2merge.git.sh %O %A %B %A"
 		echo "owl2vcs is now enabled for *.owl, *.rdf and *.ttl files in this Git repository."
 		echo "Edit .git/info/attributes to enable it for other file types."
 	fi
 elif [ -d .hg ]
 then
 	echo "Enabling owl2vcs for this Mercurial repository"
-	if grep -q "owl2diff" .hg/hgrc 2>/dev/null
+	if grep -q "owl2merge" .hg/hgrc 2>/dev/null
 	then
 		echo "owl2vcs is already enabled for this Mercurial repository."
 	else
