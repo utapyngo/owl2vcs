@@ -19,10 +19,8 @@ import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
-import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.io.FileDocumentSource;
 import org.semanticweb.owlapi.io.UnparsableOntologyException;
-import org.semanticweb.owlapi.model.MissingImportHandlingStrategy;
 import org.semanticweb.owlapi.model.OWLAnnotationProperty;
 import org.semanticweb.owlapi.model.OWLAnonymousIndividual;
 import org.semanticweb.owlapi.model.OWLAxiomChange;
@@ -31,9 +29,7 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyChange;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyFormat;
-import org.semanticweb.owlapi.model.OWLOntologyLoaderConfiguration;
-import org.semanticweb.owlapi.model.OWLOntologyManager;
-import owl2vcs.render.QNameShortFormProvider;
+import owl2vcs.render.QNameMultiMapShortFormProvider;
 import org.semanticweb.owlapi.util.ShortFormProvider;
 import org.semanticweb.owlapi.util.SimpleIRIShortFormProvider;
 import org.semanticweb.owlapi.util.SimpleShortFormProvider;
@@ -51,6 +47,7 @@ import owl2vcs.render.FullFormProvider;
 import owl2vcs.render.FunctionalChangeRenderer;
 import owl2vcs.render.IriFormat;
 import owl2vcs.render.QuotedAnnotationValueShortFormProvider;
+import owl2vcs.utils.OntologyUtils;
 import owl2vcs.utils.TimeTracker;
 
 class Settings {
@@ -133,8 +130,8 @@ public final class Diff {
 
             t.start("total");
             t.start("load");
-            final OWLOntology o1 = loadOntology(parentSource);
-            final OWLOntology o2 = loadOntology(childSource);
+            final OWLOntology o1 = OntologyUtils.loadOntology(parentSource);
+            final OWLOntology o2 = OntologyUtils.loadOntology(childSource);
             t.end("load");
 
             t.start("diff");
@@ -320,21 +317,15 @@ public final class Diff {
             provider = new FullFormProvider();
             break;
         case QNAME:
-            final Map<String, String> prefix2NamespaceMap = new HashMap<String, String>();
-            if (!parentFormat.isPrefixOWLOntologyFormat()
-                    || !childFormat.isPrefixOWLOntologyFormat()) {
-                System.err
-                        .println("WARNING: One of the ontologies has not a prefix format, using simple IRI format");
-                provider = new SimpleShortFormProvider();
-                break;
+            final List<Map<String, String>> prefix2NamespaceMaps =
+                new ArrayList<Map<String, String>>();
+            if (parentFormat.isPrefixOWLOntologyFormat()) {
+                prefix2NamespaceMaps.add(parentFormat.asPrefixOWLOntologyFormat().getPrefixName2PrefixMap());
             }
-            final Map<String, String> prefix2NamespaceMap1 = parentFormat
-                    .asPrefixOWLOntologyFormat().getPrefixName2PrefixMap();
-            final Map<String, String> prefix2NamespaceMap2 = childFormat
-                    .asPrefixOWLOntologyFormat().getPrefixName2PrefixMap();
-            prefix2NamespaceMap.putAll(prefix2NamespaceMap1);
-            prefix2NamespaceMap.putAll(prefix2NamespaceMap2);
-            provider = new QNameShortFormProvider(prefix2NamespaceMap);
+            if (childFormat.isPrefixOWLOntologyFormat()) {
+                prefix2NamespaceMaps.add(childFormat.asPrefixOWLOntologyFormat().getPrefixName2PrefixMap());
+            }
+            provider = new QNameMultiMapShortFormProvider(prefix2NamespaceMaps);
             break;
         case LABEL:
             final List<OWLAnnotationProperty> annotationProperties = new ArrayList<OWLAnnotationProperty>();
@@ -350,17 +341,6 @@ public final class Diff {
             provider = new SimpleShortFormProvider();
         }
         return provider;
-    }
-
-    private static OWLOntology loadOntology(final FileDocumentSource source)
-            throws OWLOntologyCreationException {
-        final OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration();
-        config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT);
-        final OWLOntologyManager manager = OWLManager
-                .createOWLOntologyManager();
-        final OWLOntology ontology = manager.loadOntologyFromOntologyDocument(
-                source, config);
-        return ontology;
     }
 
     private static int showDirectoriesDiff(final File parent, final File child,
