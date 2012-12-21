@@ -8,9 +8,9 @@ import org.semanticweb.owlapi.io.RDFXMLOntologyFormat;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyFormat;
 
-import owl2vcs.changeset.OntologyChangeVisitor;
+import owl2vcs.changeset.CustomOntologyChangeVisitor;
 
-public class SetOntologyFormat extends OntologyChange {
+public class SetOntologyFormat extends CustomOntologyChange {
 
     private final OWLOntologyFormat ontologyFormat;
 
@@ -127,7 +127,14 @@ public class SetOntologyFormat extends OntologyChange {
     }
 
     @Override
-    public void accept(final OntologyChangeVisitor visitor) {
+    public void accept(final CustomOntologyChangeVisitor visitor) {
         visitor.visit(this);
     }
+
+
+    @Override
+    public SetOntologyFormatData getChangeData() {
+        return new SetOntologyFormatData(newOntologyFormat);
+    }
+
 }

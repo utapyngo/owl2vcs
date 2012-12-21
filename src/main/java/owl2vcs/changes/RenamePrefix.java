@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import org.semanticweb.owlapi.model.OWLOntology;
 
-import owl2vcs.changeset.OntologyChangeVisitor;
+import owl2vcs.changeset.CustomOntologyChangeVisitor;
 
 public class RenamePrefix extends PrefixChange {
 
@@ -55,14 +55,19 @@ public class RenamePrefix extends PrefixChange {
     }
 
     @Override
-    public void accept(final OntologyChangeVisitor visitor) {
+    public void accept(final CustomOntologyChangeVisitor visitor) {
         visitor.visit(this);
     }
-    
+
     @Override
-    public Collection<String> getSignature() {
-        final Collection<String> sig = super.getSignature();
+    public Collection<String> getPrefixSignature() {
+        final Collection<String> sig = super.getPrefixSignature();
         sig.add(getNewPrefixName());
         return sig;
+    }
+
+    @Override
+    public RenamePrefixData getChangeData() {
+        return new RenamePrefixData(getPrefixName(), getPrefix(), getNewPrefixName());
     }
 }

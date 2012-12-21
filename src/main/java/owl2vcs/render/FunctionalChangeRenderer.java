@@ -15,7 +15,6 @@ import org.semanticweb.owlapi.util.SimpleRenderer;
 
 import owl2vcs.changes.AddPrefix;
 import owl2vcs.changes.ModifyPrefix;
-import owl2vcs.changes.OntologyChange;
 import owl2vcs.changes.RemovePrefix;
 import owl2vcs.changes.RenamePrefix;
 import owl2vcs.changes.SetOntologyFormat;
@@ -33,13 +32,25 @@ public class FunctionalChangeRenderer implements ChangeRenderer {
     }
 
     /**
-     * Render built-in types of ontology changes.
+     * Render ontology changes.
      */
     @Override
     public final String render(final OWLOntologyChange change) {
         if (change == null)
             return null;
-        if (change instanceof SetOntologyID)
+        // Standard changes
+        if (change instanceof SetOntologyFormat)
+            return render((SetOntologyFormat) change);
+        else if (change instanceof AddPrefix)
+            return render((AddPrefix) change);
+        else if (change instanceof RemovePrefix)
+            return render((RemovePrefix) change);
+        else if (change instanceof ModifyPrefix)
+            return render((ModifyPrefix) change);
+        else if (change instanceof RenamePrefix)
+            return render((RenamePrefix) change);
+        // Custom changes
+        else if (change instanceof SetOntologyID)
             return render((SetOntologyID) change);
         else if (change instanceof AddImport)
             return render((AddImport) change);
@@ -53,25 +64,6 @@ public class FunctionalChangeRenderer implements ChangeRenderer {
             return render((AddAxiom) change);
         else if (change instanceof RemoveAxiom)
             return render((RemoveAxiom) change);
-        else
-            return "UnknownChangeType: " + change.getClass().getName();
-    }
-
-    /**
-     * Render extended ontology changes.
-     */
-    @Override
-    public final String render(final OntologyChange change) {
-        if (change instanceof SetOntologyFormat)
-            return render((SetOntologyFormat) change);
-        else if (change instanceof AddPrefix)
-            return render((AddPrefix) change);
-        else if (change instanceof RemovePrefix)
-            return render((RemovePrefix) change);
-        else if (change instanceof ModifyPrefix)
-            return render((ModifyPrefix) change);
-        else if (change instanceof RenamePrefix)
-            return render((RenamePrefix) change);
         else
             return "UnknownChangeType: " + change.getClass().getName();
     }

@@ -2,7 +2,7 @@ package owl2vcs.changes;
 
 import org.semanticweb.owlapi.model.OWLOntology;
 
-import owl2vcs.changeset.OntologyChangeVisitor;
+import owl2vcs.changeset.CustomOntologyChangeVisitor;
 
 public class RemovePrefix extends PrefixChange {
 
@@ -16,7 +16,7 @@ public class RemovePrefix extends PrefixChange {
         final int prime = 3;
         return prime * super.hashCode();
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -37,7 +37,12 @@ public class RemovePrefix extends PrefixChange {
     }
 
     @Override
-    public void accept(final OntologyChangeVisitor visitor) {
+    public void accept(final CustomOntologyChangeVisitor visitor) {
         visitor.visit(this);
+    }
+
+    @Override
+    public RemovePrefixData getChangeData() {
+        return new RemovePrefixData(getPrefixName(), getPrefix());
     }
 }

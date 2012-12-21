@@ -66,12 +66,12 @@ public class ConflictFinder {
         remoteOnlyChanges.accept(new PrefixCollector(remotePrefixes,
                 remotePrefixes));
         for (final PrefixChange c : remoteChanges.getPrefixChanges())
-            if (!Collections.disjoint(localPrefixes, c.getSignature())) {
+            if (!Collections.disjoint(localPrefixes, c.getPrefixSignature())) {
                 conflictsRemote.getPrefixChanges().add(c);
                 otherRemote.getPrefixChanges().remove(c);
             }
         for (final PrefixChange c : localChanges.getPrefixChanges())
-            if (!Collections.disjoint(remotePrefixes, c.getSignature())) {
+            if (!Collections.disjoint(remotePrefixes, c.getPrefixSignature())) {
                 conflictsRemote.getPrefixChanges().add(c);
                 otherRemote.getPrefixChanges().remove(c);
             }

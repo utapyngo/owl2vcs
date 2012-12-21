@@ -19,10 +19,10 @@ import owl2vcs.changes.ModifyPrefix;
 import owl2vcs.changes.RemovePrefix;
 import owl2vcs.changes.RenamePrefix;
 import owl2vcs.changes.SetOntologyFormat;
-import owl2vcs.changeset.OntologyChangeVisitor;
+import owl2vcs.changeset.CustomOntologyChangeVisitor;
 
 public class EntityCollector extends OWLEntityCollector implements
-        OntologyChangeVisitor {
+        CustomOntologyChangeVisitor {
 
     public EntityCollector(final Set<OWLEntity> toReturn,
             final Collection<OWLAnonymousIndividual> anonsToReturn) {

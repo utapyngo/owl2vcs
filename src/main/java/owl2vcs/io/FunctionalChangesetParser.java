@@ -36,7 +36,7 @@ import org.coode.owlapi.functionalparser.ParseException;
 import org.semanticweb.owlapi.util.DefaultPrefixManager;
 
 import owl2vcs.changeset.MutableChangeSet;
-import owl2vcs.changes.OntologyChange;
+import owl2vcs.changes.CustomOntologyChangeData;
 import owl2vcs.changes.SetOntologyFormat;
 import owl2vcs.changes.PrefixChange;
 import owl2vcs.changes.AddPrefix;

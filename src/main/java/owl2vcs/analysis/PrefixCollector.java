@@ -16,18 +16,18 @@ import owl2vcs.changes.PrefixChange;
 import owl2vcs.changes.RemovePrefix;
 import owl2vcs.changes.RenamePrefix;
 import owl2vcs.changes.SetOntologyFormat;
-import owl2vcs.changeset.OntologyChangeVisitor;
+import owl2vcs.changeset.CustomOntologyChangeVisitor;
 
-public class PrefixCollector implements OntologyChangeVisitor {
+public class PrefixCollector implements CustomOntologyChangeVisitor {
 
     private Set<String> names;
     private Set<String> values;
-    
+
     public PrefixCollector(final Set<String> names, final Set<String> values) {
         this.names = names;
         this.values = values;
     }
-    
+
     @Override
     public void visit(AddAxiom change) {
     }
@@ -64,7 +64,7 @@ public class PrefixCollector implements OntologyChangeVisitor {
         names.add(change.getPrefixName());
         values.add(change.getPrefix());
     }
-    
+
     @Override
     public void visit(AddPrefix change) {
         visitPrefixChange(change);

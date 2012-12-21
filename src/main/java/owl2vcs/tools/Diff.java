@@ -29,7 +29,6 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyChange;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyFormat;
-import owl2vcs.render.QNameMultiMapShortFormProvider;
 import org.semanticweb.owlapi.util.ShortFormProvider;
 import org.semanticweb.owlapi.util.SimpleIRIShortFormProvider;
 import org.semanticweb.owlapi.util.SimpleShortFormProvider;
@@ -38,7 +37,6 @@ import owl2vcs.analysis.ChangeClassifier;
 import owl2vcs.analysis.EntityClassifier;
 import owl2vcs.analysis.EntityCollector;
 import owl2vcs.analysis.PrefixExtractor;
-import owl2vcs.changes.OntologyChange;
 import owl2vcs.changeset.ChangeSet;
 import owl2vcs.changeset.FullChangeSet;
 import owl2vcs.render.ChangeFormat;
@@ -46,9 +44,12 @@ import owl2vcs.render.ChangeRenderer;
 import owl2vcs.render.FullFormProvider;
 import owl2vcs.render.FunctionalChangeRenderer;
 import owl2vcs.render.IriFormat;
+import owl2vcs.render.QNameMultiMapShortFormProvider;
 import owl2vcs.render.QuotedAnnotationValueShortFormProvider;
 import owl2vcs.utils.OntologyUtils;
 import owl2vcs.utils.TimeTracker;
+
+import com.google.common.collect.Iterables;
 
 class Settings {
 
@@ -73,7 +74,6 @@ class Settings {
     @Option(name = "--measure", aliases = { "-m" }, required = false, usage = "Measure time")
     public Boolean measure = false;
 }
-
 
 public final class Diff {
 
@@ -235,11 +235,9 @@ public final class Diff {
             System.out.println(changeRenderer.render(cs.getFormatChange()));
         if (cs.getOntologyIdChange() != null)
             System.out.println(changeRenderer.render(cs.getOntologyIdChange()));
-        for (final OntologyChange c : cs.getPrefixChanges())
-            System.out.println(changeRenderer.render(c));
-        for (final OWLOntologyChange c : cs.getImportChanges())
-            System.out.println(changeRenderer.render(c));
-        for (final OWLOntologyChange c : cs.getAnnotationChanges())
+        for (final OWLOntologyChange c : Iterables.concat(
+                cs.getPrefixChanges(), cs.getImportChanges(),
+                cs.getAnnotationChanges()))
             System.out.println(changeRenderer.render(c));
     }
 
@@ -317,13 +315,14 @@ public final class Diff {
             provider = new FullFormProvider();
             break;
         case QNAME:
-            final List<Map<String, String>> prefix2NamespaceMaps =
-                new ArrayList<Map<String, String>>();
+            final List<Map<String, String>> prefix2NamespaceMaps = new ArrayList<Map<String, String>>();
             if (parentFormat.isPrefixOWLOntologyFormat()) {
-                prefix2NamespaceMaps.add(parentFormat.asPrefixOWLOntologyFormat().getPrefixName2PrefixMap());
+                prefix2NamespaceMaps.add(parentFormat
+                        .asPrefixOWLOntologyFormat().getPrefixName2PrefixMap());
             }
             if (childFormat.isPrefixOWLOntologyFormat()) {
-                prefix2NamespaceMaps.add(childFormat.asPrefixOWLOntologyFormat().getPrefixName2PrefixMap());
+                prefix2NamespaceMaps.add(childFormat
+                        .asPrefixOWLOntologyFormat().getPrefixName2PrefixMap());
             }
             provider = new QNameMultiMapShortFormProvider(prefix2NamespaceMaps);
             break;
