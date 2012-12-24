@@ -1,5 +1,7 @@
 package owl2vcs.changes;
 
+import java.util.Collection;
+
 import org.semanticweb.owlapi.model.OWLOntology;
 
 import owl2vcs.changeset.CustomOntologyChangeDataVisitor;
@@ -70,5 +72,12 @@ public class ModifyPrefixData extends PrefixChangeData {
         sb.append(getNewPrefix().toString());
         sb.append(")");
         return sb.toString();
+    }
+
+    @Override
+    public Collection<String> getPrefixSignature() {
+        final Collection<String> sig = super.getPrefixSignature();
+        sig.add(getNewPrefix());
+        return sig;
     }
 }

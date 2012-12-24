@@ -4,18 +4,25 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-import org.semanticweb.owlapi.model.AnnotationChange;
-import org.semanticweb.owlapi.model.ImportChange;
-import org.semanticweb.owlapi.model.OWLAxiomChange;
+import org.semanticweb.owlapi.change.AxiomChangeData;
+import org.semanticweb.owlapi.change.ImportChangeData;
+import org.semanticweb.owlapi.change.OWLOntologyChangeData;
+import org.semanticweb.owlapi.change.SetOntologyIDData;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyChange;
+import org.semanticweb.owlapi.model.OWLOntologyFormat;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
-import org.semanticweb.owlapi.model.SetOntologyID;
+import org.semanticweb.owlapi.vocab.PrefixOWLOntologyFormat;
 
-import owl2vcs.changes.PrefixChange;
-import owl2vcs.changes.SetOntologyFormat;
+import owl2vcs.changes.AddPrefixData;
+import owl2vcs.changes.ModifyPrefixData;
+import owl2vcs.changes.PrefixChangeData;
+import owl2vcs.changes.RemovePrefixData;
+import owl2vcs.changes.RenamePrefixData;
+import owl2vcs.changes.SetOntologyFormatData;
 
 import com.google.common.collect.Iterables;
 
@@ -24,64 +31,64 @@ public abstract class ChangeSet {
     protected ChangeSet() {
     }
 
-    private SetOntologyFormat formatChange;
+    private SetOntologyFormatData formatChange;
 
-    private Collection<PrefixChange> prefixChanges;
+    private Collection<PrefixChangeData> prefixChanges;
 
-    private SetOntologyID ontologyIdChange;
+    private SetOntologyIDData ontologyIdChange;
 
-    private Collection<ImportChange> importChanges;
+    private Collection<ImportChangeData> importChanges;
 
-    private Collection<AnnotationChange> annotationChanges;
+    private Collection<OWLOntologyChangeData> annotationChanges;
 
-    private Collection<OWLAxiomChange> axiomChanges;
+    private Collection<AxiomChangeData> axiomChanges;
 
-    public SetOntologyFormat getFormatChange() {
+    public SetOntologyFormatData getFormatChange() {
         return formatChange;
     }
 
-    public Collection<PrefixChange> getPrefixChanges() {
+    public Collection<PrefixChangeData> getPrefixChanges() {
         return prefixChanges;
     }
 
-    public SetOntologyID getOntologyIdChange() {
+    public SetOntologyIDData getOntologyIdChange() {
         return ontologyIdChange;
     }
 
-    public Collection<ImportChange> getImportChanges() {
+    public Collection<ImportChangeData> getImportChanges() {
         return importChanges;
     }
 
-    public Collection<AnnotationChange> getAnnotationChanges() {
+    public Collection<OWLOntologyChangeData> getAnnotationChanges() {
         return annotationChanges;
     }
 
-    public Collection<OWLAxiomChange> getAxiomChanges() {
+    public Collection<AxiomChangeData> getAxiomChanges() {
         return axiomChanges;
     }
 
-    protected void setFormatChange(final SetOntologyFormat formatChange) {
+    protected void setFormatChange(final SetOntologyFormatData formatChange) {
         this.formatChange = formatChange;
     }
 
-    protected void setPrefixChanges(final Collection<PrefixChange> prefixChanges) {
+    protected void setPrefixChanges(final Collection<PrefixChangeData> prefixChanges) {
         this.prefixChanges = prefixChanges;
     }
 
-    protected void setOntologyIdChange(final SetOntologyID ontologyIdChange) {
+    protected void setOntologyIdChange(final SetOntologyIDData ontologyIdChange) {
         this.ontologyIdChange = ontologyIdChange;
     }
 
-    protected void setImportChanges(final Collection<ImportChange> importChanges) {
+    protected void setImportChanges(final Collection<ImportChangeData> importChanges) {
         this.importChanges = importChanges;
     }
 
     protected void setAnnotationChanges(
-            final Collection<AnnotationChange> annotationChanges) {
+            final Collection<OWLOntologyChangeData> annotationChanges) {
         this.annotationChanges = annotationChanges;
     }
 
-    protected void setAxiomChanges(final Collection<OWLAxiomChange> axiomChanges) {
+    protected void setAxiomChanges(final Collection<AxiomChangeData> axiomChanges) {
         this.axiomChanges = axiomChanges;
     }
 
@@ -117,26 +124,26 @@ public abstract class ChangeSet {
     }
 
     @SuppressWarnings({ "unchecked", "serial" })
-    public Iterable<OWLOntologyChange> all() {
+    public Iterable<OWLOntologyChangeData> all() {
         return Iterables.concat(
-                new ArrayList<OWLOntologyChange>() { { add(formatChange); } },
+                new ArrayList<OWLOntologyChangeData>() { { add(formatChange); } },
                 prefixChanges,
-                new ArrayList<OWLOntologyChange>() { { add(ontologyIdChange); } },
+                new ArrayList<OWLOntologyChangeData>() { { add(ontologyIdChange); } },
                 importChanges, annotationChanges, axiomChanges);
     }
 
-    public void accept(final CustomOntologyChangeVisitor visitor) {
+    public <R, E extends Exception> void accept(final CustomOntologyChangeDataVisitor<R, E> visitor) throws E {
         if (formatChange != null)
             formatChange.accept(visitor);
-        for (final OWLOntologyChange c : prefixChanges)
+        for (final PrefixChangeData c : prefixChanges)
             c.accept(visitor);
         if (ontologyIdChange != null)
             ontologyIdChange.accept(visitor);
-        for (final OWLOntologyChange c : importChanges)
+        for (final OWLOntologyChangeData c : importChanges)
             c.accept(visitor);
-        for (final OWLOntologyChange c : annotationChanges)
+        for (final OWLOntologyChangeData c : annotationChanges)
             c.accept(visitor);
-        for (final OWLOntologyChange c : axiomChanges)
+        for (final OWLOntologyChangeData c : axiomChanges)
             c.accept(visitor);
     }
 
@@ -223,16 +230,79 @@ public abstract class ChangeSet {
                 && (axiomChanges == null || axiomChanges.isEmpty());
     }
 
-    public void applyTo(OWLOntology ontology) {
+    public void applyTo(OWLOntology ontology) throws UnsupportedOntologyFormatException {
         OWLOntologyManager manager = ontology.getOWLOntologyManager();
-        manager.applyChanges((List<? extends OWLOntologyChange>) axiomChanges);
-        manager.applyChanges((List<? extends OWLOntologyChange>) annotationChanges);
-        manager.applyChanges((List<? extends OWLOntologyChange>) importChanges);
+        List<OWLOntologyChange> changes = new ArrayList<OWLOntologyChange>();
+        for (OWLOntologyChangeData c : axiomChanges)
+            changes.add(c.createOntologyChange(ontology));
+        for (OWLOntologyChangeData c : annotationChanges)
+            changes.add(c.createOntologyChange(ontology));
+        for (OWLOntologyChangeData c : importChanges)
+            changes.add(c.createOntologyChange(ontology));
         if (ontologyIdChange != null)
-            manager.applyChange(ontologyIdChange);
-        if (formatChange != null)
-            manager.setOntologyFormat(ontology, formatChange.getNewOntologyFormat());
+            manager.applyChange(ontologyIdChange.createOntologyChange(ontology));
+        manager.applyChanges(changes);
+        // prefix changes can only be applied to ontology in a prefix format
+        OWLOntologyFormat oldFormat = manager.getOntologyFormat(ontology);
+        Map<String, String> prefixMap = null;
+        if (manager.getOntologyFormat(ontology).isPrefixOWLOntologyFormat()) {
+            PrefixOWLOntologyFormat oldPrefixFormat = oldFormat.asPrefixOWLOntologyFormat();
+            prefixMap = oldPrefixFormat.getPrefixName2PrefixMap();
+            for (PrefixChangeData c : prefixChanges) {
+                if (c instanceof AddPrefixData) {
+                    // prefix should not be there
+                    assert prefixMap.get(c.getPrefixName()) == null;
+                    prefixMap.put(c.getPrefixName(), c.getPrefix());
+                }
+                else if (c instanceof RemovePrefixData) {
+                    // prefix should already be there
+                    assert prefixMap.get(c.getPrefixName()).equals(c.getPrefix());
+                    prefixMap.remove(c.getPrefixName());
+                }
+                else if (c instanceof ModifyPrefixData) {
+                    // prefix should already be there
+                    assert prefixMap.get(c.getPrefixName()) != null;
+                    // and it should not be equal to new prefix
+                    assert !prefixMap.get(c.getPrefixName()).equals(c.getPrefix());
+                    prefixMap.put(c.getPrefixName(), c.getPrefix());
+                }
+                else if (c instanceof RenamePrefixData) {
+                    String prefixToFind = c.getPrefix();
+                    String oldPrefixName = null;
+                    for (Map.Entry<String, String> e : prefixMap.entrySet()) {
+                        if (e.getValue().equals(prefixToFind)) {
+                            oldPrefixName = e.getKey();
+                        }
+                    }
+                    // prefix name should already be there
+                    assert oldPrefixName != null;
+                    // and it should not be equal to the new name
+                    assert !oldPrefixName.equals(c.getPrefixName());
 
+                    prefixMap.remove(oldPrefixName);
+                    prefixMap.put(c.getPrefixName(), c.getPrefix());
+                }
+            }
+        }
+        OWLOntologyFormat newFormat;
+        if (formatChange != null) {
+            newFormat = formatChange.getNewFormat();
+        }
+        else {
+            // TODO: test if it is ok to do this
+            newFormat = oldFormat;
+        }
+        // copy prefixes to new format
+        if (newFormat.isPrefixOWLOntologyFormat()) {
+            PrefixOWLOntologyFormat newPrefixFormat = newFormat.asPrefixOWLOntologyFormat();
+            if (prefixMap != null) {
+                newPrefixFormat.clearPrefixes();
+                for (Map.Entry<String, String> e : prefixMap.entrySet()) {
+                    newPrefixFormat.setPrefix(e.getKey(), e.getValue());
+                }
+            }
+        }
+        // apply format (with prefixes)
+        manager.setOntologyFormat(ontology, newFormat);
     }
-
 }

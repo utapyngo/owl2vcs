@@ -19,14 +19,14 @@ import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
+import org.semanticweb.owlapi.change.AxiomChangeData;
+import org.semanticweb.owlapi.change.OWLOntologyChangeData;
 import org.semanticweb.owlapi.io.FileDocumentSource;
 import org.semanticweb.owlapi.io.UnparsableOntologyException;
 import org.semanticweb.owlapi.model.OWLAnnotationProperty;
 import org.semanticweb.owlapi.model.OWLAnonymousIndividual;
-import org.semanticweb.owlapi.model.OWLAxiomChange;
 import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.model.OWLOntologyChange;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyFormat;
 import org.semanticweb.owlapi.util.ShortFormProvider;
@@ -36,6 +36,7 @@ import org.semanticweb.owlapi.util.SimpleShortFormProvider;
 import owl2vcs.analysis.ChangeClassifier;
 import owl2vcs.analysis.EntityClassifier;
 import owl2vcs.analysis.EntityCollector;
+import owl2vcs.analysis.EntityCollectorException;
 import owl2vcs.analysis.PrefixExtractor;
 import owl2vcs.changeset.ChangeSet;
 import owl2vcs.changeset.FullChangeSet;
@@ -193,7 +194,7 @@ public final class Diff {
                             modifiedEntities, changesByEntity, provider,
                             changeRenderer);
                 } else
-                    for (final OWLOntologyChange c : cs.getAxiomChanges())
+                    for (final OWLOntologyChangeData c : cs.getAxiomChanges())
                         System.out.println(changeRenderer.render(c));
             } else if (settings.entities) {
                 displayEntities(newEntities, removedEntities, modifiedEntities,
@@ -225,6 +226,9 @@ public final class Diff {
                         + e.getDocumentIRI().toString());
         } catch (final OWLOntologyCreationException e) {
             e.printStackTrace(System.err);
+        } catch (EntityCollectorException e) {
+            // impossible
+            e.printStackTrace(System.err);
         }
         return 0;
     }
@@ -235,7 +239,7 @@ public final class Diff {
             System.out.println(changeRenderer.render(cs.getFormatChange()));
         if (cs.getOntologyIdChange() != null)
             System.out.println(changeRenderer.render(cs.getOntologyIdChange()));
-        for (final OWLOntologyChange c : Iterables.concat(
+        for (final OWLOntologyChangeData c : Iterables.concat(
                 cs.getPrefixChanges(), cs.getImportChanges(),
                 cs.getAnnotationChanges()))
             System.out.println(changeRenderer.render(c));
@@ -283,7 +287,7 @@ public final class Diff {
             final ChangeRenderer changeRenderer) {
         System.out.println();
         displayEntity(modifier, entity, provider);
-        for (final OWLAxiomChange c : changesByEntity
+        for (final AxiomChangeData c : changesByEntity
                 .getChangesByEntity(entity))
             System.out.println(changeRenderer.render(c));
     }

@@ -1,23 +1,23 @@
 package owl2vcs.render;
 
+import org.semanticweb.owlapi.change.AddAxiomData;
+import org.semanticweb.owlapi.change.AddImportData;
+import org.semanticweb.owlapi.change.AddOntologyAnnotationData;
+import org.semanticweb.owlapi.change.OWLOntologyChangeData;
+import org.semanticweb.owlapi.change.RemoveAxiomData;
+import org.semanticweb.owlapi.change.RemoveImportData;
+import org.semanticweb.owlapi.change.RemoveOntologyAnnotationData;
+import org.semanticweb.owlapi.change.SetOntologyIDData;
 import org.semanticweb.owlapi.io.OWLObjectRenderer;
-import org.semanticweb.owlapi.model.AddAxiom;
-import org.semanticweb.owlapi.model.AddImport;
-import org.semanticweb.owlapi.model.AddOntologyAnnotation;
-import org.semanticweb.owlapi.model.OWLOntologyChange;
 import org.semanticweb.owlapi.model.OWLOntologyID;
-import org.semanticweb.owlapi.model.RemoveAxiom;
-import org.semanticweb.owlapi.model.RemoveImport;
-import org.semanticweb.owlapi.model.RemoveOntologyAnnotation;
-import org.semanticweb.owlapi.model.SetOntologyID;
 import org.semanticweb.owlapi.util.ShortFormProvider;
 import org.semanticweb.owlapi.util.SimpleRenderer;
 
-import owl2vcs.changes.AddPrefix;
-import owl2vcs.changes.ModifyPrefix;
-import owl2vcs.changes.RemovePrefix;
-import owl2vcs.changes.RenamePrefix;
-import owl2vcs.changes.SetOntologyFormat;
+import owl2vcs.changes.AddPrefixData;
+import owl2vcs.changes.ModifyPrefixData;
+import owl2vcs.changes.RemovePrefixData;
+import owl2vcs.changes.RenamePrefixData;
+import owl2vcs.changes.SetOntologyFormatData;
 
 public class FunctionalChangeRenderer implements ChangeRenderer {
 
@@ -35,60 +35,60 @@ public class FunctionalChangeRenderer implements ChangeRenderer {
      * Render ontology changes.
      */
     @Override
-    public final String render(final OWLOntologyChange change) {
+    public final String render(final OWLOntologyChangeData change) {
         if (change == null)
             return null;
         // Standard changes
-        if (change instanceof SetOntologyFormat)
-            return render((SetOntologyFormat) change);
-        else if (change instanceof AddPrefix)
-            return render((AddPrefix) change);
-        else if (change instanceof RemovePrefix)
-            return render((RemovePrefix) change);
-        else if (change instanceof ModifyPrefix)
-            return render((ModifyPrefix) change);
-        else if (change instanceof RenamePrefix)
-            return render((RenamePrefix) change);
+        if (change instanceof SetOntologyFormatData)
+            return render((SetOntologyFormatData) change);
+        else if (change instanceof AddPrefixData)
+            return render((AddPrefixData) change);
+        else if (change instanceof RemovePrefixData)
+            return render((RemovePrefixData) change);
+        else if (change instanceof ModifyPrefixData)
+            return render((ModifyPrefixData) change);
+        else if (change instanceof RenamePrefixData)
+            return render((RenamePrefixData) change);
         // Custom changes
-        else if (change instanceof SetOntologyID)
-            return render((SetOntologyID) change);
-        else if (change instanceof AddImport)
-            return render((AddImport) change);
-        else if (change instanceof RemoveImport)
-            return render((RemoveImport) change);
-        else if (change instanceof AddOntologyAnnotation)
-            return render((AddOntologyAnnotation) change);
-        else if (change instanceof RemoveOntologyAnnotation)
-            return render((RemoveOntologyAnnotation) change);
-        else if (change instanceof AddAxiom)
-            return render((AddAxiom) change);
-        else if (change instanceof RemoveAxiom)
-            return render((RemoveAxiom) change);
+        else if (change instanceof SetOntologyIDData)
+            return render((SetOntologyIDData) change);
+        else if (change instanceof AddImportData)
+            return render((AddImportData) change);
+        else if (change instanceof RemoveImportData)
+            return render((RemoveImportData) change);
+        else if (change instanceof AddOntologyAnnotationData)
+            return render((AddOntologyAnnotationData) change);
+        else if (change instanceof RemoveOntologyAnnotationData)
+            return render((RemoveOntologyAnnotationData) change);
+        else if (change instanceof AddAxiomData)
+            return render((AddAxiomData) change);
+        else if (change instanceof RemoveAxiomData)
+            return render((RemoveAxiomData) change);
         else
             return "UnknownChangeType: " + change.getClass().getName();
     }
 
-    public final String render(final SetOntologyFormat change) {
+    public final String render(final SetOntologyFormatData change) {
         return indentString("*", "OntologyFormat(\""
-                + change.getNewOntologyFormat().toString() + "\")");
+                + change.getNewFormat().toString() + "\")");
     }
 
-    public final String render(final AddPrefix change) {
+    public final String render(final AddPrefixData change) {
         return indentString("+", "Prefix(" + change.getPrefixName() + "=<"
                 + change.getPrefix() + ">)");
     }
 
-    public final String render(final RemovePrefix change) {
+    public final String render(final RemovePrefixData change) {
         return indentString("-", "Prefix(" + change.getPrefixName() + "=<"
                 + change.getPrefix() + ">)");
     }
 
-    public final String render(final ModifyPrefix change) {
+    public final String render(final ModifyPrefixData change) {
         return indentString("*", "Prefix(" + change.getPrefixName() + "=<"
                 + change.getPrefix() + "> <" + change.getNewPrefix() + ">)");
     }
 
-    public final String render(final RenamePrefix change) {
+    public final String render(final RenamePrefixData change) {
         return indentString("#", "Prefix(" + change.getPrefixName() + " "
                 + change.getNewPrefixName() + "=<"
                 + change.getPrefix() + ">)");
@@ -108,47 +108,34 @@ public class FunctionalChangeRenderer implements ChangeRenderer {
         }
     }
 
-    public final String render(final SetOntologyID change) {
-        final OWLOntologyID oldid = change.getOriginalOntologyID();
-        final OWLOntologyID newid = change.getNewOntologyID();
-        String prefix;
-        String s;
-        if (newid.isAnonymous()) {
-            prefix = "-";
-            s = "OntologyID(" + renderOntologyId(oldid) + ")";
-        } else if (oldid != null && oldid.isAnonymous()) {
-            prefix = "+";
-            s = "OntologyID(" + renderOntologyId(newid) + ")";
-        } else {
-            prefix = "*";
-            s = "OntologyID(" + renderOntologyId(newid) + ")";
-        }
-        return indentString(prefix, s);
+    public final String render(final SetOntologyIDData change) {
+        final OWLOntologyID newid = change.getNewId();
+        return indentString("*", "OntologyID(" + renderOntologyId(newid) + ")");
     }
 
-    public final String render(final AddImport change) {
+    public final String render(final AddImportData change) {
         return indentString("+", "Import(<"
-                + change.getImportDeclaration().getIRI().toString() + ">)");
+                + change.getDeclaration().getIRI().toString() + ">)");
     }
 
-    public final String render(final RemoveImport change) {
+    public final String render(final RemoveImportData change) {
         return indentString("-", "Import(<"
-                + change.getImportDeclaration().getIRI().toString() + ">)");
+                + change.getDeclaration().getIRI().toString() + ">)");
     }
 
-    public final String render(final AddOntologyAnnotation change) {
+    public final String render(final AddOntologyAnnotationData change) {
         return indentString("+", objectRenderer.render(change.getAnnotation()));
     }
 
-    public final String render(final RemoveOntologyAnnotation change) {
+    public final String render(final RemoveOntologyAnnotationData change) {
         return indentString("-", objectRenderer.render(change.getAnnotation()));
     }
 
-    public final String render(final AddAxiom change) {
+    public final String render(final AddAxiomData change) {
         return indentString("+", objectRenderer.render(change.getAxiom()));
     }
 
-    public final String render(final RemoveAxiom change) {
+    public final String render(final RemoveAxiomData change) {
         return indentString("-", objectRenderer.render(change.getAxiom()));
     }
 

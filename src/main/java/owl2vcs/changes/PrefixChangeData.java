@@ -1,5 +1,8 @@
 package owl2vcs.changes;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 
 public abstract class PrefixChangeData extends CustomOntologyChangeData {
 
@@ -31,6 +34,13 @@ public abstract class PrefixChangeData extends CustomOntologyChangeData {
      */
     public String getPrefix() {
         return prefix;
+    }
+
+    public Collection<String> getPrefixSignature() {
+        final Collection<String> sig = new ArrayList<String>();
+        sig.add(getPrefixName());
+        sig.add(getPrefix());
+        return sig;
     }
 
 }

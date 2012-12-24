@@ -3,41 +3,40 @@ package owl2vcs.changeset;
 import java.util.Collection;
 import java.util.HashSet;
 
-import org.semanticweb.owlapi.model.AnnotationChange;
-import org.semanticweb.owlapi.model.ImportChange;
-import org.semanticweb.owlapi.model.OWLAxiomChange;
-import org.semanticweb.owlapi.model.SetOntologyID;
-
-import owl2vcs.changes.PrefixChange;
-import owl2vcs.changes.SetOntologyFormat;
+import org.semanticweb.owlapi.change.AxiomChangeData;
+import org.semanticweb.owlapi.change.ImportChangeData;
+import org.semanticweb.owlapi.change.OWLOntologyChangeData;
+import org.semanticweb.owlapi.change.SetOntologyIDData;
+import owl2vcs.changes.PrefixChangeData;
+import owl2vcs.changes.SetOntologyFormatData;
 
 public class MutableChangeSet extends ChangeSet {
 
     public MutableChangeSet() {
         setFormatChange(null);
-        setPrefixChanges(new HashSet<PrefixChange>());
+        setPrefixChanges(new HashSet<PrefixChangeData>());
         setOntologyIdChange(null);
-        setImportChanges(new HashSet<ImportChange>());
-        setAnnotationChanges(new HashSet<AnnotationChange>());
-        setAxiomChanges(new HashSet<OWLAxiomChange>());
+        setImportChanges(new HashSet<ImportChangeData>());
+        setAnnotationChanges(new HashSet<OWLOntologyChangeData>());
+        setAxiomChanges(new HashSet<AxiomChangeData>());
     }
 
     public MutableChangeSet(final ChangeSet cs) {
         setFormatChange(cs.getFormatChange());
-        setPrefixChanges(new HashSet<PrefixChange>(cs.getPrefixChanges()));
+        setPrefixChanges(new HashSet<PrefixChangeData>(cs.getPrefixChanges()));
         setOntologyIdChange(cs.getOntologyIdChange());
-        setImportChanges(new HashSet<ImportChange>(cs.getImportChanges()));
-        setAnnotationChanges(new HashSet<AnnotationChange>(
+        setImportChanges(new HashSet<ImportChangeData>(cs.getImportChanges()));
+        setAnnotationChanges(new HashSet<OWLOntologyChangeData>(
                 cs.getAnnotationChanges()));
-        setAxiomChanges(new HashSet<OWLAxiomChange>(cs.getAxiomChanges()));
+        setAxiomChanges(new HashSet<AxiomChangeData>(cs.getAxiomChanges()));
     }
 
-    public MutableChangeSet(final SetOntologyFormat formatChange,
-            final Collection<PrefixChange> prefixChanges,
-            final SetOntologyID ontologyIdChange,
-            final Collection<ImportChange> importChanges,
-            final Collection<AnnotationChange> annotationChanges,
-            final Collection<OWLAxiomChange> axiomChanges) {
+    public MutableChangeSet(final SetOntologyFormatData formatChange,
+            final Collection<PrefixChangeData> prefixChanges,
+            final SetOntologyIDData ontologyIdChange,
+            final Collection<ImportChangeData> importChanges,
+            final Collection<OWLOntologyChangeData> annotationChanges,
+            final Collection<AxiomChangeData> axiomChanges) {
         setFormatChange(formatChange);
         setPrefixChanges(prefixChanges);
         setOntologyIdChange(ontologyIdChange);
@@ -47,50 +46,50 @@ public class MutableChangeSet extends ChangeSet {
     }
 
     @Override
-    public void setFormatChange(final SetOntologyFormat formatChange) {
+    public void setFormatChange(final SetOntologyFormatData formatChange) {
         super.setFormatChange(formatChange);
     }
 
     @Override
-    public void setPrefixChanges(final Collection<PrefixChange> prefixChanges) {
+    public void setPrefixChanges(final Collection<PrefixChangeData> prefixChanges) {
         super.setPrefixChanges(prefixChanges);
     }
 
-    public void addPrefixChange(final PrefixChange prefixChange) {
+    public void addPrefixChange(final PrefixChangeData prefixChange) {
         getPrefixChanges().add(prefixChange);
     }
 
     @Override
-    public void setOntologyIdChange(final SetOntologyID ontologyIdChange) {
+    public void setOntologyIdChange(final SetOntologyIDData ontologyIdChange) {
         super.setOntologyIdChange(ontologyIdChange);
     }
 
     @Override
-    public void setImportChanges(final Collection<ImportChange> importChanges) {
+    public void setImportChanges(final Collection<ImportChangeData> importChanges) {
         super.setImportChanges(importChanges);
     }
 
-    public void addImportChange(final ImportChange importChange) {
+    public void addImportChange(final ImportChangeData importChange) {
         getImportChanges().add(importChange);
     }
 
     @Override
     public void setAnnotationChanges(
-            final Collection<AnnotationChange> annotationChanges) {
+            final Collection<OWLOntologyChangeData> annotationChanges) {
         super.setAnnotationChanges(annotationChanges);
     }
 
     public void addAnnotationChange(
-            final AnnotationChange annotationChange) {
+            final OWLOntologyChangeData annotationChange) {
         getAnnotationChanges().add(annotationChange);
     }
 
     @Override
-    public void setAxiomChanges(final Collection<OWLAxiomChange> axiomChanges) {
+    public void setAxiomChanges(final Collection<AxiomChangeData> axiomChanges) {
         super.setAxiomChanges(axiomChanges);
     }
 
-    public void addAxiomChange(final OWLAxiomChange axiomChange) {
+    public void addAxiomChange(final AxiomChangeData axiomChange) {
         getAxiomChanges().add(axiomChange);
     }
 }

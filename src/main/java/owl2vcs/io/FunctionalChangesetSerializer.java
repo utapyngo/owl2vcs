@@ -2,7 +2,7 @@ package owl2vcs.io;
 
 import java.io.PrintStream;
 
-import org.semanticweb.owlapi.model.OWLOntologyChange;
+import org.semanticweb.owlapi.change.OWLOntologyChangeData;
 import org.semanticweb.owlapi.util.ShortFormProvider;
 
 import owl2vcs.changeset.ChangeSet;
@@ -29,13 +29,13 @@ public class FunctionalChangesetSerializer {
             out.println(cr.render(cs.getFormatChange()));
         if (cs.getOntologyIdChange() != null)
             out.println(cr.render(cs.getOntologyIdChange()));
-        for (final OWLOntologyChange c : cs.getPrefixChanges())
+        for (final OWLOntologyChangeData c : cs.getPrefixChanges())
             out.println(cr.render(c));
-        for (final OWLOntologyChange c : cs.getImportChanges())
+        for (final OWLOntologyChangeData c : cs.getImportChanges())
             out.println(cr.render(c));
-        for (final OWLOntologyChange c : cs.getAnnotationChanges())
+        for (final OWLOntologyChangeData c : cs.getAnnotationChanges())
             out.println(cr.render(c));
-        for (final OWLOntologyChange c : cs.getAxiomChanges())
+        for (final OWLOntologyChangeData c : cs.getAxiomChanges())
             out.println(cr.render(c));
     }
 }

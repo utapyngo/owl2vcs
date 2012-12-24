@@ -9,33 +9,33 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.coode.owlapi.manchesterowlsyntax.ManchesterOWLSyntaxOntologyFormat;
-import org.semanticweb.owlapi.model.AddAxiom;
-import org.semanticweb.owlapi.model.AddImport;
-import org.semanticweb.owlapi.model.AddOntologyAnnotation;
-import org.semanticweb.owlapi.model.AnnotationChange;
+import org.semanticweb.owlapi.change.AddAxiomData;
+import org.semanticweb.owlapi.change.AddImportData;
+import org.semanticweb.owlapi.change.AddOntologyAnnotationData;
+import org.semanticweb.owlapi.change.AxiomChangeData;
+import org.semanticweb.owlapi.change.ImportChangeData;
+import org.semanticweb.owlapi.change.OWLOntologyChangeData;
+import org.semanticweb.owlapi.change.RemoveAxiomData;
+import org.semanticweb.owlapi.change.RemoveImportData;
+import org.semanticweb.owlapi.change.RemoveOntologyAnnotationData;
+import org.semanticweb.owlapi.change.SetOntologyIDData;
 import org.semanticweb.owlapi.model.AxiomType;
-import org.semanticweb.owlapi.model.ImportChange;
 import org.semanticweb.owlapi.model.OWLAnnotation;
 import org.semanticweb.owlapi.model.OWLAnnotationProperty;
 import org.semanticweb.owlapi.model.OWLAxiom;
-import org.semanticweb.owlapi.model.OWLAxiomChange;
 import org.semanticweb.owlapi.model.OWLDeclarationAxiom;
 import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.model.OWLImportsDeclaration;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyFormat;
-import org.semanticweb.owlapi.model.RemoveAxiom;
-import org.semanticweb.owlapi.model.RemoveImport;
-import org.semanticweb.owlapi.model.RemoveOntologyAnnotation;
-import org.semanticweb.owlapi.model.SetOntologyID;
 import org.semanticweb.owlapi.vocab.PrefixOWLOntologyFormat;
 
-import owl2vcs.changes.AddPrefix;
-import owl2vcs.changes.ModifyPrefix;
-import owl2vcs.changes.PrefixChange;
-import owl2vcs.changes.RemovePrefix;
-import owl2vcs.changes.RenamePrefix;
-import owl2vcs.changes.SetOntologyFormat;
+import owl2vcs.changes.AddPrefixData;
+import owl2vcs.changes.ModifyPrefixData;
+import owl2vcs.changes.PrefixChangeData;
+import owl2vcs.changes.RemovePrefixData;
+import owl2vcs.changes.RenamePrefixData;
+import owl2vcs.changes.SetOntologyFormatData;
 
 public class FullChangeSet extends ChangeSet {
 
@@ -71,7 +71,7 @@ public class FullChangeSet extends ChangeSet {
         final OWLOntologyFormat childFormat = child.getOWLOntologyManager()
                 .getOntologyFormat(child);
         if (!parentFormat.equals(childFormat))
-            setFormatChange(new SetOntologyFormat(parent, childFormat));
+            setFormatChange(new SetOntologyFormatData(childFormat));
 
         // Prefixes
         setPrefixChanges(findPrefixChanges(parent, child));
@@ -80,8 +80,7 @@ public class FullChangeSet extends ChangeSet {
         if (!(parent.getOntologyID().isAnonymous() && child.getOntologyID()
                 .isAnonymous()))
             if (!parent.getOntologyID().equals(child.getOntologyID()))
-                setOntologyIdChange(new SetOntologyID(parent,
-                        child.getOntologyID()));
+                setOntologyIdChange(new SetOntologyIDData(child.getOntologyID()));
 
         // Imports
         setImportChanges(findImportChanges(parent, child));
@@ -94,45 +93,43 @@ public class FullChangeSet extends ChangeSet {
     }
 
 
-    private Collection<ImportChange> findImportChanges(
+    private Collection<ImportChangeData> findImportChanges(
             final OWLOntology parent, final OWLOntology child) {
-        final Collection<ImportChange> importChanges = new ArrayList<ImportChange>();
+        final Collection<ImportChangeData> importChanges = new ArrayList<ImportChangeData>();
         final Collection<OWLImportsDeclaration> parentImports = parent
                 .getImportsDeclarations();
         final Collection<OWLImportsDeclaration> childImports = child
                 .getImportsDeclarations();
         for (final OWLImportsDeclaration decl : parentImports)
             if (!childImports.contains(decl))
-                importChanges.add(new RemoveImport(parent, decl));
+                importChanges.add(new RemoveImportData(decl));
         for (final OWLImportsDeclaration decl : childImports)
             if (!parentImports.contains(decl))
-                importChanges.add(new AddImport(parent, decl));
+                importChanges.add(new AddImportData(decl));
         return importChanges;
     }
 
 
-    private Collection<AnnotationChange> findAnnotationChanges(
+    private Collection<OWLOntologyChangeData> findAnnotationChanges(
             final OWLOntology parent, final OWLOntology child) {
-        final Collection<AnnotationChange> annotationChanges = new ArrayList<AnnotationChange>();
+        final Collection<OWLOntologyChangeData> annotationChanges = new ArrayList<OWLOntologyChangeData>();
         final Collection<OWLAnnotation> parentAnnotations = parent
                 .getAnnotations();
         final Collection<OWLAnnotation> childAnnotations = child
                 .getAnnotations();
         for (final OWLAnnotation annotation : parentAnnotations)
             if (!childAnnotations.contains(annotation))
-                annotationChanges.add(new RemoveOntologyAnnotation(parent,
-                        annotation));
+                annotationChanges.add(new RemoveOntologyAnnotationData(annotation));
         for (final OWLAnnotation annotation : childAnnotations)
             if (!parentAnnotations.contains(annotation))
-                annotationChanges.add(new AddOntologyAnnotation(parent,
-                        annotation));
+                annotationChanges.add(new AddOntologyAnnotationData(annotation));
         return annotationChanges;
     }
 
 
-    private Collection<OWLAxiomChange> findAxiomChanges(
+    private Collection<AxiomChangeData> findAxiomChanges(
             final OWLOntology parent, final OWLOntology child) {
-        final Collection<OWLAxiomChange> axiomChanges = new ArrayList<OWLAxiomChange>();
+        final Collection<AxiomChangeData> axiomChanges = new ArrayList<AxiomChangeData>();
         if (parent.getOWLOntologyManager().getOntologyFormat(parent) instanceof ManchesterOWLSyntaxOntologyFormat) {
             // collect annotation properties
             final Set<OWLAnnotationProperty> parentAnnotationProperties = new HashSet<OWLAnnotationProperty>();
@@ -149,12 +146,12 @@ public class FullChangeSet extends ChangeSet {
                         continue;
                 }
                 if (!child.containsAxiom(axiom))
-                    axiomChanges.add(new RemoveAxiom(parent, axiom));
+                    axiomChanges.add(new RemoveAxiomData(axiom));
             }
         } else
             for (final OWLAxiom axiom : parent.getAxioms())
                 if (!child.containsAxiom(axiom))
-                    axiomChanges.add(new RemoveAxiom(parent, axiom));
+                    axiomChanges.add(new RemoveAxiomData(axiom));
         if (child.getOWLOntologyManager().getOntologyFormat(child) instanceof ManchesterOWLSyntaxOntologyFormat) {
             // collect annotation properties
             final Set<OWLAnnotationProperty> childAnnotationProperties = new HashSet<OWLAnnotationProperty>();
@@ -171,23 +168,23 @@ public class FullChangeSet extends ChangeSet {
                         continue;
                 }
                 if (!parent.containsAxiom(axiom))
-                    axiomChanges.add(new AddAxiom(parent, axiom));
+                    axiomChanges.add(new AddAxiomData(axiom));
             }
         } else
             for (final OWLAxiom axiom : child.getAxioms())
                 if (!parent.containsAxiom(axiom))
-                    axiomChanges.add(new AddAxiom(parent, axiom));
+                    axiomChanges.add(new AddAxiomData(axiom));
         return axiomChanges;
     }
 
 
-    private Collection<PrefixChange> findPrefixChanges(
+    private Collection<PrefixChangeData> findPrefixChanges(
             final OWLOntology parent, final OWLOntology child) {
         final OWLOntologyFormat parentFormat = parent.getOWLOntologyManager()
                 .getOntologyFormat(parent);
         final OWLOntologyFormat childFormat = child.getOWLOntologyManager()
                 .getOntologyFormat(child);
-        final Collection<PrefixChange> prefixChanges = new ArrayList<PrefixChange>();
+        final Collection<PrefixChangeData> prefixChanges = new ArrayList<PrefixChangeData>();
         if (parentFormat instanceof PrefixOWLOntologyFormat) {
             final PrefixOWLOntologyFormat parentPrefixFormat = (PrefixOWLOntologyFormat) parentFormat;
             if (childFormat instanceof PrefixOWLOntologyFormat) {
@@ -204,15 +201,14 @@ public class FullChangeSet extends ChangeSet {
                             childPrefixName = e.getKey();
                     if ((childPrefixValue != null)
                             && (!childPrefixValue.equals(parentPrefixValue)))
-                        prefixChanges.add(new ModifyPrefix(parent,
-                                parentPrefixName, parentPrefixValue, childPrefixValue));
+                        prefixChanges.add(new ModifyPrefixData(parentPrefixName, parentPrefixValue, childPrefixValue));
                     if ((childPrefixName != null)
                             && (!childPrefixName.equals(parentPrefixName)))
                         prefixChanges
-                                .add(new RenamePrefix(parent, parentPrefixName,
+                                .add(new RenamePrefixData(parentPrefixName,
                                         parentPrefixValue, childPrefixName));
                     if ((childPrefixValue == null) && (childPrefixName == null))
-                        prefixChanges.add(new RemovePrefix(parent,
+                        prefixChanges.add(new RemovePrefixData(
                                 parentPrefixName, parentPrefixValue));
                 }
                 for (final String childPrefixName : childPrefixFormat
@@ -229,7 +225,7 @@ public class FullChangeSet extends ChangeSet {
                         if (e.getValue().equals(parentPrefixValue))
                             parentPrefixName = e.getKey();
                     if ((parentPrefixValue == null) && (parentPrefixName == null))
-                        prefixChanges.add(new AddPrefix(parent,
+                        prefixChanges.add(new AddPrefixData(
                                 childPrefixName, childPrefixValue));
                 }
             } else
@@ -238,7 +234,7 @@ public class FullChangeSet extends ChangeSet {
                         .getPrefixNames()) {
                     final String prefix = parentPrefixFormat
                             .getPrefix(prefixName);
-                    prefixChanges.add(new RemovePrefix(parent, prefixName,
+                    prefixChanges.add(new RemovePrefixData(prefixName,
                             prefix));
                 }
         } else if (childFormat instanceof PrefixOWLOntologyFormat) {
@@ -246,7 +242,7 @@ public class FullChangeSet extends ChangeSet {
             final PrefixOWLOntologyFormat childPrefixFormat = (PrefixOWLOntologyFormat) childFormat;
             for (final String prefixName : childPrefixFormat.getPrefixNames()) {
                 final String prefix = childPrefixFormat.getPrefix(prefixName);
-                prefixChanges.add(new AddPrefix(parent, prefixName, prefix));
+                prefixChanges.add(new AddPrefixData(prefixName, prefix));
             }
         }
         return prefixChanges;

@@ -1,4 +1,4 @@
-// $ANTLR 3.5-rc-1 R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g 2012-12-20 17:15:00
+// $ANTLR 3.5-rc-1 R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g 2012-12-24 22:41:41
 
 package owl2vcs.io;
 
@@ -376,11 +376,11 @@ public class FunctionalChangesetLexer extends Lexer {
 		try {
 			int _type = LANG_TAG;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:321:3: ( '@' ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '-' )+ )
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:321:5: '@' ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '-' )+
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:310:3: ( '@' ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '-' )+ )
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:310:5: '@' ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '-' )+
 			{
 			match('@'); 
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:322:5: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '-' )+
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:311:5: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '-' )+
 			int cnt1=0;
 			loop1:
 			do {
@@ -430,10 +430,10 @@ public class FunctionalChangesetLexer extends Lexer {
 		try {
 			int _type = INT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:329:3: ( ( '0' .. '9' )+ )
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:329:5: ( '0' .. '9' )+
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:318:3: ( ( '0' .. '9' )+ )
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:318:5: ( '0' .. '9' )+
 			{
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:329:5: ( '0' .. '9' )+
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:318:5: ( '0' .. '9' )+
 			int cnt2=0;
 			loop2:
 			do {
@@ -483,11 +483,11 @@ public class FunctionalChangesetLexer extends Lexer {
 		try {
 			int _type = NAME;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:333:3: ( 'A' .. 'Z' ( 'A' .. 'Z' | 'a' .. 'z' )+ )
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:333:5: 'A' .. 'Z' ( 'A' .. 'Z' | 'a' .. 'z' )+
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:322:3: ( 'A' .. 'Z' ( 'A' .. 'Z' | 'a' .. 'z' )+ )
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:322:5: 'A' .. 'Z' ( 'A' .. 'Z' | 'a' .. 'z' )+
 			{
 			matchRange('A','Z'); 
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:334:5: ( 'A' .. 'Z' | 'a' .. 'z' )+
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:323:5: ( 'A' .. 'Z' | 'a' .. 'z' )+
 			int cnt3=0;
 			loop3:
 			do {
@@ -537,11 +537,11 @@ public class FunctionalChangesetLexer extends Lexer {
 		try {
 			int _type = QUOTED_STRING;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:340:3: ( '\"' ( '\\\\' '\"' | '\\\\' '\\\\' |~ ( '\"' | '\\\\' ) )* '\"' )
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:340:5: '\"' ( '\\\\' '\"' | '\\\\' '\\\\' |~ ( '\"' | '\\\\' ) )* '\"'
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:329:3: ( '\"' ( '\\\\' '\"' | '\\\\' '\\\\' |~ ( '\"' | '\\\\' ) )* '\"' )
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:329:5: '\"' ( '\\\\' '\"' | '\\\\' '\\\\' |~ ( '\"' | '\\\\' ) )* '\"'
 			{
 			match('\"'); 
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:341:5: ( '\\\\' '\"' | '\\\\' '\\\\' |~ ( '\"' | '\\\\' ) )*
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:330:5: ( '\\\\' '\"' | '\\\\' '\\\\' |~ ( '\"' | '\\\\' ) )*
 			loop4:
 			do {
 				int alt4=4;
@@ -562,21 +562,21 @@ public class FunctionalChangesetLexer extends Lexer {
 
 				switch (alt4) {
 				case 1 :
-					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:341:7: '\\\\' '\"'
+					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:330:7: '\\\\' '\"'
 					{
 					match('\\'); 
 					match('\"'); 
 					}
 					break;
 				case 2 :
-					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:342:7: '\\\\' '\\\\'
+					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:331:7: '\\\\' '\\\\'
 					{
 					match('\\'); 
 					match('\\'); 
 					}
 					break;
 				case 3 :
-					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:343:7: ~ ( '\"' | '\\\\' )
+					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:332:7: ~ ( '\"' | '\\\\' )
 					{
 					if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
 						input.consume();
@@ -611,11 +611,11 @@ public class FunctionalChangesetLexer extends Lexer {
 		try {
 			int _type = FULLIRI;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:349:3: ( '<' ( options {greedy=false; } :~ '>' )* '>' )
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:349:5: '<' ( options {greedy=false; } :~ '>' )* '>'
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:338:3: ( '<' ( options {greedy=false; } :~ '>' )* '>' )
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:338:5: '<' ( options {greedy=false; } :~ '>' )* '>'
 			{
 			match('<'); 
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:350:5: ( options {greedy=false; } :~ '>' )*
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:339:5: ( options {greedy=false; } :~ '>' )*
 			loop5:
 			do {
 				int alt5=2;
@@ -629,7 +629,7 @@ public class FunctionalChangesetLexer extends Lexer {
 
 				switch (alt5) {
 				case 1 :
-					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:351:7: ~ '>'
+					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:340:7: ~ '>'
 					{
 					if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '=')||(input.LA(1) >= '?' && input.LA(1) <= '\uFFFF') ) {
 						input.consume();
@@ -664,8 +664,8 @@ public class FunctionalChangesetLexer extends Lexer {
 		try {
 			int _type = PNAME_LN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:357:3: ( PNAME_NS PN_LOCAL )
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:357:5: PNAME_NS PN_LOCAL
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:346:3: ( PNAME_NS PN_LOCAL )
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:346:5: PNAME_NS PN_LOCAL
 			{
 			mPNAME_NS(); 
 
@@ -687,8 +687,8 @@ public class FunctionalChangesetLexer extends Lexer {
 		try {
 			int _type = NODEID;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:360:3: ( '_:' PN_LOCAL )
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:360:5: '_:' PN_LOCAL
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:349:3: ( '_:' PN_LOCAL )
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:349:5: '_:' PN_LOCAL
 			{
 			match("_:"); 
 
@@ -710,10 +710,10 @@ public class FunctionalChangesetLexer extends Lexer {
 		try {
 			int _type = PNAME_NS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:363:3: ( ( PN_PREFIX )? ':' )
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:363:5: ( PN_PREFIX )? ':'
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:352:3: ( ( PN_PREFIX )? ':' )
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:352:5: ( PN_PREFIX )? ':'
 			{
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:363:5: ( PN_PREFIX )?
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:352:5: ( PN_PREFIX )?
 			int alt6=2;
 			int LA6_0 = input.LA(1);
 			if ( ((LA6_0 >= 'A' && LA6_0 <= 'Z')||(LA6_0 >= 'a' && LA6_0 <= 'z')||(LA6_0 >= '\u00C0' && LA6_0 <= '\u00D6')||(LA6_0 >= '\u00D8' && LA6_0 <= '\u00F6')||(LA6_0 >= '\u00F8' && LA6_0 <= '\u02FF')||(LA6_0 >= '\u0370' && LA6_0 <= '\u037D')||(LA6_0 >= '\u037F' && LA6_0 <= '\u1FFF')||(LA6_0 >= '\u200C' && LA6_0 <= '\u200D')||(LA6_0 >= '\u2070' && LA6_0 <= '\u218F')||(LA6_0 >= '\u2C00' && LA6_0 <= '\u2FEF')||(LA6_0 >= '\u3001' && LA6_0 <= '\uD7FF')||(LA6_0 >= '\uF900' && LA6_0 <= '\uFDCF')||(LA6_0 >= '\uFDF0' && LA6_0 <= '\uFFFD')) ) {
@@ -721,7 +721,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			}
 			switch (alt6) {
 				case 1 :
-					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:363:5: PN_PREFIX
+					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:352:5: PN_PREFIX
 					{
 					mPN_PREFIX(); 
 
@@ -745,8 +745,8 @@ public class FunctionalChangesetLexer extends Lexer {
 	// $ANTLR start "PN_LOCAL"
 	public final void mPN_LOCAL() throws RecognitionException {
 		try {
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:366:3: ( ( PN_CHARS_U | '0' .. '9' ) ( ( PN_CHARS | '.' )* PN_CHARS )? )
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:366:5: ( PN_CHARS_U | '0' .. '9' ) ( ( PN_CHARS | '.' )* PN_CHARS )?
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:355:3: ( ( PN_CHARS_U | '0' .. '9' ) ( ( PN_CHARS | '.' )* PN_CHARS )? )
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:355:5: ( PN_CHARS_U | '0' .. '9' ) ( ( PN_CHARS | '.' )* PN_CHARS )?
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z')||(input.LA(1) >= '\u00C0' && input.LA(1) <= '\u00D6')||(input.LA(1) >= '\u00D8' && input.LA(1) <= '\u00F6')||(input.LA(1) >= '\u00F8' && input.LA(1) <= '\u02FF')||(input.LA(1) >= '\u0370' && input.LA(1) <= '\u037D')||(input.LA(1) >= '\u037F' && input.LA(1) <= '\u1FFF')||(input.LA(1) >= '\u200C' && input.LA(1) <= '\u200D')||(input.LA(1) >= '\u2070' && input.LA(1) <= '\u218F')||(input.LA(1) >= '\u2C00' && input.LA(1) <= '\u2FEF')||(input.LA(1) >= '\u3001' && input.LA(1) <= '\uD7FF')||(input.LA(1) >= '\uF900' && input.LA(1) <= '\uFDCF')||(input.LA(1) >= '\uFDF0' && input.LA(1) <= '\uFFFD') ) {
 				input.consume();
@@ -756,7 +756,7 @@ public class FunctionalChangesetLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:366:31: ( ( PN_CHARS | '.' )* PN_CHARS )?
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:355:31: ( ( PN_CHARS | '.' )* PN_CHARS )?
 			int alt8=2;
 			int LA8_0 = input.LA(1);
 			if ( ((LA8_0 >= '-' && LA8_0 <= '.')||(LA8_0 >= '0' && LA8_0 <= '9')||(LA8_0 >= 'A' && LA8_0 <= 'Z')||LA8_0=='_'||(LA8_0 >= 'a' && LA8_0 <= 'z')||LA8_0=='\u00B7'||(LA8_0 >= '\u00C0' && LA8_0 <= '\u00D6')||(LA8_0 >= '\u00D8' && LA8_0 <= '\u00F6')||(LA8_0 >= '\u00F8' && LA8_0 <= '\u037D')||(LA8_0 >= '\u037F' && LA8_0 <= '\u1FFF')||(LA8_0 >= '\u200C' && LA8_0 <= '\u200D')||(LA8_0 >= '\u203F' && LA8_0 <= '\u2040')||(LA8_0 >= '\u2070' && LA8_0 <= '\u218F')||(LA8_0 >= '\u2C00' && LA8_0 <= '\u2FEF')||(LA8_0 >= '\u3001' && LA8_0 <= '\uD7FF')||(LA8_0 >= '\uF900' && LA8_0 <= '\uFDCF')||(LA8_0 >= '\uFDF0' && LA8_0 <= '\uFFFD')) ) {
@@ -764,9 +764,9 @@ public class FunctionalChangesetLexer extends Lexer {
 			}
 			switch (alt8) {
 				case 1 :
-					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:366:33: ( PN_CHARS | '.' )* PN_CHARS
+					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:355:33: ( PN_CHARS | '.' )* PN_CHARS
 					{
-					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:366:33: ( PN_CHARS | '.' )*
+					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:355:33: ( PN_CHARS | '.' )*
 					loop7:
 					do {
 						int alt7=2;
@@ -821,12 +821,12 @@ public class FunctionalChangesetLexer extends Lexer {
 	// $ANTLR start "PN_PREFIX"
 	public final void mPN_PREFIX() throws RecognitionException {
 		try {
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:369:3: ( PN_CHARS_BASE ( ( PN_CHARS | '.' )* PN_CHARS )? )
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:369:5: PN_CHARS_BASE ( ( PN_CHARS | '.' )* PN_CHARS )?
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:358:3: ( PN_CHARS_BASE ( ( PN_CHARS | '.' )* PN_CHARS )? )
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:358:5: PN_CHARS_BASE ( ( PN_CHARS | '.' )* PN_CHARS )?
 			{
 			mPN_CHARS_BASE(); 
 
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:369:19: ( ( PN_CHARS | '.' )* PN_CHARS )?
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:358:19: ( ( PN_CHARS | '.' )* PN_CHARS )?
 			int alt10=2;
 			int LA10_0 = input.LA(1);
 			if ( ((LA10_0 >= '-' && LA10_0 <= '.')||(LA10_0 >= '0' && LA10_0 <= '9')||(LA10_0 >= 'A' && LA10_0 <= 'Z')||LA10_0=='_'||(LA10_0 >= 'a' && LA10_0 <= 'z')||LA10_0=='\u00B7'||(LA10_0 >= '\u00C0' && LA10_0 <= '\u00D6')||(LA10_0 >= '\u00D8' && LA10_0 <= '\u00F6')||(LA10_0 >= '\u00F8' && LA10_0 <= '\u037D')||(LA10_0 >= '\u037F' && LA10_0 <= '\u1FFF')||(LA10_0 >= '\u200C' && LA10_0 <= '\u200D')||(LA10_0 >= '\u203F' && LA10_0 <= '\u2040')||(LA10_0 >= '\u2070' && LA10_0 <= '\u218F')||(LA10_0 >= '\u2C00' && LA10_0 <= '\u2FEF')||(LA10_0 >= '\u3001' && LA10_0 <= '\uD7FF')||(LA10_0 >= '\uF900' && LA10_0 <= '\uFDCF')||(LA10_0 >= '\uFDF0' && LA10_0 <= '\uFFFD')) ) {
@@ -834,9 +834,9 @@ public class FunctionalChangesetLexer extends Lexer {
 			}
 			switch (alt10) {
 				case 1 :
-					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:369:21: ( PN_CHARS | '.' )* PN_CHARS
+					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:358:21: ( PN_CHARS | '.' )* PN_CHARS
 					{
-					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:369:21: ( PN_CHARS | '.' )*
+					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:358:21: ( PN_CHARS | '.' )*
 					loop9:
 					do {
 						int alt9=2;
@@ -891,7 +891,7 @@ public class FunctionalChangesetLexer extends Lexer {
 	// $ANTLR start "PN_CHARS"
 	public final void mPN_CHARS() throws RecognitionException {
 		try {
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:372:3: ( PN_CHARS_U | '-' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:361:3: ( PN_CHARS_U | '-' | '0' .. '9' | '\\u00B7' | '\\u0300' .. '\\u036F' | '\\u203F' .. '\\u2040' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:
 			{
 			if ( input.LA(1)=='-'||(input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z')||input.LA(1)=='\u00B7'||(input.LA(1) >= '\u00C0' && input.LA(1) <= '\u00D6')||(input.LA(1) >= '\u00D8' && input.LA(1) <= '\u00F6')||(input.LA(1) >= '\u00F8' && input.LA(1) <= '\u037D')||(input.LA(1) >= '\u037F' && input.LA(1) <= '\u1FFF')||(input.LA(1) >= '\u200C' && input.LA(1) <= '\u200D')||(input.LA(1) >= '\u203F' && input.LA(1) <= '\u2040')||(input.LA(1) >= '\u2070' && input.LA(1) <= '\u218F')||(input.LA(1) >= '\u2C00' && input.LA(1) <= '\u2FEF')||(input.LA(1) >= '\u3001' && input.LA(1) <= '\uD7FF')||(input.LA(1) >= '\uF900' && input.LA(1) <= '\uFDCF')||(input.LA(1) >= '\uFDF0' && input.LA(1) <= '\uFFFD') ) {
@@ -914,7 +914,7 @@ public class FunctionalChangesetLexer extends Lexer {
 	// $ANTLR start "PN_CHARS_U"
 	public final void mPN_CHARS_U() throws RecognitionException {
 		try {
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:381:3: ( PN_CHARS_BASE | '_' )
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:370:3: ( PN_CHARS_BASE | '_' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z')||(input.LA(1) >= '\u00C0' && input.LA(1) <= '\u00D6')||(input.LA(1) >= '\u00D8' && input.LA(1) <= '\u00F6')||(input.LA(1) >= '\u00F8' && input.LA(1) <= '\u02FF')||(input.LA(1) >= '\u0370' && input.LA(1) <= '\u037D')||(input.LA(1) >= '\u037F' && input.LA(1) <= '\u1FFF')||(input.LA(1) >= '\u200C' && input.LA(1) <= '\u200D')||(input.LA(1) >= '\u2070' && input.LA(1) <= '\u218F')||(input.LA(1) >= '\u2C00' && input.LA(1) <= '\u2FEF')||(input.LA(1) >= '\u3001' && input.LA(1) <= '\uD7FF')||(input.LA(1) >= '\uF900' && input.LA(1) <= '\uFDCF')||(input.LA(1) >= '\uFDF0' && input.LA(1) <= '\uFFFD') ) {
@@ -937,7 +937,7 @@ public class FunctionalChangesetLexer extends Lexer {
 	// $ANTLR start "PN_CHARS_BASE"
 	public final void mPN_CHARS_BASE() throws RecognitionException {
 		try {
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:386:3: ( 'A' .. 'Z' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' )
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:375:3: ( 'A' .. 'Z' | 'a' .. 'z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u02FF' | '\\u0370' .. '\\u037D' | '\\u037F' .. '\\u1FFF' | '\\u200C' .. '\\u200D' | '\\u2070' .. '\\u218F' | '\\u2C00' .. '\\u2FEF' | '\\u3001' .. '\\uD7FF' | '\\uF900' .. '\\uFDCF' | '\\uFDF0' .. '\\uFFFD' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z')||(input.LA(1) >= '\u00C0' && input.LA(1) <= '\u00D6')||(input.LA(1) >= '\u00D8' && input.LA(1) <= '\u00F6')||(input.LA(1) >= '\u00F8' && input.LA(1) <= '\u02FF')||(input.LA(1) >= '\u0370' && input.LA(1) <= '\u037D')||(input.LA(1) >= '\u037F' && input.LA(1) <= '\u1FFF')||(input.LA(1) >= '\u200C' && input.LA(1) <= '\u200D')||(input.LA(1) >= '\u2070' && input.LA(1) <= '\u218F')||(input.LA(1) >= '\u2C00' && input.LA(1) <= '\u2FEF')||(input.LA(1) >= '\u3001' && input.LA(1) <= '\uD7FF')||(input.LA(1) >= '\uF900' && input.LA(1) <= '\uFDCF')||(input.LA(1) >= '\uFDF0' && input.LA(1) <= '\uFFFD') ) {
@@ -962,10 +962,10 @@ public class FunctionalChangesetLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:401:4: ( ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' )+ )
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:401:6: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' )+
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:390:4: ( ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' )+ )
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:390:6: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' )+
 			{
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:401:6: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' )+
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:390:6: ( ' ' | '\\t' | '\\n' | '\\r' | '\\f' )+
 			int cnt11=0;
 			loop11:
 			do {

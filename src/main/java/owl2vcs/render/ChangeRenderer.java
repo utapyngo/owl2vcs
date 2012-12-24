@@ -1,8 +1,8 @@
 package owl2vcs.render;
 
-import org.semanticweb.owlapi.model.OWLOntologyChange;
+import org.semanticweb.owlapi.change.OWLOntologyChangeData;
 
 public interface ChangeRenderer {
 
-    String render(OWLOntologyChange change);
+    String render(OWLOntologyChangeData change);
 }

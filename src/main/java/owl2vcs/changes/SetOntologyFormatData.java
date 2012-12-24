@@ -1,5 +1,10 @@
 package owl2vcs.changes;
 
+import org.coode.owlapi.manchesterowlsyntax.ManchesterOWLSyntaxOntologyFormat;
+import org.coode.owlapi.turtle.TurtleOntologyFormat;
+import org.semanticweb.owlapi.io.OWLFunctionalSyntaxOntologyFormat;
+import org.semanticweb.owlapi.io.OWLXMLOntologyFormat;
+import org.semanticweb.owlapi.io.RDFXMLOntologyFormat;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyFormat;
 import owl2vcs.changeset.CustomOntologyChangeDataVisitor;
@@ -17,10 +22,33 @@ public class SetOntologyFormatData extends CustomOntologyChangeData {
         this.newFormat = newFormat;
     }
 
-    @Override
-    public <R, E extends Exception> R accept(
-            CustomOntologyChangeDataVisitor<R, E> visitor) throws E {
-        return visitor.visit(this);
+    /**
+     * Creates a set ontology format change, which will set the format of the
+     * ontology to the specified new format specified as a string.
+     *
+     * @param ont
+     *            The ontology whose format is to be changed
+     * @param newOntologyFormat
+     *            A string representing the new ontology format
+     * @throws UnknownOntologyFormatException
+     */
+    public SetOntologyFormatData(final String newFormatString)
+            throws UnknownOntologyFormatException {
+        super();
+        OWLOntologyFormat newOntologyFormat;
+        if (newFormatString.equals("RDF/XML"))
+            newOntologyFormat = new RDFXMLOntologyFormat();
+        else if (newFormatString.equals("OWL/XML"))
+            newOntologyFormat = new OWLXMLOntologyFormat();
+        else if (newFormatString.equals("Turtle"))
+            newOntologyFormat = new TurtleOntologyFormat();
+        else if (newFormatString.equals("OWL Functional Syntax"))
+            newOntologyFormat = new OWLFunctionalSyntaxOntologyFormat();
+        else if (newFormatString.equals("Manchester OWL Syntax"))
+            newOntologyFormat = new ManchesterOWLSyntaxOntologyFormat();
+        else
+            throw new UnknownOntologyFormatException("Unknown format: " + newFormatString);
+        this.newFormat = newOntologyFormat;
     }
 
     @Override
@@ -60,6 +88,12 @@ public class SetOntologyFormatData extends CustomOntologyChangeData {
         sb.append(newFormat);
         sb.append("))");
         return sb.toString();
+    }
+
+    @Override
+    public <R, E extends Exception> R accept(
+            CustomOntologyChangeDataVisitor<R, E> visitor) throws E {
+        return visitor.visit(this);
     }
 
 }

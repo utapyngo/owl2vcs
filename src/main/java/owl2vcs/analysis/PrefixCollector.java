@@ -2,23 +2,24 @@ package owl2vcs.analysis;
 
 import java.util.Set;
 
-import org.semanticweb.owlapi.model.AddAxiom;
-import org.semanticweb.owlapi.model.AddImport;
-import org.semanticweb.owlapi.model.AddOntologyAnnotation;
-import org.semanticweb.owlapi.model.RemoveAxiom;
-import org.semanticweb.owlapi.model.RemoveImport;
-import org.semanticweb.owlapi.model.RemoveOntologyAnnotation;
-import org.semanticweb.owlapi.model.SetOntologyID;
+import org.semanticweb.owlapi.change.AddAxiomData;
+import org.semanticweb.owlapi.change.AddImportData;
+import org.semanticweb.owlapi.change.AddOntologyAnnotationData;
+import org.semanticweb.owlapi.change.RemoveAxiomData;
+import org.semanticweb.owlapi.change.RemoveImportData;
+import org.semanticweb.owlapi.change.RemoveOntologyAnnotationData;
+import org.semanticweb.owlapi.change.SetOntologyIDData;
 
-import owl2vcs.changes.AddPrefix;
-import owl2vcs.changes.ModifyPrefix;
-import owl2vcs.changes.PrefixChange;
-import owl2vcs.changes.RemovePrefix;
-import owl2vcs.changes.RenamePrefix;
-import owl2vcs.changes.SetOntologyFormat;
-import owl2vcs.changeset.CustomOntologyChangeVisitor;
+import owl2vcs.changes.AddPrefixData;
+import owl2vcs.changes.ModifyPrefixData;
+import owl2vcs.changes.PrefixChangeData;
+import owl2vcs.changes.RemovePrefixData;
+import owl2vcs.changes.RenamePrefixData;
+import owl2vcs.changes.SetOntologyFormatData;
+import owl2vcs.changeset.CustomOntologyChangeDataVisitor;
 
-public class PrefixCollector implements CustomOntologyChangeVisitor {
+public class PrefixCollector implements
+        CustomOntologyChangeDataVisitor<Object, PrefixCollectorException> {
 
     private Set<String> names;
     private Set<String> values;
@@ -28,63 +29,75 @@ public class PrefixCollector implements CustomOntologyChangeVisitor {
         this.values = values;
     }
 
-    @Override
-    public void visit(AddAxiom change) {
+    protected void visitPrefixChange(PrefixChangeData data) {
+        names.add(data.getPrefixName());
+        values.add(data.getPrefix());
     }
 
     @Override
-    public void visit(RemoveAxiom change) {
+    public Object visit(AddAxiomData data) {
+        return null;
     }
 
     @Override
-    public void visit(SetOntologyID change) {
+    public Object visit(RemoveAxiomData data) {
+        return null;
     }
 
     @Override
-    public void visit(AddImport change) {
+    public Object visit(AddOntologyAnnotationData data) {
+        return null;
     }
 
     @Override
-    public void visit(RemoveImport change) {
+    public Object visit(RemoveOntologyAnnotationData data) {
+        return null;
     }
 
     @Override
-    public void visit(AddOntologyAnnotation change) {
+    public Object visit(SetOntologyIDData data) {
+        return null;
     }
 
     @Override
-    public void visit(RemoveOntologyAnnotation change) {
+    public Object visit(AddImportData data) {
+        return null;
     }
 
     @Override
-    public void visit(SetOntologyFormat change) {
-    }
-
-    protected void visitPrefixChange(PrefixChange change) {
-        names.add(change.getPrefixName());
-        values.add(change.getPrefix());
+    public Object visit(RemoveImportData data) {
+        return null;
     }
 
     @Override
-    public void visit(AddPrefix change) {
-        visitPrefixChange(change);
+    public Object visit(SetOntologyFormatData data) {
+        return null;
     }
 
     @Override
-    public void visit(RemovePrefix change) {
-        visitPrefixChange(change);
+    public Object visit(AddPrefixData data) {
+        visitPrefixChange(data);
+        return null;
     }
 
     @Override
-    public void visit(ModifyPrefix change) {
-        visitPrefixChange(change);
-        values.add(change.getNewPrefix());
+    public Object visit(RemovePrefixData data) {
+        visitPrefixChange(data);
+        return null;
     }
 
     @Override
-    public void visit(RenamePrefix change) {
-        visitPrefixChange(change);
-        names.add(change.getNewPrefixName());
+    public Object visit(ModifyPrefixData data) {
+        visitPrefixChange(data);
+        values.add(data.getNewPrefix());
+        return null;
+    }
+
+    @Override
+    public Object visit(RenamePrefixData data) {
+        visitPrefixChange(data);
+        values.add(data.getNewPrefixName());
+        return null;
     }
 
 }

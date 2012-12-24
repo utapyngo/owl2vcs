@@ -1,8 +1,5 @@
 package owl2vcs.changes;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import org.semanticweb.owlapi.model.OWLOntology;
 
 public abstract class PrefixChange extends CustomOntologyChange {
@@ -55,12 +52,5 @@ public abstract class PrefixChange extends CustomOntologyChange {
         } else if (!prefixName.equals(other.prefixName))
             return false;
         return true;
-    }
-
-    public Collection<String> getPrefixSignature() {
-        final Collection<String> sig = new ArrayList<String>();
-        sig.add(getPrefixName());
-        sig.add(getPrefix());
-        return sig;
     }
 }

@@ -25,8 +25,8 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyLoaderConfiguration;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 
-import owl2vcs.changes.AddPrefix;
-import owl2vcs.changes.PrefixChange;
+import owl2vcs.changes.AddPrefixData;
+import owl2vcs.changes.PrefixChangeData;
 import owl2vcs.changes.UnknownOntologyFormatException;
 import owl2vcs.io.FunctionalChangesetParser;
 import owl2vcs.io.FunctionalChangesetSerializer;
@@ -63,22 +63,21 @@ public class FullChangeSetTest {
         return ontology;
     }
 
-    private static MutableChangeSet loadChangeset(final OWLOntology parent,
-            final String name) throws OWLOntologyCreationException,
-            RecognitionException, UnknownOntologyFormatException,
-            ParseException, IOException {
-        return (new FunctionalChangesetParser(parent,
-                FullChangeSetTest.class.getResource(name).getFile()))
-                .changeset();
+    private static MutableChangeSet loadChangeset(final String name)
+            throws OWLOntologyCreationException, RecognitionException,
+            UnknownOntologyFormatException, ParseException, IOException {
+        final String filename = FullChangeSetTest.class.getResource(name).getFile();
+        FunctionalChangesetParser parser = new FunctionalChangesetParser(filename);
+        parser.init();
+        return parser.changeset();
     }
 
     @Test
     public void testFullChangeSetPrefixes() throws OWLOntologyCreationException {
         final OWLOntology parent = loadOntology("prefixes1.owl");
         final OWLOntology child = loadOntology("prefixes2.owl");
-        final Collection<PrefixChange> expected = new ArrayList<PrefixChange>();
-        expected.add(new AddPrefix(parent, "dc:",
-                "http://purl.org/dc/elements/1.1/"));
+        final Collection<PrefixChangeData> expected = new ArrayList<PrefixChangeData>();
+        expected.add(new AddPrefixData("dc:", "http://purl.org/dc/elements/1.1/"));
         final FullChangeSet cs = new FullChangeSet(parent, child);
         assertTrue(cs.getPrefixChanges().equals(expected));
     }
@@ -101,7 +100,7 @@ public class FullChangeSetTest {
         final OWLOntology parent = loadOntology("parent.owl");
         final OWLOntology child = loadOntology("child.owl");
         final FullChangeSet actual = new FullChangeSet(parent, child);
-        final MutableChangeSet expected = loadChangeset(parent, "result.txt");
+        final MutableChangeSet expected = loadChangeset("result.txt");
         if (!actual.equals(expected)) {
             FunctionalChangesetSerializer serializer = new FunctionalChangesetSerializer();
             PrintStream sysout = new PrintStream(System.out, true, "UTF-8");
