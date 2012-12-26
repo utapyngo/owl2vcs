@@ -1,5 +1,3 @@
-// $ANTLR 3.5-rc-1 R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g 2012-12-26 20:19:53
-
 package owl2vcs.io;
 
 
@@ -50,7 +48,7 @@ public class FunctionalChangesetLexer extends Lexer {
 		return new Lexer[] {};
 	}
 
-	public FunctionalChangesetLexer() {} 
+	public FunctionalChangesetLexer() {}
 	public FunctionalChangesetLexer(CharStream input) {
 		this(input, new RecognizerSharedState());
 	}
@@ -67,7 +65,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:14:7: ( '# Prefix' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:14:9: '# Prefix'
 			{
-			match("# Prefix"); 
+			match("# Prefix");
 
 			}
 
@@ -88,7 +86,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:15:7: ( '(' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:15:9: '('
 			{
-			match('('); 
+			match('(');
 			}
 
 			state.type = _type;
@@ -108,7 +106,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:16:7: ( ')' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:16:9: ')'
 			{
-			match(')'); 
+			match(')');
 			}
 
 			state.type = _type;
@@ -128,7 +126,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:17:7: ( '* ' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:17:9: '* '
 			{
-			match("* "); 
+			match("* ");
 
 			}
 
@@ -149,7 +147,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:18:7: ( '* OntologyFormat' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:18:9: '* OntologyFormat'
 			{
-			match("* OntologyFormat"); 
+			match("* OntologyFormat");
 
 			}
 
@@ -170,7 +168,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:19:7: ( '* Prefix' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:19:9: '* Prefix'
 			{
-			match("* Prefix"); 
+			match("* Prefix");
 
 			}
 
@@ -191,7 +189,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:20:7: ( '+ ' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:20:9: '+ '
 			{
-			match("+ "); 
+			match("+ ");
 
 			}
 
@@ -212,7 +210,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:21:7: ( '+ Prefix' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:21:9: '+ Prefix'
 			{
-			match("+ Prefix"); 
+			match("+ Prefix");
 
 			}
 
@@ -233,7 +231,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:22:7: ( '- ' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:22:9: '- '
 			{
-			match("- "); 
+			match("- ");
 
 			}
 
@@ -254,7 +252,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:23:7: ( '- Prefix' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:23:9: '- Prefix'
 			{
-			match("- Prefix"); 
+			match("- Prefix");
 
 			}
 
@@ -275,7 +273,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:24:7: ( '=' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:24:9: '='
 			{
-			match('='); 
+			match('=');
 			}
 
 			state.type = _type;
@@ -295,7 +293,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:25:7: ( 'Annotation' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:25:9: 'Annotation'
 			{
-			match("Annotation"); 
+			match("Annotation");
 
 			}
 
@@ -316,7 +314,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:26:7: ( 'Import' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:26:9: 'Import'
 			{
-			match("Import"); 
+			match("Import");
 
 			}
 
@@ -337,7 +335,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:27:7: ( 'OntologyID' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:27:9: 'OntologyID'
 			{
-			match("OntologyID"); 
+			match("OntologyID");
 
 			}
 
@@ -358,7 +356,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:28:7: ( '^^' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:28:9: '^^'
 			{
-			match("^^"); 
+			match("^^");
 
 			}
 
@@ -379,7 +377,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:321:3: ( '@' ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '-' )+ )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:321:5: '@' ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '-' )+
 			{
-			match('@'); 
+			match('@');
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:322:5: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '-' )+
 			int cnt1=0;
 			loop1:
@@ -486,7 +484,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:333:3: ( 'A' .. 'Z' ( 'A' .. 'Z' | 'a' .. 'z' )+ )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:333:5: 'A' .. 'Z' ( 'A' .. 'Z' | 'a' .. 'z' )+
 			{
-			matchRange('A','Z'); 
+			matchRange('A','Z');
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:334:5: ( 'A' .. 'Z' | 'a' .. 'z' )+
 			int cnt3=0;
 			loop3:
@@ -540,7 +538,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:340:3: ( '\"' ( '\\\\' '\"' | '\\\\' '\\\\' |~ ( '\"' | '\\\\' ) )* '\"' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:340:5: '\"' ( '\\\\' '\"' | '\\\\' '\\\\' |~ ( '\"' | '\\\\' ) )* '\"'
 			{
-			match('\"'); 
+			match('\"');
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:341:5: ( '\\\\' '\"' | '\\\\' '\\\\' |~ ( '\"' | '\\\\' ) )*
 			loop4:
 			do {
@@ -564,15 +562,15 @@ public class FunctionalChangesetLexer extends Lexer {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:341:7: '\\\\' '\"'
 					{
-					match('\\'); 
-					match('\"'); 
+					match('\\');
+					match('\"');
 					}
 					break;
 				case 2 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:342:7: '\\\\' '\\\\'
 					{
-					match('\\'); 
-					match('\\'); 
+					match('\\');
+					match('\\');
 					}
 					break;
 				case 3 :
@@ -594,7 +592,7 @@ public class FunctionalChangesetLexer extends Lexer {
 				}
 			} while (true);
 
-			match('\"'); 
+			match('\"');
 			}
 
 			state.type = _type;
@@ -614,7 +612,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:349:3: ( '<' ( options {greedy=false; } :~ '>' )* '>' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:349:5: '<' ( options {greedy=false; } :~ '>' )* '>'
 			{
-			match('<'); 
+			match('<');
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:350:5: ( options {greedy=false; } :~ '>' )*
 			loop5:
 			do {
@@ -647,7 +645,7 @@ public class FunctionalChangesetLexer extends Lexer {
 				}
 			} while (true);
 
-			match('>'); 
+			match('>');
 			}
 
 			state.type = _type;
@@ -667,9 +665,9 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:357:3: ( PNAME_NS PN_LOCAL )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:357:5: PNAME_NS PN_LOCAL
 			{
-			mPNAME_NS(); 
+			mPNAME_NS();
 
-			mPN_LOCAL(); 
+			mPN_LOCAL();
 
 			}
 
@@ -690,9 +688,9 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:360:3: ( '_:' PN_LOCAL )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:360:5: '_:' PN_LOCAL
 			{
-			match("_:"); 
+			match("_:");
 
-			mPN_LOCAL(); 
+			mPN_LOCAL();
 
 			}
 
@@ -723,14 +721,14 @@ public class FunctionalChangesetLexer extends Lexer {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:363:5: PN_PREFIX
 					{
-					mPN_PREFIX(); 
+					mPN_PREFIX();
 
 					}
 					break;
 
 			}
 
-			match(':'); 
+			match(':');
 			}
 
 			state.type = _type;
@@ -802,7 +800,7 @@ public class FunctionalChangesetLexer extends Lexer {
 						}
 					} while (true);
 
-					mPN_CHARS(); 
+					mPN_CHARS();
 
 					}
 					break;
@@ -824,7 +822,7 @@ public class FunctionalChangesetLexer extends Lexer {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:369:3: ( PN_CHARS_BASE ( ( PN_CHARS | '.' )* PN_CHARS )? )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:369:5: PN_CHARS_BASE ( ( PN_CHARS | '.' )* PN_CHARS )?
 			{
-			mPN_CHARS_BASE(); 
+			mPN_CHARS_BASE();
 
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:369:19: ( ( PN_CHARS | '.' )* PN_CHARS )?
 			int alt10=2;
@@ -872,7 +870,7 @@ public class FunctionalChangesetLexer extends Lexer {
 						}
 					} while (true);
 
-					mPN_CHARS(); 
+					mPN_CHARS();
 
 					}
 					break;
@@ -1020,168 +1018,168 @@ public class FunctionalChangesetLexer extends Lexer {
 			case 1 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:10: T__18
 				{
-				mT__18(); 
+				mT__18();
 
 				}
 				break;
 			case 2 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:16: T__19
 				{
-				mT__19(); 
+				mT__19();
 
 				}
 				break;
 			case 3 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:22: T__20
 				{
-				mT__20(); 
+				mT__20();
 
 				}
 				break;
 			case 4 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:28: T__21
 				{
-				mT__21(); 
+				mT__21();
 
 				}
 				break;
 			case 5 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:34: T__22
 				{
-				mT__22(); 
+				mT__22();
 
 				}
 				break;
 			case 6 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:40: T__23
 				{
-				mT__23(); 
+				mT__23();
 
 				}
 				break;
 			case 7 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:46: T__24
 				{
-				mT__24(); 
+				mT__24();
 
 				}
 				break;
 			case 8 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:52: T__25
 				{
-				mT__25(); 
+				mT__25();
 
 				}
 				break;
 			case 9 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:58: T__26
 				{
-				mT__26(); 
+				mT__26();
 
 				}
 				break;
 			case 10 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:64: T__27
 				{
-				mT__27(); 
+				mT__27();
 
 				}
 				break;
 			case 11 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:70: T__28
 				{
-				mT__28(); 
+				mT__28();
 
 				}
 				break;
 			case 12 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:76: T__29
 				{
-				mT__29(); 
+				mT__29();
 
 				}
 				break;
 			case 13 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:82: T__30
 				{
-				mT__30(); 
+				mT__30();
 
 				}
 				break;
 			case 14 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:88: T__31
 				{
-				mT__31(); 
+				mT__31();
 
 				}
 				break;
 			case 15 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:94: T__32
 				{
-				mT__32(); 
+				mT__32();
 
 				}
 				break;
 			case 16 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:100: LANG_TAG
 				{
-				mLANG_TAG(); 
+				mLANG_TAG();
 
 				}
 				break;
 			case 17 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:109: INT
 				{
-				mINT(); 
+				mINT();
 
 				}
 				break;
 			case 18 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:113: NAME
 				{
-				mNAME(); 
+				mNAME();
 
 				}
 				break;
 			case 19 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:118: QUOTED_STRING
 				{
-				mQUOTED_STRING(); 
+				mQUOTED_STRING();
 
 				}
 				break;
 			case 20 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:132: FULLIRI
 				{
-				mFULLIRI(); 
+				mFULLIRI();
 
 				}
 				break;
 			case 21 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:140: PNAME_LN
 				{
-				mPNAME_LN(); 
+				mPNAME_LN();
 
 				}
 				break;
 			case 22 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:149: NODEID
 				{
-				mNODEID(); 
+				mNODEID();
 
 				}
 				break;
 			case 23 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:156: PNAME_NS
 				{
-				mPNAME_NS(); 
+				mPNAME_NS();
 
 				}
 				break;
 			case 24 :
 				// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:1:165: WS
 				{
-				mWS(); 
+				mWS();
 
 				}
 				break;

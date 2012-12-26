@@ -1,5 +1,3 @@
-// $ANTLR 3.5-rc-1 R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g 2012-12-26 20:19:52
-
 package owl2vcs.io;
 
 import java.io.IOException;
@@ -186,12 +184,12 @@ public class FunctionalChangesetParser extends Parser {
 			{
 
 			    result = new MutableChangeSet();
-			  
+
 			pushFollow(FOLLOW_prefixes_in_changeset75);
 			prefixes1=prefixes();
 			state._fsp--;
 
-			 parser.setPrefixes(prefixes1); 
+			 parser.setPrefixes(prefixes1);
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:129:3: ( setOntologyFormat )?
 			int alt1=2;
 			int LA1_0 = input.LA(1);
@@ -206,7 +204,7 @@ public class FunctionalChangesetParser extends Parser {
 					setOntologyFormat2=setOntologyFormat();
 					state._fsp--;
 
-					 result.setFormatChange(setOntologyFormat2); 
+					 result.setFormatChange(setOntologyFormat2);
 					}
 					break;
 
@@ -245,7 +243,7 @@ public class FunctionalChangesetParser extends Parser {
 					setOntologyId3=setOntologyId();
 					state._fsp--;
 
-					 result.setOntologyIdChange(setOntologyId3); 
+					 result.setOntologyIdChange(setOntologyId3);
 					}
 					break;
 
@@ -268,7 +266,7 @@ public class FunctionalChangesetParser extends Parser {
 					prefixChange4=prefixChange();
 					state._fsp--;
 
-					 result.addPrefixChange(prefixChange4); 
+					 result.addPrefixChange(prefixChange4);
 					}
 					break;
 
@@ -305,7 +303,7 @@ public class FunctionalChangesetParser extends Parser {
 					importChange5=importChange();
 					state._fsp--;
 
-					 result.addImportChange(importChange5); 
+					 result.addImportChange(importChange5);
 					}
 					break;
 
@@ -342,7 +340,7 @@ public class FunctionalChangesetParser extends Parser {
 					annotationChange6=annotationChange();
 					state._fsp--;
 
-					 result.addAnnotationChange(annotationChange6); 
+					 result.addAnnotationChange(annotationChange6);
 					}
 					break;
 
@@ -368,7 +366,7 @@ public class FunctionalChangesetParser extends Parser {
 					axiomChange7=axiomChange();
 					state._fsp--;
 
-					 result.addAxiomChange(axiomChange7); 
+					 result.addAxiomChange(axiomChange7);
 					}
 					break;
 
@@ -405,7 +403,7 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:150:3: ( ( prefix )* )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:150:5: ( prefix )*
 			{
-			 result = new DefaultPrefixManager(); 
+			 result = new DefaultPrefixManager();
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:151:3: ( prefix )*
 			loop7:
 			do {
@@ -423,7 +421,7 @@ public class FunctionalChangesetParser extends Parser {
 					prefix8=prefix();
 					state._fsp--;
 
-					 result.setPrefix((prefix8!=null?((FunctionalChangesetParser.prefix_return)prefix8).name:null), (prefix8!=null?((FunctionalChangesetParser.prefix_return)prefix8).value:null)); 
+					 result.setPrefix((prefix8!=null?((FunctionalChangesetParser.prefix_return)prefix8).name:null), (prefix8!=null?((FunctionalChangesetParser.prefix_return)prefix8).value:null));
 					}
 					break;
 
@@ -470,7 +468,7 @@ public class FunctionalChangesetParser extends Parser {
 			prefixName9=prefixName();
 			state._fsp--;
 
-			match(input,28,FOLLOW_28_in_prefix230); 
+			match(input,28,FOLLOW_28_in_prefix230);
 			pushFollow(FOLLOW_fullIRI_in_prefix232);
 			fullIRI10=fullIRI();
 			state._fsp--;
@@ -479,7 +477,7 @@ public class FunctionalChangesetParser extends Parser {
 			      retval.name = (prefixName9!=null?input.toString(prefixName9.start,prefixName9.stop):null);
 			      String s = (fullIRI10!=null?input.toString(fullIRI10.start,fullIRI10.stop):null);
 			      retval.value =  s.substring(1, s.length() - 1);
-			  
+
 			}
 
 			retval.stop = input.LT(-1);
@@ -510,17 +508,17 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:171:3: ( '* OntologyFormat' '(' quotedString ')' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:172:3: '* OntologyFormat' '(' quotedString ')'
 			{
-			match(input,22,FOLLOW_22_in_setOntologyFormat266); 
-			match(input,19,FOLLOW_19_in_setOntologyFormat268); 
+			match(input,22,FOLLOW_22_in_setOntologyFormat266);
+			match(input,19,FOLLOW_19_in_setOntologyFormat268);
 			pushFollow(FOLLOW_quotedString_in_setOntologyFormat270);
 			quotedString11=quotedString();
 			state._fsp--;
 
-			match(input,20,FOLLOW_20_in_setOntologyFormat272); 
+			match(input,20,FOLLOW_20_in_setOntologyFormat272);
 
 			      String format = (quotedString11!=null?input.toString(quotedString11.start,quotedString11.stop):null).substring(1, (quotedString11!=null?input.toString(quotedString11.start,quotedString11.stop):null).length() - 1);
 			      result = new SetOntologyFormat(parent, format);
-			  
+
 			}
 
 		}
@@ -574,34 +572,34 @@ public class FunctionalChangesetParser extends Parser {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:183:5: '+ ' ontologyIDStatement
 					{
-					match(input,24,FOLLOW_24_in_setOntologyId296); 
+					match(input,24,FOLLOW_24_in_setOntologyId296);
 					pushFollow(FOLLOW_ontologyIDStatement_in_setOntologyId298);
 					ontologyIDStatement12=ontologyIDStatement();
 					state._fsp--;
 
-					 result = new SetOntologyID(parent, ontologyIDStatement12); 
+					 result = new SetOntologyID(parent, ontologyIDStatement12);
 					}
 					break;
 				case 2 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:185:5: '- ' ontologyIDStatement
 					{
-					match(input,26,FOLLOW_26_in_setOntologyId308); 
+					match(input,26,FOLLOW_26_in_setOntologyId308);
 					pushFollow(FOLLOW_ontologyIDStatement_in_setOntologyId310);
 					ontologyIDStatement();
 					state._fsp--;
 
-					 result = new SetOntologyID(parent, new OWLOntologyID()); 
+					 result = new SetOntologyID(parent, new OWLOntologyID());
 					}
 					break;
 				case 3 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:187:5: '* ' ontologyIDStatement
 					{
-					match(input,21,FOLLOW_21_in_setOntologyId320); 
+					match(input,21,FOLLOW_21_in_setOntologyId320);
 					pushFollow(FOLLOW_ontologyIDStatement_in_setOntologyId322);
 					ontologyIDStatement13=ontologyIDStatement();
 					state._fsp--;
 
-					 result = new SetOntologyID(parent, ontologyIDStatement13); 
+					 result = new SetOntologyID(parent, ontologyIDStatement13);
 					}
 					break;
 
@@ -632,14 +630,14 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:192:3: ( 'OntologyID' '(' oid ')' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:192:5: 'OntologyID' '(' oid ')'
 			{
-			match(input,31,FOLLOW_31_in_ontologyIDStatement343); 
-			match(input,19,FOLLOW_19_in_ontologyIDStatement345); 
+			match(input,31,FOLLOW_31_in_ontologyIDStatement343);
+			match(input,19,FOLLOW_19_in_ontologyIDStatement345);
 			pushFollow(FOLLOW_oid_in_ontologyIDStatement347);
 			oid14=oid();
 			state._fsp--;
 
-			match(input,20,FOLLOW_20_in_ontologyIDStatement349); 
-			 result = oid14; 
+			match(input,20,FOLLOW_20_in_ontologyIDStatement349);
+			 result = oid14;
 			}
 
 		}
@@ -706,7 +704,7 @@ public class FunctionalChangesetParser extends Parser {
 					viri=fullIRI();
 					state._fsp--;
 
-					 result = new OWLOntologyID(parser.getIRI((oiri!=null?input.toString(oiri.start,oiri.stop):null)), parser.getIRI((viri!=null?input.toString(viri.start,viri.stop):null))); 
+					 result = new OWLOntologyID(parser.getIRI((oiri!=null?input.toString(oiri.start,oiri.stop):null)), parser.getIRI((viri!=null?input.toString(viri.start,viri.stop):null)));
 					}
 					break;
 				case 2 :
@@ -716,7 +714,7 @@ public class FunctionalChangesetParser extends Parser {
 					oiri=fullIRI();
 					state._fsp--;
 
-					 result = new OWLOntologyID(parser.getIRI((oiri!=null?input.toString(oiri.start,oiri.stop):null))); 
+					 result = new OWLOntologyID(parser.getIRI((oiri!=null?input.toString(oiri.start,oiri.stop):null)));
 					}
 					break;
 
@@ -781,34 +779,34 @@ public class FunctionalChangesetParser extends Parser {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:206:5: '+ Prefix' '(' prefix ')'
 					{
-					match(input,25,FOLLOW_25_in_prefixChange410); 
-					match(input,19,FOLLOW_19_in_prefixChange412); 
+					match(input,25,FOLLOW_25_in_prefixChange410);
+					match(input,19,FOLLOW_19_in_prefixChange412);
 					pushFollow(FOLLOW_prefix_in_prefixChange414);
 					prefix15=prefix();
 					state._fsp--;
 
-					match(input,20,FOLLOW_20_in_prefixChange416); 
-					 result = new AddPrefix(parent, (prefix15!=null?((FunctionalChangesetParser.prefix_return)prefix15).name:null), (prefix15!=null?((FunctionalChangesetParser.prefix_return)prefix15).value:null)); 
+					match(input,20,FOLLOW_20_in_prefixChange416);
+					 result = new AddPrefix(parent, (prefix15!=null?((FunctionalChangesetParser.prefix_return)prefix15).name:null), (prefix15!=null?((FunctionalChangesetParser.prefix_return)prefix15).value:null));
 					}
 					break;
 				case 2 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:208:5: '- Prefix' '(' prefix ')'
 					{
-					match(input,27,FOLLOW_27_in_prefixChange426); 
-					match(input,19,FOLLOW_19_in_prefixChange428); 
+					match(input,27,FOLLOW_27_in_prefixChange426);
+					match(input,19,FOLLOW_19_in_prefixChange428);
 					pushFollow(FOLLOW_prefix_in_prefixChange430);
 					prefix16=prefix();
 					state._fsp--;
 
-					match(input,20,FOLLOW_20_in_prefixChange432); 
-					 result = new RemovePrefix(parent, (prefix16!=null?((FunctionalChangesetParser.prefix_return)prefix16).name:null), (prefix16!=null?((FunctionalChangesetParser.prefix_return)prefix16).value:null)); 
+					match(input,20,FOLLOW_20_in_prefixChange432);
+					 result = new RemovePrefix(parent, (prefix16!=null?((FunctionalChangesetParser.prefix_return)prefix16).name:null), (prefix16!=null?((FunctionalChangesetParser.prefix_return)prefix16).value:null));
 					}
 					break;
 				case 3 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:210:5: '* Prefix' '(' prefix newvalue= fullIRI ')'
 					{
-					match(input,23,FOLLOW_23_in_prefixChange442); 
-					match(input,19,FOLLOW_19_in_prefixChange444); 
+					match(input,23,FOLLOW_23_in_prefixChange442);
+					match(input,19,FOLLOW_19_in_prefixChange444);
 					pushFollow(FOLLOW_prefix_in_prefixChange446);
 					prefix17=prefix();
 					state._fsp--;
@@ -817,15 +815,15 @@ public class FunctionalChangesetParser extends Parser {
 					newvalue=fullIRI();
 					state._fsp--;
 
-					match(input,20,FOLLOW_20_in_prefixChange452); 
-					 result = new ModifyPrefix(parent, (prefix17!=null?((FunctionalChangesetParser.prefix_return)prefix17).name:null), (prefix17!=null?((FunctionalChangesetParser.prefix_return)prefix17).value:null), (newvalue!=null?input.toString(newvalue.start,newvalue.stop):null)); 
+					match(input,20,FOLLOW_20_in_prefixChange452);
+					 result = new ModifyPrefix(parent, (prefix17!=null?((FunctionalChangesetParser.prefix_return)prefix17).name:null), (prefix17!=null?((FunctionalChangesetParser.prefix_return)prefix17).value:null), (newvalue!=null?input.toString(newvalue.start,newvalue.stop):null));
 					}
 					break;
 				case 4 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:212:5: '# Prefix' '(' oldname= prefixName prefix ')'
 					{
-					match(input,18,FOLLOW_18_in_prefixChange462); 
-					match(input,19,FOLLOW_19_in_prefixChange464); 
+					match(input,18,FOLLOW_18_in_prefixChange462);
+					match(input,19,FOLLOW_19_in_prefixChange464);
 					pushFollow(FOLLOW_prefixName_in_prefixChange468);
 					oldname=prefixName();
 					state._fsp--;
@@ -834,8 +832,8 @@ public class FunctionalChangesetParser extends Parser {
 					prefix18=prefix();
 					state._fsp--;
 
-					match(input,20,FOLLOW_20_in_prefixChange472); 
-					 result = new RenamePrefix(parent, (oldname!=null?input.toString(oldname.start,oldname.stop):null), (prefix18!=null?((FunctionalChangesetParser.prefix_return)prefix18).value:null), (prefix18!=null?((FunctionalChangesetParser.prefix_return)prefix18).name:null)); 
+					match(input,20,FOLLOW_20_in_prefixChange472);
+					 result = new RenamePrefix(parent, (oldname!=null?input.toString(oldname.start,oldname.stop):null), (prefix18!=null?((FunctionalChangesetParser.prefix_return)prefix18).value:null), (prefix18!=null?((FunctionalChangesetParser.prefix_return)prefix18).name:null));
 					}
 					break;
 
@@ -882,23 +880,23 @@ public class FunctionalChangesetParser extends Parser {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:220:5: '+ ' importsDeclaration
 					{
-					match(input,24,FOLLOW_24_in_importChange496); 
+					match(input,24,FOLLOW_24_in_importChange496);
 					pushFollow(FOLLOW_importsDeclaration_in_importChange498);
 					importsDeclaration19=importsDeclaration();
 					state._fsp--;
 
-					 result = new AddImport(parent, importsDeclaration19); 
+					 result = new AddImport(parent, importsDeclaration19);
 					}
 					break;
 				case 2 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:222:5: '- ' importsDeclaration
 					{
-					match(input,26,FOLLOW_26_in_importChange508); 
+					match(input,26,FOLLOW_26_in_importChange508);
 					pushFollow(FOLLOW_importsDeclaration_in_importChange510);
 					importsDeclaration20=importsDeclaration();
 					state._fsp--;
 
-					 result = new RemoveImport(parent, importsDeclaration20); 
+					 result = new RemoveImport(parent, importsDeclaration20);
 					}
 					break;
 
@@ -929,14 +927,14 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:227:3: ( 'Import' '(' iri ')' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:227:5: 'Import' '(' iri ')'
 			{
-			match(input,30,FOLLOW_30_in_importsDeclaration531); 
-			match(input,19,FOLLOW_19_in_importsDeclaration533); 
+			match(input,30,FOLLOW_30_in_importsDeclaration531);
+			match(input,19,FOLLOW_19_in_importsDeclaration533);
 			pushFollow(FOLLOW_iri_in_importsDeclaration535);
 			iri21=iri();
 			state._fsp--;
 
-			match(input,20,FOLLOW_20_in_importsDeclaration537); 
-			 result = dataFactory.getOWLImportsDeclaration(parser.getIRI((iri21!=null?input.toString(iri21.start,iri21.stop):null))); 
+			match(input,20,FOLLOW_20_in_importsDeclaration537);
+			 result = dataFactory.getOWLImportsDeclaration(parser.getIRI((iri21!=null?input.toString(iri21.start,iri21.stop):null)));
 			}
 
 		}
@@ -981,23 +979,23 @@ public class FunctionalChangesetParser extends Parser {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:236:5: '+ ' annotation
 					{
-					match(input,24,FOLLOW_24_in_annotationChange567); 
+					match(input,24,FOLLOW_24_in_annotationChange567);
 					pushFollow(FOLLOW_annotation_in_annotationChange569);
 					annotation22=annotation();
 					state._fsp--;
 
-					 result = new AddOntologyAnnotation(parent, (annotation22!=null?((FunctionalChangesetParser.annotation_return)annotation22).result:null)); 
+					 result = new AddOntologyAnnotation(parent, (annotation22!=null?((FunctionalChangesetParser.annotation_return)annotation22).result:null));
 					}
 					break;
 				case 2 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:238:5: '- ' annotation
 					{
-					match(input,26,FOLLOW_26_in_annotationChange579); 
+					match(input,26,FOLLOW_26_in_annotationChange579);
 					pushFollow(FOLLOW_annotation_in_annotationChange581);
 					annotation23=annotation();
 					state._fsp--;
 
-					 result = new RemoveOntologyAnnotation(parent, (annotation23!=null?((FunctionalChangesetParser.annotation_return)annotation23).result:null)); 
+					 result = new RemoveOntologyAnnotation(parent, (annotation23!=null?((FunctionalChangesetParser.annotation_return)annotation23).result:null));
 					}
 					break;
 
@@ -1034,7 +1032,7 @@ public class FunctionalChangesetParser extends Parser {
 			subAnnotation();
 			state._fsp--;
 
-			 retval.result = parseAnnotation(input.toString(retval.start,input.LT(-1))); 
+			 retval.result = parseAnnotation(input.toString(retval.start,input.LT(-1)));
 			}
 
 			retval.stop = input.LT(-1);
@@ -1060,8 +1058,8 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:249:3: ( 'Annotation' '(' ( subAnnotation )* iri annotationValue ')' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:249:5: 'Annotation' '(' ( subAnnotation )* iri annotationValue ')'
 			{
-			match(input,29,FOLLOW_29_in_subAnnotation625); 
-			match(input,19,FOLLOW_19_in_subAnnotation627); 
+			match(input,29,FOLLOW_29_in_subAnnotation625);
+			match(input,19,FOLLOW_19_in_subAnnotation627);
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:249:22: ( subAnnotation )*
 			loop13:
 			do {
@@ -1095,7 +1093,7 @@ public class FunctionalChangesetParser extends Parser {
 			annotationValue();
 			state._fsp--;
 
-			match(input,20,FOLLOW_20_in_subAnnotation636); 
+			match(input,20,FOLLOW_20_in_subAnnotation636);
 			}
 
 		}
@@ -1212,23 +1210,23 @@ public class FunctionalChangesetParser extends Parser {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:262:5: '+ ' axiom
 					{
-					match(input,24,FOLLOW_24_in_axiomChange686); 
+					match(input,24,FOLLOW_24_in_axiomChange686);
 					pushFollow(FOLLOW_axiom_in_axiomChange688);
 					axiom24=axiom();
 					state._fsp--;
 
-					 result = new AddAxiom(parent, (axiom24!=null?((FunctionalChangesetParser.axiom_return)axiom24).result:null)); 
+					 result = new AddAxiom(parent, (axiom24!=null?((FunctionalChangesetParser.axiom_return)axiom24).result:null));
 					}
 					break;
 				case 2 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:264:5: '- ' axiom
 					{
-					match(input,26,FOLLOW_26_in_axiomChange698); 
+					match(input,26,FOLLOW_26_in_axiomChange698);
 					pushFollow(FOLLOW_axiom_in_axiomChange700);
 					axiom25=axiom();
 					state._fsp--;
 
-					 result = new RemoveAxiom(parent, (axiom25!=null?((FunctionalChangesetParser.axiom_return)axiom25).result:null)); 
+					 result = new RemoveAxiom(parent, (axiom25!=null?((FunctionalChangesetParser.axiom_return)axiom25).result:null));
 					}
 					break;
 
@@ -1265,7 +1263,7 @@ public class FunctionalChangesetParser extends Parser {
 			subAxiom();
 			state._fsp--;
 
-			 retval.result = parseAxiom(input.toString(retval.start,input.LT(-1))); 
+			 retval.result = parseAxiom(input.toString(retval.start,input.LT(-1)));
 			}
 
 			retval.stop = input.LT(-1);
@@ -1291,8 +1289,8 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:275:3: ( NAME '(' ( subAnnotation )* ( INT )? ( argument )+ ')' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:275:5: NAME '(' ( subAnnotation )* ( INT )? ( argument )+ ')'
 			{
-			match(input,NAME,FOLLOW_NAME_in_subAxiom744); 
-			match(input,19,FOLLOW_19_in_subAxiom746); 
+			match(input,NAME,FOLLOW_NAME_in_subAxiom744);
+			match(input,19,FOLLOW_19_in_subAxiom746);
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:275:14: ( subAnnotation )*
 			loop16:
 			do {
@@ -1328,7 +1326,7 @@ public class FunctionalChangesetParser extends Parser {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:275:29: INT
 					{
-					match(input,INT,FOLLOW_INT_in_subAxiom751); 
+					match(input,INT,FOLLOW_INT_in_subAxiom751);
 					}
 					break;
 
@@ -1364,7 +1362,7 @@ public class FunctionalChangesetParser extends Parser {
 				cnt18++;
 			} while (true);
 
-			match(input,20,FOLLOW_20_in_subAxiom757); 
+			match(input,20,FOLLOW_20_in_subAxiom757);
 			}
 
 		}
@@ -1541,7 +1539,7 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:294:3: ( FULLIRI )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:294:5: FULLIRI
 			{
-			match(input,FULLIRI,FOLLOW_FULLIRI_in_fullIRI823); 
+			match(input,FULLIRI,FOLLOW_FULLIRI_in_fullIRI823);
 			}
 
 			retval.stop = input.LT(-1);
@@ -1567,7 +1565,7 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:297:3: ( PNAME_LN )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:297:5: PNAME_LN
 			{
-			match(input,PNAME_LN,FOLLOW_PNAME_LN_in_abbreviatedIRI834); 
+			match(input,PNAME_LN,FOLLOW_PNAME_LN_in_abbreviatedIRI834);
 			}
 
 		}
@@ -1597,7 +1595,7 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:300:3: ( PNAME_NS )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:300:5: PNAME_NS
 			{
-			match(input,PNAME_NS,FOLLOW_PNAME_NS_in_prefixName845); 
+			match(input,PNAME_NS,FOLLOW_PNAME_NS_in_prefixName845);
 			}
 
 			retval.stop = input.LT(-1);
@@ -1623,7 +1621,7 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:303:3: ( NODEID )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:303:5: NODEID
 			{
-			match(input,NODEID,FOLLOW_NODEID_in_anonymousIndividual856); 
+			match(input,NODEID,FOLLOW_NODEID_in_anonymousIndividual856);
 			}
 
 		}
@@ -1664,7 +1662,7 @@ public class FunctionalChangesetParser extends Parser {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:307:7: '^^' iri
 					{
-					match(input,32,FOLLOW_32_in_literal875); 
+					match(input,32,FOLLOW_32_in_literal875);
 					pushFollow(FOLLOW_iri_in_literal877);
 					iri();
 					state._fsp--;
@@ -1706,7 +1704,7 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:313:3: ( LANG_TAG )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:313:5: LANG_TAG
 			{
-			match(input,LANG_TAG,FOLLOW_LANG_TAG_in_languageTag905); 
+			match(input,LANG_TAG,FOLLOW_LANG_TAG_in_languageTag905);
 			}
 
 		}
@@ -1736,7 +1734,7 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:317:3: ( QUOTED_STRING )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:317:5: QUOTED_STRING
 			{
-			match(input,QUOTED_STRING,FOLLOW_QUOTED_STRING_in_quotedString918); 
+			match(input,QUOTED_STRING,FOLLOW_QUOTED_STRING_in_quotedString918);
 			}
 
 			retval.stop = input.LT(-1);
