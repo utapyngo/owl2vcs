@@ -1,5 +1,7 @@
 package owl2vcs.io;
 
+import static org.junit.Assert.*;
+
 import java.io.IOException;
 
 import org.antlr.runtime.ANTLRStringStream;
@@ -10,6 +12,7 @@ import org.junit.Test;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import owl2vcs.changes.UnknownOntologyFormatException;
+import owl2vcs.changeset.ChangeSet;
 
 public class FunctionalChangesetParserTest {
 
@@ -47,9 +50,8 @@ public class FunctionalChangesetParserTest {
                 new CommonTokenStream(new FunctionalChangesetLexer(
                         new ANTLRStringStream(s))));
         parser.init();
-        parser.changeset();
+        ChangeSet cs = parser.changeset();
+        final int expected = 14;
+        assertEquals(cs.size(), expected);
     }
-
 }
-
-

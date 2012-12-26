@@ -172,16 +172,13 @@ setOntologyFormat
 // ONTOLOGY ID CHANGE
 
 setOntologyId returns [SetOntologyIDData result]
-  : '* ' ontologyIDStatement
-  { $result = new SetOntologyIDData($ontologyIDStatement.result); }
+  : '* OntologyID(' ')'
+  { $result = new SetOntologyIDData(new OWLOntologyID()); }
+  | '* OntologyID(' ontologyId ')'
+  { $result = new SetOntologyIDData($ontologyId.result); }
   ;
 
-ontologyIDStatement returns [OWLOntologyID result]
-  : 'OntologyID' '(' oid ')' { $result = $oid.result; }
-  | 'OntologyID' '(' ')' { $result = new OWLOntologyID(); }
-  ;
-
-oid returns [OWLOntologyID result]
+ontologyId returns [OWLOntologyID result]
   : oiri=fullIRI viri=fullIRI
   { $result = new OWLOntologyID(parser.getIRI($oiri.text), parser.getIRI($viri.text)); }
   | oiri=fullIRI
@@ -197,7 +194,10 @@ prefixChange returns [PrefixChangeData result]
   | '- Prefix' '(' prefix ')'
   { $result = new RemovePrefixData($prefix.name, $prefix.value); }
   | '* Prefix' '(' prefix newvalue=fullIRI ')'
-  { $result = new ModifyPrefixData( $prefix.name, $prefix.value, $newvalue.text); }
+  {
+      String s = $newvalue.text;
+      $result = new ModifyPrefixData( $prefix.name, $prefix.value, s.substring(1, s.length() - 1));
+  }
   | '# Prefix' '(' oldname=prefixName prefix ')'
   { $result = new RenamePrefixData($oldname.text, $prefix.value, $prefix.name); }
   ;

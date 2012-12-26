@@ -1,4 +1,4 @@
-// $ANTLR 3.5-rc-1 R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g 2012-12-24 22:41:40
+// $ANTLR 3.5-rc-1 R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g 2012-12-26 19:11:16
 
 package owl2vcs.io;
 
@@ -53,7 +53,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class FunctionalChangesetParser extends Parser {
 	public static final String[] tokenNames = new String[] {
-		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "FULLIRI", "INT", "LANG_TAG", "NAME", "NODEID", "PNAME_LN", "PNAME_NS", "PN_CHARS", "PN_CHARS_BASE", "PN_CHARS_U", "PN_LOCAL", "PN_PREFIX", "QUOTED_STRING", "WS", "'# Prefix'", "'('", "')'", "'* '", "'* OntologyFormat'", "'* Prefix'", "'+ '", "'+ Prefix'", "'- '", "'- Prefix'", "'='", "'Annotation'", "'Import'", "'OntologyID'", "'^^'"
+		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "FULLIRI", "INT", "LANG_TAG", "NAME", "NODEID", "PNAME_LN", "PNAME_NS", "PN_CHARS", "PN_CHARS_BASE", "PN_CHARS_U", "PN_LOCAL", "PN_PREFIX", "QUOTED_STRING", "WS", "'# Prefix'", "'('", "')'", "'* OntologyFormat'", "'* OntologyID('", "'* Prefix'", "'+ '", "'+ Prefix'", "'- '", "'- Prefix'", "'='", "'Annotation'", "'Import'", "'^^'"
 	};
 
 	public static final int EOF=-1;
@@ -71,7 +71,6 @@ public class FunctionalChangesetParser extends Parser {
 	public static final int T__29=29;
 	public static final int T__30=30;
 	public static final int T__31=31;
-	public static final int T__32=32;
 	public static final int FULLIRI=4;
 	public static final int INT=5;
 	public static final int LANG_TAG=6;
@@ -187,7 +186,7 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:121:3: ( setOntologyFormat )?
 			int alt1=2;
 			int LA1_0 = input.LA(1);
-			if ( (LA1_0==22) ) {
+			if ( (LA1_0==21) ) {
 				alt1=1;
 			}
 			switch (alt1) {
@@ -207,7 +206,7 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:124:3: ( setOntologyId )?
 			int alt2=2;
 			int LA2_0 = input.LA(1);
-			if ( (LA2_0==21) ) {
+			if ( (LA2_0==22) ) {
 				alt2=1;
 			}
 			switch (alt2) {
@@ -483,7 +482,7 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:163:3: ( '* OntologyFormat' '(' quotedString ')' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:164:3: '* OntologyFormat' '(' quotedString ')'
 			{
-			match(input,22,FOLLOW_22_in_setOntologyFormat266); 
+			match(input,21,FOLLOW_21_in_setOntologyFormat266); 
 			match(input,19,FOLLOW_19_in_setOntologyFormat268); 
 			pushFollow(FOLLOW_quotedString_in_setOntologyFormat270);
 			quotedString11=quotedString();
@@ -511,73 +510,24 @@ public class FunctionalChangesetParser extends Parser {
 
 
 	// $ANTLR start "setOntologyId"
-	// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:174:1: setOntologyId returns [SetOntologyIDData result] : '* ' ontologyIDStatement ;
+	// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:174:1: setOntologyId returns [SetOntologyIDData result] : ( '* OntologyID(' ')' | '* OntologyID(' ontologyId ')' );
 	public final SetOntologyIDData setOntologyId() throws RecognitionException {
 		SetOntologyIDData result = null;
 
 
-		OWLOntologyID ontologyIDStatement12 =null;
+		OWLOntologyID ontologyId12 =null;
 
 		try {
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:175:3: ( '* ' ontologyIDStatement )
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:175:5: '* ' ontologyIDStatement
-			{
-			match(input,21,FOLLOW_21_in_setOntologyId296); 
-			pushFollow(FOLLOW_ontologyIDStatement_in_setOntologyId298);
-			ontologyIDStatement12=ontologyIDStatement();
-			state._fsp--;
-
-			 result = new SetOntologyIDData(ontologyIDStatement12); 
-			}
-
-		}
-		catch (RecognitionException re) {
-			reportError(re);
-			recover(input,re);
-		}
-		finally {
-			// do for sure before leaving
-		}
-		return result;
-	}
-	// $ANTLR end "setOntologyId"
-
-
-
-	// $ANTLR start "ontologyIDStatement"
-	// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:179:1: ontologyIDStatement returns [OWLOntologyID result] : ( 'OntologyID' '(' oid ')' | 'OntologyID' '(' ')' );
-	public final OWLOntologyID ontologyIDStatement() throws RecognitionException {
-		OWLOntologyID result = null;
-
-
-		OWLOntologyID oid13 =null;
-
-		try {
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:180:3: ( 'OntologyID' '(' oid ')' | 'OntologyID' '(' ')' )
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:175:3: ( '* OntologyID(' ')' | '* OntologyID(' ontologyId ')' )
 			int alt8=2;
 			int LA8_0 = input.LA(1);
-			if ( (LA8_0==31) ) {
+			if ( (LA8_0==22) ) {
 				int LA8_1 = input.LA(2);
-				if ( (LA8_1==19) ) {
-					int LA8_2 = input.LA(3);
-					if ( (LA8_2==20) ) {
-						alt8=2;
-					}
-					else if ( (LA8_2==FULLIRI) ) {
-						alt8=1;
-					}
-					else {
-						int nvaeMark = input.mark();
-						try {
-							for (int nvaeConsume = 0; nvaeConsume < 3 - 1; nvaeConsume++)
-								input.consume();
-							NoViableAltException nvae =
-								new NoViableAltException("", 8, 2, input);
-							throw nvae;
-						} finally {
-							input.rewind(nvaeMark);
-						}
-					}
+				if ( (LA8_1==20) ) {
+					alt8=1;
+				}
+				else if ( (LA8_1==FULLIRI) ) {
+					alt8=2;
 				}
 				else {
 					int nvaeMark = input.mark();
@@ -598,25 +548,23 @@ public class FunctionalChangesetParser extends Parser {
 			}
 			switch (alt8) {
 				case 1 :
-					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:180:5: 'OntologyID' '(' oid ')'
+					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:175:5: '* OntologyID(' ')'
 					{
-					match(input,31,FOLLOW_31_in_ontologyIDStatement319); 
-					match(input,19,FOLLOW_19_in_ontologyIDStatement321); 
-					pushFollow(FOLLOW_oid_in_ontologyIDStatement323);
-					oid13=oid();
-					state._fsp--;
-
-					match(input,20,FOLLOW_20_in_ontologyIDStatement325); 
-					 result = oid13; 
+					match(input,22,FOLLOW_22_in_setOntologyId296); 
+					match(input,20,FOLLOW_20_in_setOntologyId298); 
+					 result = new SetOntologyIDData(new OWLOntologyID()); 
 					}
 					break;
 				case 2 :
-					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:181:5: 'OntologyID' '(' ')'
+					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:177:5: '* OntologyID(' ontologyId ')'
 					{
-					match(input,31,FOLLOW_31_in_ontologyIDStatement333); 
-					match(input,19,FOLLOW_19_in_ontologyIDStatement335); 
-					match(input,20,FOLLOW_20_in_ontologyIDStatement337); 
-					 result = new OWLOntologyID(); 
+					match(input,22,FOLLOW_22_in_setOntologyId308); 
+					pushFollow(FOLLOW_ontologyId_in_setOntologyId310);
+					ontologyId12=ontologyId();
+					state._fsp--;
+
+					match(input,20,FOLLOW_20_in_setOntologyId312); 
+					 result = new SetOntologyIDData(ontologyId12); 
 					}
 					break;
 
@@ -631,13 +579,13 @@ public class FunctionalChangesetParser extends Parser {
 		}
 		return result;
 	}
-	// $ANTLR end "ontologyIDStatement"
+	// $ANTLR end "setOntologyId"
 
 
 
-	// $ANTLR start "oid"
-	// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:184:1: oid returns [OWLOntologyID result] : (oiri= fullIRI viri= fullIRI |oiri= fullIRI );
-	public final OWLOntologyID oid() throws RecognitionException {
+	// $ANTLR start "ontologyId"
+	// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:181:1: ontologyId returns [OWLOntologyID result] : (oiri= fullIRI viri= fullIRI |oiri= fullIRI );
+	public final OWLOntologyID ontologyId() throws RecognitionException {
 		OWLOntologyID result = null;
 
 
@@ -645,7 +593,7 @@ public class FunctionalChangesetParser extends Parser {
 		ParserRuleReturnScope viri =null;
 
 		try {
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:185:3: (oiri= fullIRI viri= fullIRI |oiri= fullIRI )
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:182:3: (oiri= fullIRI viri= fullIRI |oiri= fullIRI )
 			int alt9=2;
 			int LA9_0 = input.LA(1);
 			if ( (LA9_0==FULLIRI) ) {
@@ -675,13 +623,13 @@ public class FunctionalChangesetParser extends Parser {
 			}
 			switch (alt9) {
 				case 1 :
-					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:185:5: oiri= fullIRI viri= fullIRI
+					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:182:5: oiri= fullIRI viri= fullIRI
 					{
-					pushFollow(FOLLOW_fullIRI_in_oid358);
+					pushFollow(FOLLOW_fullIRI_in_ontologyId335);
 					oiri=fullIRI();
 					state._fsp--;
 
-					pushFollow(FOLLOW_fullIRI_in_oid362);
+					pushFollow(FOLLOW_fullIRI_in_ontologyId339);
 					viri=fullIRI();
 					state._fsp--;
 
@@ -689,9 +637,9 @@ public class FunctionalChangesetParser extends Parser {
 					}
 					break;
 				case 2 :
-					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:187:5: oiri= fullIRI
+					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:184:5: oiri= fullIRI
 					{
-					pushFollow(FOLLOW_fullIRI_in_oid374);
+					pushFollow(FOLLOW_fullIRI_in_ontologyId351);
 					oiri=fullIRI();
 					state._fsp--;
 
@@ -710,25 +658,25 @@ public class FunctionalChangesetParser extends Parser {
 		}
 		return result;
 	}
-	// $ANTLR end "oid"
+	// $ANTLR end "ontologyId"
 
 
 
 	// $ANTLR start "prefixChange"
-	// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:194:1: prefixChange returns [PrefixChangeData result] : ( '+ Prefix' '(' prefix ')' | '- Prefix' '(' prefix ')' | '* Prefix' '(' prefix newvalue= fullIRI ')' | '# Prefix' '(' oldname= prefixName prefix ')' );
+	// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:191:1: prefixChange returns [PrefixChangeData result] : ( '+ Prefix' '(' prefix ')' | '- Prefix' '(' prefix ')' | '* Prefix' '(' prefix newvalue= fullIRI ')' | '# Prefix' '(' oldname= prefixName prefix ')' );
 	public final PrefixChangeData prefixChange() throws RecognitionException {
 		PrefixChangeData result = null;
 
 
 		ParserRuleReturnScope newvalue =null;
 		ParserRuleReturnScope oldname =null;
+		ParserRuleReturnScope prefix13 =null;
 		ParserRuleReturnScope prefix14 =null;
 		ParserRuleReturnScope prefix15 =null;
 		ParserRuleReturnScope prefix16 =null;
-		ParserRuleReturnScope prefix17 =null;
 
 		try {
-			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:195:3: ( '+ Prefix' '(' prefix ')' | '- Prefix' '(' prefix ')' | '* Prefix' '(' prefix newvalue= fullIRI ')' | '# Prefix' '(' oldname= prefixName prefix ')' )
+			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:192:3: ( '+ Prefix' '(' prefix ')' | '- Prefix' '(' prefix ')' | '* Prefix' '(' prefix newvalue= fullIRI ')' | '# Prefix' '(' oldname= prefixName prefix ')' )
 			int alt10=4;
 			switch ( input.LA(1) ) {
 			case 25:
@@ -758,63 +706,66 @@ public class FunctionalChangesetParser extends Parser {
 			}
 			switch (alt10) {
 				case 1 :
-					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:195:5: '+ Prefix' '(' prefix ')'
+					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:192:5: '+ Prefix' '(' prefix ')'
 					{
-					match(input,25,FOLLOW_25_in_prefixChange398); 
-					match(input,19,FOLLOW_19_in_prefixChange400); 
-					pushFollow(FOLLOW_prefix_in_prefixChange402);
-					prefix14=prefix();
+					match(input,25,FOLLOW_25_in_prefixChange375); 
+					match(input,19,FOLLOW_19_in_prefixChange377); 
+					pushFollow(FOLLOW_prefix_in_prefixChange379);
+					prefix13=prefix();
 					state._fsp--;
 
-					match(input,20,FOLLOW_20_in_prefixChange404); 
-					 result = new AddPrefixData((prefix14!=null?((FunctionalChangesetParser.prefix_return)prefix14).name:null), (prefix14!=null?((FunctionalChangesetParser.prefix_return)prefix14).value:null)); 
+					match(input,20,FOLLOW_20_in_prefixChange381); 
+					 result = new AddPrefixData((prefix13!=null?((FunctionalChangesetParser.prefix_return)prefix13).name:null), (prefix13!=null?((FunctionalChangesetParser.prefix_return)prefix13).value:null)); 
 					}
 					break;
 				case 2 :
-					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:197:5: '- Prefix' '(' prefix ')'
+					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:194:5: '- Prefix' '(' prefix ')'
 					{
-					match(input,27,FOLLOW_27_in_prefixChange414); 
-					match(input,19,FOLLOW_19_in_prefixChange416); 
-					pushFollow(FOLLOW_prefix_in_prefixChange418);
-					prefix15=prefix();
+					match(input,27,FOLLOW_27_in_prefixChange391); 
+					match(input,19,FOLLOW_19_in_prefixChange393); 
+					pushFollow(FOLLOW_prefix_in_prefixChange395);
+					prefix14=prefix();
 					state._fsp--;
 
-					match(input,20,FOLLOW_20_in_prefixChange420); 
-					 result = new RemovePrefixData((prefix15!=null?((FunctionalChangesetParser.prefix_return)prefix15).name:null), (prefix15!=null?((FunctionalChangesetParser.prefix_return)prefix15).value:null)); 
+					match(input,20,FOLLOW_20_in_prefixChange397); 
+					 result = new RemovePrefixData((prefix14!=null?((FunctionalChangesetParser.prefix_return)prefix14).name:null), (prefix14!=null?((FunctionalChangesetParser.prefix_return)prefix14).value:null)); 
 					}
 					break;
 				case 3 :
-					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:199:5: '* Prefix' '(' prefix newvalue= fullIRI ')'
+					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:196:5: '* Prefix' '(' prefix newvalue= fullIRI ')'
 					{
-					match(input,23,FOLLOW_23_in_prefixChange430); 
-					match(input,19,FOLLOW_19_in_prefixChange432); 
-					pushFollow(FOLLOW_prefix_in_prefixChange434);
-					prefix16=prefix();
+					match(input,23,FOLLOW_23_in_prefixChange407); 
+					match(input,19,FOLLOW_19_in_prefixChange409); 
+					pushFollow(FOLLOW_prefix_in_prefixChange411);
+					prefix15=prefix();
 					state._fsp--;
 
-					pushFollow(FOLLOW_fullIRI_in_prefixChange438);
+					pushFollow(FOLLOW_fullIRI_in_prefixChange415);
 					newvalue=fullIRI();
 					state._fsp--;
 
-					match(input,20,FOLLOW_20_in_prefixChange440); 
-					 result = new ModifyPrefixData( (prefix16!=null?((FunctionalChangesetParser.prefix_return)prefix16).name:null), (prefix16!=null?((FunctionalChangesetParser.prefix_return)prefix16).value:null), (newvalue!=null?input.toString(newvalue.start,newvalue.stop):null)); 
+					match(input,20,FOLLOW_20_in_prefixChange417); 
+
+					      String s = (newvalue!=null?input.toString(newvalue.start,newvalue.stop):null);
+					      result = new ModifyPrefixData( (prefix15!=null?((FunctionalChangesetParser.prefix_return)prefix15).name:null), (prefix15!=null?((FunctionalChangesetParser.prefix_return)prefix15).value:null), s.substring(1, s.length() - 1));
+					  
 					}
 					break;
 				case 4 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:201:5: '# Prefix' '(' oldname= prefixName prefix ')'
 					{
-					match(input,18,FOLLOW_18_in_prefixChange450); 
-					match(input,19,FOLLOW_19_in_prefixChange452); 
-					pushFollow(FOLLOW_prefixName_in_prefixChange456);
+					match(input,18,FOLLOW_18_in_prefixChange427); 
+					match(input,19,FOLLOW_19_in_prefixChange429); 
+					pushFollow(FOLLOW_prefixName_in_prefixChange433);
 					oldname=prefixName();
 					state._fsp--;
 
-					pushFollow(FOLLOW_prefix_in_prefixChange458);
-					prefix17=prefix();
+					pushFollow(FOLLOW_prefix_in_prefixChange435);
+					prefix16=prefix();
 					state._fsp--;
 
-					match(input,20,FOLLOW_20_in_prefixChange460); 
-					 result = new RenamePrefixData((oldname!=null?input.toString(oldname.start,oldname.stop):null), (prefix17!=null?((FunctionalChangesetParser.prefix_return)prefix17).value:null), (prefix17!=null?((FunctionalChangesetParser.prefix_return)prefix17).name:null)); 
+					match(input,20,FOLLOW_20_in_prefixChange437); 
+					 result = new RenamePrefixData((oldname!=null?input.toString(oldname.start,oldname.stop):null), (prefix16!=null?((FunctionalChangesetParser.prefix_return)prefix16).value:null), (prefix16!=null?((FunctionalChangesetParser.prefix_return)prefix16).name:null)); 
 					}
 					break;
 
@@ -839,8 +790,8 @@ public class FunctionalChangesetParser extends Parser {
 		ImportChangeData result = null;
 
 
+		OWLImportsDeclaration importsDeclaration17 =null;
 		OWLImportsDeclaration importsDeclaration18 =null;
-		OWLImportsDeclaration importsDeclaration19 =null;
 
 		try {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:209:3: ( '+ ' importsDeclaration | '- ' importsDeclaration )
@@ -861,23 +812,23 @@ public class FunctionalChangesetParser extends Parser {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:209:5: '+ ' importsDeclaration
 					{
-					match(input,24,FOLLOW_24_in_importChange484); 
-					pushFollow(FOLLOW_importsDeclaration_in_importChange486);
-					importsDeclaration18=importsDeclaration();
+					match(input,24,FOLLOW_24_in_importChange461); 
+					pushFollow(FOLLOW_importsDeclaration_in_importChange463);
+					importsDeclaration17=importsDeclaration();
 					state._fsp--;
 
-					 result = new AddImportData(importsDeclaration18); 
+					 result = new AddImportData(importsDeclaration17); 
 					}
 					break;
 				case 2 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:211:5: '- ' importsDeclaration
 					{
-					match(input,26,FOLLOW_26_in_importChange496); 
-					pushFollow(FOLLOW_importsDeclaration_in_importChange498);
-					importsDeclaration19=importsDeclaration();
+					match(input,26,FOLLOW_26_in_importChange473); 
+					pushFollow(FOLLOW_importsDeclaration_in_importChange475);
+					importsDeclaration18=importsDeclaration();
 					state._fsp--;
 
-					 result = new RemoveImportData(importsDeclaration19); 
+					 result = new RemoveImportData(importsDeclaration18); 
 					}
 					break;
 
@@ -902,20 +853,20 @@ public class FunctionalChangesetParser extends Parser {
 		OWLImportsDeclaration result = null;
 
 
-		ParserRuleReturnScope iri20 =null;
+		ParserRuleReturnScope iri19 =null;
 
 		try {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:216:3: ( 'Import' '(' iri ')' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:216:5: 'Import' '(' iri ')'
 			{
-			match(input,30,FOLLOW_30_in_importsDeclaration519); 
-			match(input,19,FOLLOW_19_in_importsDeclaration521); 
-			pushFollow(FOLLOW_iri_in_importsDeclaration523);
-			iri20=iri();
+			match(input,30,FOLLOW_30_in_importsDeclaration496); 
+			match(input,19,FOLLOW_19_in_importsDeclaration498); 
+			pushFollow(FOLLOW_iri_in_importsDeclaration500);
+			iri19=iri();
 			state._fsp--;
 
-			match(input,20,FOLLOW_20_in_importsDeclaration525); 
-			 result = dataFactory.getOWLImportsDeclaration(parser.getIRI((iri20!=null?input.toString(iri20.start,iri20.stop):null))); 
+			match(input,20,FOLLOW_20_in_importsDeclaration502); 
+			 result = dataFactory.getOWLImportsDeclaration(parser.getIRI((iri19!=null?input.toString(iri19.start,iri19.stop):null))); 
 			}
 
 		}
@@ -938,8 +889,8 @@ public class FunctionalChangesetParser extends Parser {
 		OWLOntologyChangeData result = null;
 
 
+		ParserRuleReturnScope annotation20 =null;
 		ParserRuleReturnScope annotation21 =null;
-		ParserRuleReturnScope annotation22 =null;
 
 		try {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:225:3: ( '+ ' annotation | '- ' annotation )
@@ -960,23 +911,23 @@ public class FunctionalChangesetParser extends Parser {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:225:5: '+ ' annotation
 					{
-					match(input,24,FOLLOW_24_in_annotationChange555); 
-					pushFollow(FOLLOW_annotation_in_annotationChange557);
-					annotation21=annotation();
+					match(input,24,FOLLOW_24_in_annotationChange532); 
+					pushFollow(FOLLOW_annotation_in_annotationChange534);
+					annotation20=annotation();
 					state._fsp--;
 
-					 result = new AddOntologyAnnotationData((annotation21!=null?((FunctionalChangesetParser.annotation_return)annotation21).result:null)); 
+					 result = new AddOntologyAnnotationData((annotation20!=null?((FunctionalChangesetParser.annotation_return)annotation20).result:null)); 
 					}
 					break;
 				case 2 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:227:5: '- ' annotation
 					{
-					match(input,26,FOLLOW_26_in_annotationChange567); 
-					pushFollow(FOLLOW_annotation_in_annotationChange569);
-					annotation22=annotation();
+					match(input,26,FOLLOW_26_in_annotationChange544); 
+					pushFollow(FOLLOW_annotation_in_annotationChange546);
+					annotation21=annotation();
 					state._fsp--;
 
-					 result = new RemoveOntologyAnnotationData((annotation22!=null?((FunctionalChangesetParser.annotation_return)annotation22).result:null)); 
+					 result = new RemoveOntologyAnnotationData((annotation21!=null?((FunctionalChangesetParser.annotation_return)annotation21).result:null)); 
 					}
 					break;
 
@@ -1009,7 +960,7 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:233:3: ( subAnnotation )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:233:5: subAnnotation
 			{
-			pushFollow(FOLLOW_subAnnotation_in_annotation596);
+			pushFollow(FOLLOW_subAnnotation_in_annotation573);
 			subAnnotation();
 			state._fsp--;
 
@@ -1039,8 +990,8 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:238:3: ( 'Annotation' '(' ( subAnnotation )* iri annotationValue ')' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:238:5: 'Annotation' '(' ( subAnnotation )* iri annotationValue ')'
 			{
-			match(input,29,FOLLOW_29_in_subAnnotation613); 
-			match(input,19,FOLLOW_19_in_subAnnotation615); 
+			match(input,29,FOLLOW_29_in_subAnnotation590); 
+			match(input,19,FOLLOW_19_in_subAnnotation592); 
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:238:22: ( subAnnotation )*
 			loop13:
 			do {
@@ -1054,7 +1005,7 @@ public class FunctionalChangesetParser extends Parser {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:238:22: subAnnotation
 					{
-					pushFollow(FOLLOW_subAnnotation_in_subAnnotation617);
+					pushFollow(FOLLOW_subAnnotation_in_subAnnotation594);
 					subAnnotation();
 					state._fsp--;
 
@@ -1066,15 +1017,15 @@ public class FunctionalChangesetParser extends Parser {
 				}
 			} while (true);
 
-			pushFollow(FOLLOW_iri_in_subAnnotation620);
+			pushFollow(FOLLOW_iri_in_subAnnotation597);
 			iri();
 			state._fsp--;
 
-			pushFollow(FOLLOW_annotationValue_in_subAnnotation622);
+			pushFollow(FOLLOW_annotationValue_in_subAnnotation599);
 			annotationValue();
 			state._fsp--;
 
-			match(input,20,FOLLOW_20_in_subAnnotation624); 
+			match(input,20,FOLLOW_20_in_subAnnotation601); 
 			}
 
 		}
@@ -1123,7 +1074,7 @@ public class FunctionalChangesetParser extends Parser {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:242:5: iri
 					{
-					pushFollow(FOLLOW_iri_in_annotationValue637);
+					pushFollow(FOLLOW_iri_in_annotationValue614);
 					iri();
 					state._fsp--;
 
@@ -1132,7 +1083,7 @@ public class FunctionalChangesetParser extends Parser {
 				case 2 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:243:5: anonymousIndividual
 					{
-					pushFollow(FOLLOW_anonymousIndividual_in_annotationValue643);
+					pushFollow(FOLLOW_anonymousIndividual_in_annotationValue620);
 					anonymousIndividual();
 					state._fsp--;
 
@@ -1141,7 +1092,7 @@ public class FunctionalChangesetParser extends Parser {
 				case 3 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:244:5: literal
 					{
-					pushFollow(FOLLOW_literal_in_annotationValue649);
+					pushFollow(FOLLOW_literal_in_annotationValue626);
 					literal();
 					state._fsp--;
 
@@ -1169,8 +1120,8 @@ public class FunctionalChangesetParser extends Parser {
 		AxiomChangeData result = null;
 
 
+		ParserRuleReturnScope axiom22 =null;
 		ParserRuleReturnScope axiom23 =null;
-		ParserRuleReturnScope axiom24 =null;
 
 		try {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:251:3: ( '+ ' axiom | '- ' axiom )
@@ -1191,23 +1142,23 @@ public class FunctionalChangesetParser extends Parser {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:251:5: '+ ' axiom
 					{
-					match(input,24,FOLLOW_24_in_axiomChange674); 
-					pushFollow(FOLLOW_axiom_in_axiomChange676);
-					axiom23=axiom();
+					match(input,24,FOLLOW_24_in_axiomChange651); 
+					pushFollow(FOLLOW_axiom_in_axiomChange653);
+					axiom22=axiom();
 					state._fsp--;
 
-					 result = new AddAxiomData((axiom23!=null?((FunctionalChangesetParser.axiom_return)axiom23).result:null)); 
+					 result = new AddAxiomData((axiom22!=null?((FunctionalChangesetParser.axiom_return)axiom22).result:null)); 
 					}
 					break;
 				case 2 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:253:5: '- ' axiom
 					{
-					match(input,26,FOLLOW_26_in_axiomChange686); 
-					pushFollow(FOLLOW_axiom_in_axiomChange688);
-					axiom24=axiom();
+					match(input,26,FOLLOW_26_in_axiomChange663); 
+					pushFollow(FOLLOW_axiom_in_axiomChange665);
+					axiom23=axiom();
 					state._fsp--;
 
-					 result = new RemoveAxiomData((axiom24!=null?((FunctionalChangesetParser.axiom_return)axiom24).result:null)); 
+					 result = new RemoveAxiomData((axiom23!=null?((FunctionalChangesetParser.axiom_return)axiom23).result:null)); 
 					}
 					break;
 
@@ -1240,7 +1191,7 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:259:3: ( subAxiom )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:259:5: subAxiom
 			{
-			pushFollow(FOLLOW_subAxiom_in_axiom715);
+			pushFollow(FOLLOW_subAxiom_in_axiom692);
 			subAxiom();
 			state._fsp--;
 
@@ -1270,8 +1221,8 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:264:3: ( NAME '(' ( subAnnotation )* ( INT )? ( argument )+ ')' )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:264:5: NAME '(' ( subAnnotation )* ( INT )? ( argument )+ ')'
 			{
-			match(input,NAME,FOLLOW_NAME_in_subAxiom732); 
-			match(input,19,FOLLOW_19_in_subAxiom734); 
+			match(input,NAME,FOLLOW_NAME_in_subAxiom709); 
+			match(input,19,FOLLOW_19_in_subAxiom711); 
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:264:14: ( subAnnotation )*
 			loop16:
 			do {
@@ -1285,7 +1236,7 @@ public class FunctionalChangesetParser extends Parser {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:264:14: subAnnotation
 					{
-					pushFollow(FOLLOW_subAnnotation_in_subAxiom736);
+					pushFollow(FOLLOW_subAnnotation_in_subAxiom713);
 					subAnnotation();
 					state._fsp--;
 
@@ -1307,7 +1258,7 @@ public class FunctionalChangesetParser extends Parser {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:264:29: INT
 					{
-					match(input,INT,FOLLOW_INT_in_subAxiom739); 
+					match(input,INT,FOLLOW_INT_in_subAxiom716); 
 					}
 					break;
 
@@ -1327,7 +1278,7 @@ public class FunctionalChangesetParser extends Parser {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:264:34: argument
 					{
-					pushFollow(FOLLOW_argument_in_subAxiom742);
+					pushFollow(FOLLOW_argument_in_subAxiom719);
 					argument();
 					state._fsp--;
 
@@ -1343,7 +1294,7 @@ public class FunctionalChangesetParser extends Parser {
 				cnt18++;
 			} while (true);
 
-			match(input,20,FOLLOW_20_in_subAxiom745); 
+			match(input,20,FOLLOW_20_in_subAxiom722); 
 			}
 
 		}
@@ -1397,7 +1348,7 @@ public class FunctionalChangesetParser extends Parser {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:268:5: iri
 					{
-					pushFollow(FOLLOW_iri_in_argument758);
+					pushFollow(FOLLOW_iri_in_argument735);
 					iri();
 					state._fsp--;
 
@@ -1406,7 +1357,7 @@ public class FunctionalChangesetParser extends Parser {
 				case 2 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:269:5: literal
 					{
-					pushFollow(FOLLOW_literal_in_argument764);
+					pushFollow(FOLLOW_literal_in_argument741);
 					literal();
 					state._fsp--;
 
@@ -1415,7 +1366,7 @@ public class FunctionalChangesetParser extends Parser {
 				case 3 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:270:5: anonymousIndividual
 					{
-					pushFollow(FOLLOW_anonymousIndividual_in_argument770);
+					pushFollow(FOLLOW_anonymousIndividual_in_argument747);
 					anonymousIndividual();
 					state._fsp--;
 
@@ -1424,7 +1375,7 @@ public class FunctionalChangesetParser extends Parser {
 				case 4 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:271:5: subAxiom
 					{
-					pushFollow(FOLLOW_subAxiom_in_argument776);
+					pushFollow(FOLLOW_subAxiom_in_argument753);
 					subAxiom();
 					state._fsp--;
 
@@ -1474,7 +1425,7 @@ public class FunctionalChangesetParser extends Parser {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:278:5: fullIRI
 					{
-					pushFollow(FOLLOW_fullIRI_in_iri792);
+					pushFollow(FOLLOW_fullIRI_in_iri769);
 					fullIRI();
 					state._fsp--;
 
@@ -1483,7 +1434,7 @@ public class FunctionalChangesetParser extends Parser {
 				case 2 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:279:5: abbreviatedIRI
 					{
-					pushFollow(FOLLOW_abbreviatedIRI_in_iri798);
+					pushFollow(FOLLOW_abbreviatedIRI_in_iri775);
 					abbreviatedIRI();
 					state._fsp--;
 
@@ -1520,7 +1471,7 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:283:3: ( FULLIRI )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:283:5: FULLIRI
 			{
-			match(input,FULLIRI,FOLLOW_FULLIRI_in_fullIRI811); 
+			match(input,FULLIRI,FOLLOW_FULLIRI_in_fullIRI788); 
 			}
 
 			retval.stop = input.LT(-1);
@@ -1546,7 +1497,7 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:286:3: ( PNAME_LN )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:286:5: PNAME_LN
 			{
-			match(input,PNAME_LN,FOLLOW_PNAME_LN_in_abbreviatedIRI822); 
+			match(input,PNAME_LN,FOLLOW_PNAME_LN_in_abbreviatedIRI799); 
 			}
 
 		}
@@ -1576,7 +1527,7 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:289:3: ( PNAME_NS )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:289:5: PNAME_NS
 			{
-			match(input,PNAME_NS,FOLLOW_PNAME_NS_in_prefixName833); 
+			match(input,PNAME_NS,FOLLOW_PNAME_NS_in_prefixName810); 
 			}
 
 			retval.stop = input.LT(-1);
@@ -1602,7 +1553,7 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:292:3: ( NODEID )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:292:5: NODEID
 			{
-			match(input,NODEID,FOLLOW_NODEID_in_anonymousIndividual844); 
+			match(input,NODEID,FOLLOW_NODEID_in_anonymousIndividual821); 
 			}
 
 		}
@@ -1626,14 +1577,14 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:295:3: ( quotedString ( '^^' iri | languageTag )? )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:295:5: quotedString ( '^^' iri | languageTag )?
 			{
-			pushFollow(FOLLOW_quotedString_in_literal855);
+			pushFollow(FOLLOW_quotedString_in_literal832);
 			quotedString();
 			state._fsp--;
 
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:296:5: ( '^^' iri | languageTag )?
 			int alt21=3;
 			int LA21_0 = input.LA(1);
-			if ( (LA21_0==32) ) {
+			if ( (LA21_0==31) ) {
 				alt21=1;
 			}
 			else if ( (LA21_0==LANG_TAG) ) {
@@ -1643,8 +1594,8 @@ public class FunctionalChangesetParser extends Parser {
 				case 1 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:296:7: '^^' iri
 					{
-					match(input,32,FOLLOW_32_in_literal863); 
-					pushFollow(FOLLOW_iri_in_literal865);
+					match(input,31,FOLLOW_31_in_literal840); 
+					pushFollow(FOLLOW_iri_in_literal842);
 					iri();
 					state._fsp--;
 
@@ -1653,7 +1604,7 @@ public class FunctionalChangesetParser extends Parser {
 				case 2 :
 					// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:297:7: languageTag
 					{
-					pushFollow(FOLLOW_languageTag_in_literal873);
+					pushFollow(FOLLOW_languageTag_in_literal850);
 					languageTag();
 					state._fsp--;
 
@@ -1685,7 +1636,7 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:302:3: ( LANG_TAG )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:302:5: LANG_TAG
 			{
-			match(input,LANG_TAG,FOLLOW_LANG_TAG_in_languageTag893); 
+			match(input,LANG_TAG,FOLLOW_LANG_TAG_in_languageTag870); 
 			}
 
 		}
@@ -1715,7 +1666,7 @@ public class FunctionalChangesetParser extends Parser {
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:306:3: ( QUOTED_STRING )
 			// R:\\Pro\\OntoVCS\\owl2vcs\\src\\main\\java\\owl2vcs\\io\\FunctionalChangeset.g:306:5: QUOTED_STRING
 			{
-			match(input,QUOTED_STRING,FOLLOW_QUOTED_STRING_in_quotedString906); 
+			match(input,QUOTED_STRING,FOLLOW_QUOTED_STRING_in_quotedString883); 
 			}
 
 			retval.stop = input.LT(-1);
@@ -1737,7 +1688,7 @@ public class FunctionalChangesetParser extends Parser {
 
 
 	public static final BitSet FOLLOW_prefixes_in_changeset75 = new BitSet(new long[]{0x000000000FE40002L});
-	public static final BitSet FOLLOW_setOntologyFormat_in_changeset86 = new BitSet(new long[]{0x000000000FA40002L});
+	public static final BitSet FOLLOW_setOntologyFormat_in_changeset86 = new BitSet(new long[]{0x000000000FC40002L});
 	public static final BitSet FOLLOW_setOntologyId_in_changeset102 = new BitSet(new long[]{0x000000000F840002L});
 	public static final BitSet FOLLOW_prefixChange_in_changeset118 = new BitSet(new long[]{0x000000000F840002L});
 	public static final BitSet FOLLOW_importChange_in_changeset134 = new BitSet(new long[]{0x0000000005000002L});
@@ -1747,87 +1698,83 @@ public class FunctionalChangesetParser extends Parser {
 	public static final BitSet FOLLOW_prefixName_in_prefix228 = new BitSet(new long[]{0x0000000010000000L});
 	public static final BitSet FOLLOW_28_in_prefix230 = new BitSet(new long[]{0x0000000000000010L});
 	public static final BitSet FOLLOW_fullIRI_in_prefix232 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_22_in_setOntologyFormat266 = new BitSet(new long[]{0x0000000000080000L});
+	public static final BitSet FOLLOW_21_in_setOntologyFormat266 = new BitSet(new long[]{0x0000000000080000L});
 	public static final BitSet FOLLOW_19_in_setOntologyFormat268 = new BitSet(new long[]{0x0000000000010000L});
 	public static final BitSet FOLLOW_quotedString_in_setOntologyFormat270 = new BitSet(new long[]{0x0000000000100000L});
 	public static final BitSet FOLLOW_20_in_setOntologyFormat272 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_21_in_setOntologyId296 = new BitSet(new long[]{0x0000000080000000L});
-	public static final BitSet FOLLOW_ontologyIDStatement_in_setOntologyId298 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_31_in_ontologyIDStatement319 = new BitSet(new long[]{0x0000000000080000L});
-	public static final BitSet FOLLOW_19_in_ontologyIDStatement321 = new BitSet(new long[]{0x0000000000000010L});
-	public static final BitSet FOLLOW_oid_in_ontologyIDStatement323 = new BitSet(new long[]{0x0000000000100000L});
-	public static final BitSet FOLLOW_20_in_ontologyIDStatement325 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_31_in_ontologyIDStatement333 = new BitSet(new long[]{0x0000000000080000L});
-	public static final BitSet FOLLOW_19_in_ontologyIDStatement335 = new BitSet(new long[]{0x0000000000100000L});
-	public static final BitSet FOLLOW_20_in_ontologyIDStatement337 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_fullIRI_in_oid358 = new BitSet(new long[]{0x0000000000000010L});
-	public static final BitSet FOLLOW_fullIRI_in_oid362 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_fullIRI_in_oid374 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_25_in_prefixChange398 = new BitSet(new long[]{0x0000000000080000L});
-	public static final BitSet FOLLOW_19_in_prefixChange400 = new BitSet(new long[]{0x0000000000000400L});
-	public static final BitSet FOLLOW_prefix_in_prefixChange402 = new BitSet(new long[]{0x0000000000100000L});
-	public static final BitSet FOLLOW_20_in_prefixChange404 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_27_in_prefixChange414 = new BitSet(new long[]{0x0000000000080000L});
-	public static final BitSet FOLLOW_19_in_prefixChange416 = new BitSet(new long[]{0x0000000000000400L});
-	public static final BitSet FOLLOW_prefix_in_prefixChange418 = new BitSet(new long[]{0x0000000000100000L});
-	public static final BitSet FOLLOW_20_in_prefixChange420 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_23_in_prefixChange430 = new BitSet(new long[]{0x0000000000080000L});
-	public static final BitSet FOLLOW_19_in_prefixChange432 = new BitSet(new long[]{0x0000000000000400L});
-	public static final BitSet FOLLOW_prefix_in_prefixChange434 = new BitSet(new long[]{0x0000000000000010L});
-	public static final BitSet FOLLOW_fullIRI_in_prefixChange438 = new BitSet(new long[]{0x0000000000100000L});
-	public static final BitSet FOLLOW_20_in_prefixChange440 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_18_in_prefixChange450 = new BitSet(new long[]{0x0000000000080000L});
-	public static final BitSet FOLLOW_19_in_prefixChange452 = new BitSet(new long[]{0x0000000000000400L});
-	public static final BitSet FOLLOW_prefixName_in_prefixChange456 = new BitSet(new long[]{0x0000000000000400L});
-	public static final BitSet FOLLOW_prefix_in_prefixChange458 = new BitSet(new long[]{0x0000000000100000L});
-	public static final BitSet FOLLOW_20_in_prefixChange460 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_24_in_importChange484 = new BitSet(new long[]{0x0000000040000000L});
-	public static final BitSet FOLLOW_importsDeclaration_in_importChange486 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_26_in_importChange496 = new BitSet(new long[]{0x0000000040000000L});
-	public static final BitSet FOLLOW_importsDeclaration_in_importChange498 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_30_in_importsDeclaration519 = new BitSet(new long[]{0x0000000000080000L});
-	public static final BitSet FOLLOW_19_in_importsDeclaration521 = new BitSet(new long[]{0x0000000000000210L});
-	public static final BitSet FOLLOW_iri_in_importsDeclaration523 = new BitSet(new long[]{0x0000000000100000L});
-	public static final BitSet FOLLOW_20_in_importsDeclaration525 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_24_in_annotationChange555 = new BitSet(new long[]{0x0000000020000000L});
-	public static final BitSet FOLLOW_annotation_in_annotationChange557 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_26_in_annotationChange567 = new BitSet(new long[]{0x0000000020000000L});
-	public static final BitSet FOLLOW_annotation_in_annotationChange569 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_subAnnotation_in_annotation596 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_29_in_subAnnotation613 = new BitSet(new long[]{0x0000000000080000L});
-	public static final BitSet FOLLOW_19_in_subAnnotation615 = new BitSet(new long[]{0x0000000020000210L});
-	public static final BitSet FOLLOW_subAnnotation_in_subAnnotation617 = new BitSet(new long[]{0x0000000020000210L});
-	public static final BitSet FOLLOW_iri_in_subAnnotation620 = new BitSet(new long[]{0x0000000000010310L});
-	public static final BitSet FOLLOW_annotationValue_in_subAnnotation622 = new BitSet(new long[]{0x0000000000100000L});
-	public static final BitSet FOLLOW_20_in_subAnnotation624 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_iri_in_annotationValue637 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_anonymousIndividual_in_annotationValue643 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_literal_in_annotationValue649 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_24_in_axiomChange674 = new BitSet(new long[]{0x0000000000000080L});
-	public static final BitSet FOLLOW_axiom_in_axiomChange676 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_26_in_axiomChange686 = new BitSet(new long[]{0x0000000000000080L});
-	public static final BitSet FOLLOW_axiom_in_axiomChange688 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_subAxiom_in_axiom715 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_NAME_in_subAxiom732 = new BitSet(new long[]{0x0000000000080000L});
-	public static final BitSet FOLLOW_19_in_subAxiom734 = new BitSet(new long[]{0x00000000200103B0L});
-	public static final BitSet FOLLOW_subAnnotation_in_subAxiom736 = new BitSet(new long[]{0x00000000200103B0L});
-	public static final BitSet FOLLOW_INT_in_subAxiom739 = new BitSet(new long[]{0x0000000000010390L});
-	public static final BitSet FOLLOW_argument_in_subAxiom742 = new BitSet(new long[]{0x0000000000110390L});
-	public static final BitSet FOLLOW_20_in_subAxiom745 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_iri_in_argument758 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_literal_in_argument764 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_anonymousIndividual_in_argument770 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_subAxiom_in_argument776 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_fullIRI_in_iri792 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_abbreviatedIRI_in_iri798 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FULLIRI_in_fullIRI811 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PNAME_LN_in_abbreviatedIRI822 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PNAME_NS_in_prefixName833 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_NODEID_in_anonymousIndividual844 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_quotedString_in_literal855 = new BitSet(new long[]{0x0000000100000042L});
-	public static final BitSet FOLLOW_32_in_literal863 = new BitSet(new long[]{0x0000000000000210L});
-	public static final BitSet FOLLOW_iri_in_literal865 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_languageTag_in_literal873 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LANG_TAG_in_languageTag893 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_QUOTED_STRING_in_quotedString906 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_22_in_setOntologyId296 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_20_in_setOntologyId298 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_22_in_setOntologyId308 = new BitSet(new long[]{0x0000000000000010L});
+	public static final BitSet FOLLOW_ontologyId_in_setOntologyId310 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_20_in_setOntologyId312 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_fullIRI_in_ontologyId335 = new BitSet(new long[]{0x0000000000000010L});
+	public static final BitSet FOLLOW_fullIRI_in_ontologyId339 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_fullIRI_in_ontologyId351 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_25_in_prefixChange375 = new BitSet(new long[]{0x0000000000080000L});
+	public static final BitSet FOLLOW_19_in_prefixChange377 = new BitSet(new long[]{0x0000000000000400L});
+	public static final BitSet FOLLOW_prefix_in_prefixChange379 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_20_in_prefixChange381 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_27_in_prefixChange391 = new BitSet(new long[]{0x0000000000080000L});
+	public static final BitSet FOLLOW_19_in_prefixChange393 = new BitSet(new long[]{0x0000000000000400L});
+	public static final BitSet FOLLOW_prefix_in_prefixChange395 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_20_in_prefixChange397 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_23_in_prefixChange407 = new BitSet(new long[]{0x0000000000080000L});
+	public static final BitSet FOLLOW_19_in_prefixChange409 = new BitSet(new long[]{0x0000000000000400L});
+	public static final BitSet FOLLOW_prefix_in_prefixChange411 = new BitSet(new long[]{0x0000000000000010L});
+	public static final BitSet FOLLOW_fullIRI_in_prefixChange415 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_20_in_prefixChange417 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_18_in_prefixChange427 = new BitSet(new long[]{0x0000000000080000L});
+	public static final BitSet FOLLOW_19_in_prefixChange429 = new BitSet(new long[]{0x0000000000000400L});
+	public static final BitSet FOLLOW_prefixName_in_prefixChange433 = new BitSet(new long[]{0x0000000000000400L});
+	public static final BitSet FOLLOW_prefix_in_prefixChange435 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_20_in_prefixChange437 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_24_in_importChange461 = new BitSet(new long[]{0x0000000040000000L});
+	public static final BitSet FOLLOW_importsDeclaration_in_importChange463 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_26_in_importChange473 = new BitSet(new long[]{0x0000000040000000L});
+	public static final BitSet FOLLOW_importsDeclaration_in_importChange475 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_30_in_importsDeclaration496 = new BitSet(new long[]{0x0000000000080000L});
+	public static final BitSet FOLLOW_19_in_importsDeclaration498 = new BitSet(new long[]{0x0000000000000210L});
+	public static final BitSet FOLLOW_iri_in_importsDeclaration500 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_20_in_importsDeclaration502 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_24_in_annotationChange532 = new BitSet(new long[]{0x0000000020000000L});
+	public static final BitSet FOLLOW_annotation_in_annotationChange534 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_26_in_annotationChange544 = new BitSet(new long[]{0x0000000020000000L});
+	public static final BitSet FOLLOW_annotation_in_annotationChange546 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_subAnnotation_in_annotation573 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_29_in_subAnnotation590 = new BitSet(new long[]{0x0000000000080000L});
+	public static final BitSet FOLLOW_19_in_subAnnotation592 = new BitSet(new long[]{0x0000000020000210L});
+	public static final BitSet FOLLOW_subAnnotation_in_subAnnotation594 = new BitSet(new long[]{0x0000000020000210L});
+	public static final BitSet FOLLOW_iri_in_subAnnotation597 = new BitSet(new long[]{0x0000000000010310L});
+	public static final BitSet FOLLOW_annotationValue_in_subAnnotation599 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_20_in_subAnnotation601 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_iri_in_annotationValue614 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_anonymousIndividual_in_annotationValue620 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_literal_in_annotationValue626 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_24_in_axiomChange651 = new BitSet(new long[]{0x0000000000000080L});
+	public static final BitSet FOLLOW_axiom_in_axiomChange653 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_26_in_axiomChange663 = new BitSet(new long[]{0x0000000000000080L});
+	public static final BitSet FOLLOW_axiom_in_axiomChange665 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_subAxiom_in_axiom692 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_NAME_in_subAxiom709 = new BitSet(new long[]{0x0000000000080000L});
+	public static final BitSet FOLLOW_19_in_subAxiom711 = new BitSet(new long[]{0x00000000200103B0L});
+	public static final BitSet FOLLOW_subAnnotation_in_subAxiom713 = new BitSet(new long[]{0x00000000200103B0L});
+	public static final BitSet FOLLOW_INT_in_subAxiom716 = new BitSet(new long[]{0x0000000000010390L});
+	public static final BitSet FOLLOW_argument_in_subAxiom719 = new BitSet(new long[]{0x0000000000110390L});
+	public static final BitSet FOLLOW_20_in_subAxiom722 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_iri_in_argument735 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_literal_in_argument741 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_anonymousIndividual_in_argument747 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_subAxiom_in_argument753 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_fullIRI_in_iri769 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_abbreviatedIRI_in_iri775 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FULLIRI_in_fullIRI788 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_PNAME_LN_in_abbreviatedIRI799 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_PNAME_NS_in_prefixName810 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_NODEID_in_anonymousIndividual821 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_quotedString_in_literal832 = new BitSet(new long[]{0x0000000080000042L});
+	public static final BitSet FOLLOW_31_in_literal840 = new BitSet(new long[]{0x0000000000000210L});
+	public static final BitSet FOLLOW_iri_in_literal842 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_languageTag_in_literal850 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LANG_TAG_in_languageTag870 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_QUOTED_STRING_in_quotedString883 = new BitSet(new long[]{0x0000000000000002L});
 }

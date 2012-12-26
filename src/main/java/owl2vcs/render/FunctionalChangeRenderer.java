@@ -11,7 +11,6 @@ import org.semanticweb.owlapi.change.SetOntologyIDData;
 import org.semanticweb.owlapi.io.OWLObjectRenderer;
 import org.semanticweb.owlapi.model.OWLOntologyID;
 import org.semanticweb.owlapi.util.ShortFormProvider;
-import org.semanticweb.owlapi.util.SimpleRenderer;
 
 import owl2vcs.changes.AddPrefixData;
 import owl2vcs.changes.ModifyPrefixData;
@@ -26,7 +25,7 @@ public class FunctionalChangeRenderer implements ChangeRenderer {
 
     public FunctionalChangeRenderer(final ShortFormProvider provider,
             final ChangeFormat changeFormat) {
-        objectRenderer = new SimpleRenderer();
+        objectRenderer = new SimplerRenderer();
         objectRenderer.setShortFormProvider(provider);
         this.changeFormat = changeFormat;
     }

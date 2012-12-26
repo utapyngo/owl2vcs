@@ -8,6 +8,7 @@ import org.semanticweb.owlapi.change.AxiomChangeData;
 import org.semanticweb.owlapi.model.OWLAnonymousIndividual;
 import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import owl2vcs.changes.PrefixChangeData;
 import owl2vcs.changeset.ChangeSet;
@@ -32,7 +33,7 @@ public class ConflictFinder {
 
     public ConflictFinder(final OWLOntology base, final OWLOntology remote,
             final OWLOntology local) throws EntityCollectorException,
-            PrefixCollectorException {
+            PrefixCollectorException, OWLOntologyCreationException {
 
         final ChangeSet remoteChanges = new FullChangeSet(base, remote);
         final ChangeSet localChanges = new FullChangeSet(base, local);
