@@ -2,13 +2,11 @@ package owl2vcs.changeset;
 
 import static org.junit.Assert.fail;
 
-import java.io.File;
 import java.io.IOException;
 
 import org.antlr.runtime.RecognitionException;
 import org.coode.owlapi.functionalparser.ParseException;
 import org.junit.Test;
-import org.semanticweb.owlapi.io.FileDocumentSource;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
