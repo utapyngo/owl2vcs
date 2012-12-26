@@ -1,0 +1,28 @@
+xsd:=<http://www.w3.org/2001/XMLSchema#>
+owl:=<http://www.w3.org/2002/07/owl#>
+protege:=<http://protege.stanford.edu/plugins/owl/protege#>
+:=<http://www.co-ode.org/ontologies/pizza/pizza.owl#>
+rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+rdfs:=<http://www.w3.org/2000/01/rdf-schema#>
+
+* OntologyID(<http://www.co-ode.org/ontologies/pizza/pizza.owl>)
+- Prefix(daml:=<http://www.daml.org/2001/03/daml+oil#>)
+- Prefix(protege:=<http://protege.stanford.edu/plugins/owl/protege#>)
+* Prefix(:=<http://www.co-ode.org/ontologies/pizza/2006/07/18/pizza.owl#> <http://www.co-ode.org/ontologies/pizza/pizza.owl#>)
+- Prefix(dc:=<http://purl.org/dc/elements/1.1/>)
+- Import(<http://protege.stanford.edu/plugins/owl/protege>)
+- Annotation(protege:defaultLanguage "en"^^xsd:string)
+- Annotation(owl:versionInfo "version 1.4"^^xsd:string)
++ Annotation(owl:versionInfo "version 1.5"^^xsd:string)
++ Annotation(owl:versionInfo "v.1.5. Removed protege.owl import and references. Made ontology URI date-independent"@en)
+- AnnotationAssertion(rdfs:comment :SpicyPizzaEquivalent "An alternative definition for the SpicyPizza which does away with needing a definition of SpicyTopping and uses a slightly more complicated restriction: Pizzas that have at least one topping that is both a PizzaTopping and has spiciness hot are members of this class. "@en)
+- AnnotationAssertion(rdfs:comment :VegetarianPizzaEquivalent2 "An alternative to VegetarianPizzaEquiv1 that does not require a definition of VegetarianTopping. Perhaps more difficult to maintain. Not equivalent to VegetarianPizza "@en)
+- AnnotationAssertion(rdfs:label :GoatsCheeseTopping "CoberturaDeQueijoDeCabra	"@pt)
++ ClassAssertion(owl:Thing :France)
++ AnnotationAssertion(rdfs:comment :VegetarianPizzaEquivalent2 "An alternative to VegetarianPizzaEquiv1 that does not require a definition of VegetarianTopping. Perhaps more difficult to maintain. Not equivalent to VegetarianPizza"@en)
++ ClassAssertion(owl:Thing :England)
++ AnnotationAssertion(rdfs:comment :SpicyPizzaEquivalent "An alternative definition for the SpicyPizza which does away with needing a definition of SpicyTopping and uses a slightly more complicated restriction: Pizzas that have at least one topping that is both a PizzaTopping and has spiciness hot are members of this class."@en)
++ ClassAssertion(owl:Thing :Germany)
++ ClassAssertion(owl:Thing :America)
++ AnnotationAssertion(rdfs:label :GoatsCheeseTopping "CoberturaDeQueijoDeCabra"@pt)
++ ClassAssertion(owl:Thing :Italy)

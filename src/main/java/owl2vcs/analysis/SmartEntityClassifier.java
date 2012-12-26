@@ -4,12 +4,11 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.semanticweb.owlapi.model.AddAxiom;
-import org.semanticweb.owlapi.model.OWLAxiomChange;
+import org.semanticweb.owlapi.change.AddAxiomData;
+import org.semanticweb.owlapi.change.AxiomChangeData;
+import org.semanticweb.owlapi.change.RemoveAxiomData;
 import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.model.RemoveAxiom;
-
 import owl2vcs.changeset.FullChangeSet;
 
 import com.google.common.collect.Iterables;
@@ -50,15 +49,15 @@ public class SmartEntityClassifier {
         newEntities = new TreeSet<OWLEntity>();
         removedEntities = new TreeSet<OWLEntity>();
         modifiedEntities = new TreeSet<OWLEntity>();
-        for (final OWLAxiomChange c : cs.getAxiomChanges()) {
+        for (final AxiomChangeData c : cs.getAxiomChanges()) {
             final Set<OWLEntity> signature = c.getAxiom().getSignature();
-            if (c instanceof AddAxiom)
+            if (c instanceof AddAxiomData)
                 for (final OWLEntity e : signature)
                     if (parent.containsEntityInSignature(e, false))
                         modifiedEntities.add(e);
                     else
                         newEntities.add(e);
-            else if (c instanceof RemoveAxiom)
+            else if (c instanceof RemoveAxiomData)
                 for (final OWLEntity e : signature)
                     if (child.containsEntityInSignature(e, false))
                         modifiedEntities.add(e);

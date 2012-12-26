@@ -4,12 +4,13 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.semanticweb.owlapi.change.AxiomChangeData;
 import org.semanticweb.owlapi.model.OWLAnonymousIndividual;
-import org.semanticweb.owlapi.model.OWLAxiomChange;
 import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
-import owl2vcs.changes.PrefixChange;
+import owl2vcs.changes.PrefixChangeData;
 import owl2vcs.changeset.ChangeSet;
 import owl2vcs.changeset.FullChangeSet;
 import owl2vcs.changeset.MutableChangeSet;
@@ -31,15 +32,17 @@ public class ConflictFinder {
     private final MutableChangeSet otherLocal;
 
     public ConflictFinder(final OWLOntology base, final OWLOntology remote,
-            final OWLOntology local) {
+            final OWLOntology local) throws EntityCollectorException,
+            PrefixCollectorException, OWLOntologyCreationException {
 
         final ChangeSet remoteChanges = new FullChangeSet(base, remote);
         final ChangeSet localChanges = new FullChangeSet(base, local);
-        common = ChangeSetUtils.intersectChangesets(remoteChanges, localChanges);
-        final ChangeSet remoteOnlyChanges = ChangeSetUtils.subtractChangesets(remoteChanges,
-                common);
-        final ChangeSet localOnlyChanges = ChangeSetUtils.subtractChangesets(localChanges,
-                common);
+        common = ChangeSetUtils
+                .intersectChangesets(remoteChanges, localChanges);
+        final ChangeSet remoteOnlyChanges = ChangeSetUtils.subtractChangesets(
+                remoteChanges, common);
+        final ChangeSet localOnlyChanges = ChangeSetUtils.subtractChangesets(
+                localChanges, common);
         conflictsRemote = new MutableChangeSet();
         conflictsLocal = new MutableChangeSet();
         otherRemote = new MutableChangeSet(remoteOnlyChanges);
@@ -65,13 +68,13 @@ public class ConflictFinder {
         final Set<String> remotePrefixes = new HashSet<String>();
         remoteOnlyChanges.accept(new PrefixCollector(remotePrefixes,
                 remotePrefixes));
-        for (final PrefixChange c : remoteChanges.getPrefixChanges())
-            if (!Collections.disjoint(localPrefixes, c.getSignature())) {
+        for (final PrefixChangeData c : remoteChanges.getPrefixChanges())
+            if (!Collections.disjoint(localPrefixes, c.getPrefixSignature())) {
                 conflictsRemote.getPrefixChanges().add(c);
                 otherRemote.getPrefixChanges().remove(c);
             }
-        for (final PrefixChange c : localChanges.getPrefixChanges())
-            if (!Collections.disjoint(remotePrefixes, c.getSignature())) {
+        for (final PrefixChangeData c : localChanges.getPrefixChanges())
+            if (!Collections.disjoint(remotePrefixes, c.getPrefixSignature())) {
                 conflictsRemote.getPrefixChanges().add(c);
                 otherRemote.getPrefixChanges().remove(c);
             }
@@ -82,13 +85,13 @@ public class ConflictFinder {
         final Set<OWLEntity> localEntities = new HashSet<OWLEntity>();
         localOnlyChanges.accept(new EntityCollector(localEntities,
                 new HashSet<OWLAnonymousIndividual>()));
-        for (final OWLAxiomChange c : remoteChanges.getAxiomChanges())
+        for (final AxiomChangeData c : remoteChanges.getAxiomChanges())
             if (!Collections.disjoint(localEntities, c.getAxiom()
                     .getSignature())) {
                 conflictsRemote.getAxiomChanges().add(c);
                 otherRemote.getAxiomChanges().remove(c);
             }
-        for (final OWLAxiomChange c : localChanges.getAxiomChanges())
+        for (final AxiomChangeData c : localChanges.getAxiomChanges())
             if (!Collections.disjoint(remoteEntities, c.getAxiom()
                     .getSignature())) {
                 conflictsLocal.getAxiomChanges().add(c);
