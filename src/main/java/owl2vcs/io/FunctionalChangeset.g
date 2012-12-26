@@ -15,20 +15,19 @@ import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLOntologyLoaderConfiguration;
 
-import org.semanticweb.owlapi.model.OWLOntologyChange;
-import org.semanticweb.owlapi.model.SetOntologyID;
+import org.semanticweb.owlapi.change.OWLOntologyChangeData;
+import org.semanticweb.owlapi.change.SetOntologyIDData;
 import org.semanticweb.owlapi.model.OWLOntologyID;
-import org.semanticweb.owlapi.model.AnnotationChange;
-import org.semanticweb.owlapi.model.AddOntologyAnnotation;
-import org.semanticweb.owlapi.model.RemoveOntologyAnnotation;
+import org.semanticweb.owlapi.change.AddOntologyAnnotationData;
+import org.semanticweb.owlapi.change.RemoveOntologyAnnotationData;
 import org.semanticweb.owlapi.model.OWLAnnotation;
-import org.semanticweb.owlapi.model.ImportChange;
-import org.semanticweb.owlapi.model.AddImport;
-import org.semanticweb.owlapi.model.RemoveImport;
+import org.semanticweb.owlapi.change.ImportChangeData;
+import org.semanticweb.owlapi.change.AddImportData;
+import org.semanticweb.owlapi.change.RemoveImportData;
 import org.semanticweb.owlapi.model.OWLImportsDeclaration;
-import org.semanticweb.owlapi.model.OWLAxiomChange;
-import org.semanticweb.owlapi.model.AddAxiom;
-import org.semanticweb.owlapi.model.RemoveAxiom;
+import org.semanticweb.owlapi.change.AxiomChangeData;
+import org.semanticweb.owlapi.change.AddAxiomData;
+import org.semanticweb.owlapi.change.RemoveAxiomData;
 import org.semanticweb.owlapi.model.OWLAxiom;
 
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
@@ -41,13 +40,13 @@ import org.coode.owlapi.functionalparser.ParseException;
 import org.semanticweb.owlapi.util.DefaultPrefixManager;
 
 import owl2vcs.changeset.MutableChangeSet;
-import owl2vcs.changes.OntologyChange;
-import owl2vcs.changes.SetOntologyFormat;
-import owl2vcs.changes.PrefixChange;
-import owl2vcs.changes.AddPrefix;
-import owl2vcs.changes.RemovePrefix;
-import owl2vcs.changes.ModifyPrefix;
-import owl2vcs.changes.RenamePrefix;
+import owl2vcs.changes.CustomOntologyChangeData;
+import owl2vcs.changes.SetOntologyFormatData;
+import owl2vcs.changes.PrefixChangeData;
+import owl2vcs.changes.AddPrefixData;
+import owl2vcs.changes.RemovePrefixData;
+import owl2vcs.changes.ModifyPrefixData;
+import owl2vcs.changes.RenamePrefixData;
 import owl2vcs.changes.UnknownOntologyFormatException;
 }
 
@@ -56,30 +55,23 @@ private OWLOntologyManager manager;
 private OWLDataFactory dataFactory;
 private OWLOntology ontology;
 private OWLFunctionalSyntaxParser parser;
-private OWLOntology parent;
 
-public FunctionalChangesetParser(TokenStream input, OWLOntology parent)
-        throws OWLOntologyCreationException {
-    this(input, new RecognizerSharedState());
-    this.parent = parent;
+public void init() {
     manager = OWLManager.createOWLOntologyManager();
     dataFactory = manager.getOWLDataFactory();
-    ontology = manager.createOntology();
+    try {
+        ontology = manager.createOntology();
+    } catch (OWLOntologyCreationException e) {
+        e.printStackTrace(System.err);
+    }
     parser = new OWLFunctionalSyntaxParser(new StringReader(""));
     parser.setUp(ontology, new OWLOntologyLoaderConfiguration());
 }
 
-public FunctionalChangesetParser(OWLOntology parent, String fileName)
+public FunctionalChangesetParser(String fileName)
         throws OWLOntologyCreationException, IOException {
     this(new CommonTokenStream(new FunctionalChangesetLexer(
-        new ANTLRFileStream(fileName, "UTF-8"))), parent);
-}
-
-public FunctionalChangesetParser(String s)
-        throws OWLOntologyCreationException, IOException {
-    this(new CommonTokenStream(
-        new FunctionalChangesetLexer(new ANTLRStringStream(s))),
-        OWLManager.createOWLOntologyManager().createOntology());
+        new ANTLRFileStream(fileName, "UTF-8"))));
 }
 
 public OWLAnnotation parseAnnotation(String s)
@@ -166,33 +158,27 @@ prefix returns [String name, String value]
 // FORMAT CHANGE
 
 setOntologyFormat
-  returns [SetOntologyFormat result]
+  returns [SetOntologyFormatData result]
   throws UnknownOntologyFormatException
   :
   '* OntologyFormat' '(' quotedString ')'
   {
       String format = $quotedString.text.substring(1, $quotedString.text.length() - 1);
-      $result = new SetOntologyFormat(parent, format);
+      $result = new SetOntologyFormatData(format);
   }
   ;
 
 
 // ONTOLOGY ID CHANGE
 
-setOntologyId returns [SetOntologyID result]
-  : '+ ' ontologyIDStatement
-  { $result = new SetOntologyID(parent, $ontologyIDStatement.result); }
-  | '- ' ontologyIDStatement
-  { $result = new SetOntologyID(parent, new OWLOntologyID()); }
-  | '* ' ontologyIDStatement
-  { $result = new SetOntologyID(parent, $ontologyIDStatement.result); }
+setOntologyId returns [SetOntologyIDData result]
+  : '* OntologyID(' ')'
+  { $result = new SetOntologyIDData(new OWLOntologyID()); }
+  | '* OntologyID(' ontologyId ')'
+  { $result = new SetOntologyIDData($ontologyId.result); }
   ;
 
-ontologyIDStatement returns [OWLOntologyID result]
-  : 'OntologyID' '(' oid ')' { $result = $oid.result; }
-  ;
-
-oid returns [OWLOntologyID result]
+ontologyId returns [OWLOntologyID result]
   : oiri=fullIRI viri=fullIRI
   { $result = new OWLOntologyID(parser.getIRI($oiri.text), parser.getIRI($viri.text)); }
   | oiri=fullIRI
@@ -202,25 +188,28 @@ oid returns [OWLOntologyID result]
 
 // PREFIX CHANGES
 
-prefixChange returns [PrefixChange result]
+prefixChange returns [PrefixChangeData result]
   : '+ Prefix' '(' prefix ')'
-  { $result = new AddPrefix(parent, $prefix.name, $prefix.value); }
+  { $result = new AddPrefixData($prefix.name, $prefix.value); }
   | '- Prefix' '(' prefix ')'
-  { $result = new RemovePrefix(parent, $prefix.name, $prefix.value); }
+  { $result = new RemovePrefixData($prefix.name, $prefix.value); }
   | '* Prefix' '(' prefix newvalue=fullIRI ')'
-  { $result = new ModifyPrefix(parent, $prefix.name, $prefix.value, $newvalue.text); }
+  {
+      String s = $newvalue.text;
+      $result = new ModifyPrefixData( $prefix.name, $prefix.value, s.substring(1, s.length() - 1));
+  }
   | '# Prefix' '(' oldname=prefixName prefix ')'
-  { $result = new RenamePrefix(parent, $oldname.text, $prefix.value, $prefix.name); }
+  { $result = new RenamePrefixData($oldname.text, $prefix.value, $prefix.name); }
   ;
 
 
 // IMPORT CHANGES
 
-importChange returns [ImportChange result]
+importChange returns [ImportChangeData result]
   : '+ ' importsDeclaration
-  { $result = new AddImport(parent, $importsDeclaration.result); }
+  { $result = new AddImportData($importsDeclaration.result); }
   | '- ' importsDeclaration
-  { $result = new RemoveImport(parent, $importsDeclaration.result); }
+  { $result = new RemoveImportData($importsDeclaration.result); }
   ;
 
 importsDeclaration returns [OWLImportsDeclaration result]
@@ -231,12 +220,12 @@ importsDeclaration returns [OWLImportsDeclaration result]
 
 // ONTOLOGY ANNOTATION CHANGES
 
-annotationChange returns [AnnotationChange result]
+annotationChange returns [OWLOntologyChangeData result]
   throws ParseException
   : '+ ' annotation
-  { $result = new AddOntologyAnnotation(parent, $annotation.result); }
+  { $result = new AddOntologyAnnotationData($annotation.result); }
   | '- ' annotation
-  { $result = new RemoveOntologyAnnotation(parent, $annotation.result); }
+  { $result = new RemoveOntologyAnnotationData($annotation.result); }
   ;
 
 annotation returns [OWLAnnotation result]
@@ -257,12 +246,12 @@ annotationValue
 
 // AXIOM CHANGES
 
-axiomChange returns [OWLAxiomChange result]
+axiomChange returns [AxiomChangeData result]
   throws ParseException
   : '+ ' axiom
-  { $result = new AddAxiom(parent, $axiom.result); }
+  { $result = new AddAxiomData($axiom.result); }
   | '- ' axiom
-  { $result = new RemoveAxiom(parent, $axiom.result); }
+  { $result = new RemoveAxiomData($axiom.result); }
   ;
 
 axiom returns [OWLAxiom result]

@@ -1,16 +1,11 @@
 package owl2vcs.changes;
 
-import org.coode.owlapi.manchesterowlsyntax.ManchesterOWLSyntaxOntologyFormat;
-import org.coode.owlapi.turtle.TurtleOntologyFormat;
-import org.semanticweb.owlapi.io.OWLFunctionalSyntaxOntologyFormat;
-import org.semanticweb.owlapi.io.OWLXMLOntologyFormat;
-import org.semanticweb.owlapi.io.RDFXMLOntologyFormat;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyFormat;
 
-import owl2vcs.changeset.OntologyChangeVisitor;
+import owl2vcs.changeset.CustomOntologyChangeVisitor;
 
-public class SetOntologyFormat extends OntologyChange {
+public class SetOntologyFormat extends CustomOntologyChange {
 
     private final OWLOntologyFormat ontologyFormat;
 
@@ -30,39 +25,6 @@ public class SetOntologyFormat extends OntologyChange {
         super(ont);
         this.ontologyFormat = ont.getOWLOntologyManager()
                 .getOntologyFormat(ont);
-        this.newOntologyFormat = newOntologyFormat;
-    }
-
-
-    /**
-     * Creates a set ontology format change, which will set the format of the
-     * ontology to the specified new format specified as a string.
-     *
-     * @param ont
-     *            The ontology whose format is to be changed
-     * @param newOntologyFormat
-     *            A string representing the new ontology format
-     * @throws UnknownOntologyFormatException
-     */
-    public SetOntologyFormat(final OWLOntology ont,
-            final String newFormatString) throws UnknownOntologyFormatException {
-        super(ont);
-        this.ontologyFormat = ont.getOWLOntologyManager()
-                .getOntologyFormat(ont);
-        OWLOntologyFormat newOntologyFormat;
-
-        if (newFormatString.equals("RDF/XML"))
-            newOntologyFormat = new RDFXMLOntologyFormat();
-        else if (newFormatString.equals("OWL/XML"))
-            newOntologyFormat = new OWLXMLOntologyFormat();
-        else if (newFormatString.equals("Turtle"))
-            newOntologyFormat = new TurtleOntologyFormat();
-        else if (newFormatString.equals("OWL Functional Syntax"))
-            newOntologyFormat = new OWLFunctionalSyntaxOntologyFormat();
-        else if (newFormatString.equals("Manchester OWL Syntax"))
-            newOntologyFormat = new ManchesterOWLSyntaxOntologyFormat();
-        else
-            throw new UnknownOntologyFormatException("Unknown format: " + newFormatString);
         this.newOntologyFormat = newOntologyFormat;
     }
 
@@ -127,7 +89,14 @@ public class SetOntologyFormat extends OntologyChange {
     }
 
     @Override
-    public void accept(final OntologyChangeVisitor visitor) {
+    public void accept(final CustomOntologyChangeVisitor visitor) {
         visitor.visit(this);
     }
+
+
+    @Override
+    public SetOntologyFormatData getChangeData() {
+        return new SetOntologyFormatData(newOntologyFormat);
+    }
+
 }

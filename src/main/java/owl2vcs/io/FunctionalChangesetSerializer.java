@@ -1,11 +1,11 @@
 package owl2vcs.io;
 
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 
-import org.semanticweb.owlapi.model.OWLOntologyChange;
+import org.semanticweb.owlapi.change.OWLOntologyChangeData;
 import org.semanticweb.owlapi.util.ShortFormProvider;
 
-import owl2vcs.changes.OntologyChange;
 import owl2vcs.changeset.ChangeSet;
 import owl2vcs.render.ChangeFormat;
 import owl2vcs.render.ChangeRenderer;
@@ -20,23 +20,29 @@ public class FunctionalChangesetSerializer {
 
     public void write(ChangeSet cs, PrintStream out,
             ShortFormProvider provider, ChangeFormat changeFormat) {
+        PrintStream utf8out;
+        try {
+            utf8out = new PrintStream(out, true, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            utf8out = out;
+        }
         if (cs.isEmpty()) {
-            out.println("no changes");
+            utf8out.println("no changes");
             return;
         }
         ChangeRenderer cr = new FunctionalChangeRenderer(
                 provider, changeFormat);
         if (cs.getFormatChange() != null)
-            out.println(cr.render(cs.getFormatChange()));
+            utf8out.println(cr.render(cs.getFormatChange()));
         if (cs.getOntologyIdChange() != null)
-            out.println(cr.render(cs.getOntologyIdChange()));
-        for (final OntologyChange c : cs.getPrefixChanges())
-            out.println(cr.render(c));
-        for (final OWLOntologyChange c : cs.getImportChanges())
-            out.println(cr.render(c));
-        for (final OWLOntologyChange c : cs.getAnnotationChanges())
-            out.println(cr.render(c));
-        for (final OWLOntologyChange c : cs.getAxiomChanges())
-            out.println(cr.render(c));
+            utf8out.println(cr.render(cs.getOntologyIdChange()));
+        for (final OWLOntologyChangeData c : cs.getPrefixChanges())
+            utf8out.println(cr.render(c));
+        for (final OWLOntologyChangeData c : cs.getImportChanges())
+            utf8out.println(cr.render(c));
+        for (final OWLOntologyChangeData c : cs.getAnnotationChanges())
+            utf8out.println(cr.render(c));
+        for (final OWLOntologyChangeData c : cs.getAxiomChanges())
+            utf8out.println(cr.render(c));
     }
 }
