@@ -54,7 +54,7 @@ Requirements
 Installation instructions
 -------------------------
 
-1.  Download;
+1.  [Download][owl2vcs-latest];
 
 2.  Unpack;
 
@@ -87,3 +87,5 @@ Usage with Git/Mercurial
 [3]: http://mercurial.selenic.com/
 
 [4]: http://subversion.apache.org/
+
+[owl2vcs-latest]: http://j.mp/owl2vcs-latest
