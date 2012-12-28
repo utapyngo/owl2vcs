@@ -77,8 +77,18 @@ Usage with Git/Mercurial
 
 2.  Type `owl2enable`;
 
-3.  Now you can view informative diffs for *.owl, *.rdf, and \*.ttl files with
-    either `hg owl2diff` or `git difftool`.
+3.  Now you can view informative diffs for \*.owl, \*.rdf, and \*.ttl files with either `hg owl2diff` or `git difftool`.
+
+4.  If you want owl2vcs to compare files with other extensions, edit your `.hg/hgrc` or `.git/info/attributes`.
+
+
+
+Please help out
+---------------
+
+This project is still under development. Feedback and suggestions are very welcome and I encourage you to use the [Issues list][issues] on Github to provide that feedback.
+
+Feel free to [fork][fork] this repo and to commit your additions.
 
 [1]: http://www.w3.org/TR/owl2-overview/
 
@@ -89,3 +99,7 @@ Usage with Git/Mercurial
 [4]: http://subversion.apache.org/
 
 [owl2vcs-latest]: http://j.mp/owl2vcs-latest
+
+[issues]: http://github.com/utapyngo/owl2vcs/issues
+
+[fork]: https://github.com/utapyngo/owl2vcs/fork_select
