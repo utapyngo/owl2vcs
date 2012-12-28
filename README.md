@@ -74,7 +74,8 @@ Usage with Git/Mercurial
 
 2.  Type `owl2enable`;
 
-3.  Now you can view informative diffs for \*.owl, \*.rdf, and \*.ttl files with either `hg owl2diff` or `git difftool`.
+3.  Now you can view informative diffs for \*.owl, \*.rdf, and \*.ttl files with either `hg owl2diff` or `git diff`.
+  * If `git diff` hangs on Windows, use `sh -c "git diff"` or `git difftool`.
 
 4.  If you want owl2vcs to compare files with other extensions, edit your `.hg/hgrc` or `.git/info/attributes`.
 
@@ -86,6 +87,19 @@ Please help out
 This project is still under development. Feedback and suggestions are very welcome and I encourage you to use the [Issues list][issues] on Github to provide that feedback.
 
 Feel free to [fork][fork] this repo and to commit your additions.
+
+Contributing
+------------
+
+1.  [Fork it][fork].
+
+2.  Create your feature branch (`git checkout -b my-new-feature`).
+
+3.  Commit your changes (`git commit -am 'Added some feature'`).
+
+4.  Push to the branch (`git push origin my-new-feature`).
+
+5.  Create new Pull Request.
 
 [owl2]:   http://www.w3.org/TR/owl2-overview/
 
