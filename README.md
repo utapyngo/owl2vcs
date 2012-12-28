@@ -1,5 +1,4 @@
-owl2vcs is a set of tools designed to facilitate version control of  [OWL 2
-ontologies][1] using version control systems.
+owl2vcs is a set of tools designed to facilitate version control of  [OWL 2 ontologies][owl2] using version control systems.
 
 
 
@@ -8,8 +7,7 @@ Contents
 
 -   owl2diff - a command line diff tool for OWL 2 ontologies;
 
--   a set of scripts to integrate the tools with [Git][2], [Mercurial][3] and
-    [Subversion][4].
+-   a set of scripts to integrate the tools with [Git][git], [Mercurial][hg] and [Subversion][svn].
 
 
 
@@ -45,9 +43,9 @@ Requirements
 
 -   Java 1.6 or higher and `java` in `PATH`;
 
--   For [Git][2]: `git` in `PATH;`
+-   For [Git][git]: `git` in `PATH;`
 
--   For [Mercurial][3]: `hg` in `PATH`;
+-   For [Mercurial][hg]: `hg` in `PATH`;
 
 
 
@@ -56,17 +54,16 @@ Installation instructions
 
 1.  [Download][owl2vcs-latest];
 
-2.  Unpack;
+2.  Unzip;
 
-3.  Add to `PATH`.
+3.  [Add][path] to `PATH`.
 
 
 
 Standalone usage
 ----------------
 
-After adding the directory to `PATH` you can use the `owl2diff` command to
-compare two versions of an ontology. See `owl2diff --help` for more information.
+After adding the directory to `PATH` you can use the `owl2diff` command to compare two versions of an ontology. See `owl2diff --help` for more information.
 
 
 
@@ -90,16 +87,18 @@ This project is still under development. Feedback and suggestions are very welco
 
 Feel free to [fork][fork] this repo and to commit your additions.
 
-[1]: http://www.w3.org/TR/owl2-overview/
+[owl2]:   http://www.w3.org/TR/owl2-overview/
 
-[2]: http://git-scm.com/
+[git]:    http://git-scm.com/
 
-[3]: http://mercurial.selenic.com/
+[hg]:     http://mercurial.selenic.com/
 
-[4]: http://subversion.apache.org/
+[svn]:    http://subversion.apache.org/
 
 [owl2vcs-latest]: http://j.mp/owl2vcs-latest
 
+[path]:   https://github.com/utapyngo/owl2vcs/wiki/How-to-add-owl2vcs-to-PATH
+
 [issues]: http://github.com/utapyngo/owl2vcs/issues
 
-[fork]: https://github.com/utapyngo/owl2vcs/fork_select
+[fork]:   https://github.com/utapyngo/owl2vcs/fork_select
