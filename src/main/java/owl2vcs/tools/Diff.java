@@ -182,6 +182,7 @@ public final class Diff {
                         System.out.println("<" + e.getValue() + ">");
                     }
                     System.out.println();
+                    System.out.println();
                 }
             // Display changes
             if (settings.changes) {
