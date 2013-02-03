@@ -43,13 +43,13 @@ public class EntityCollector extends OWLEntityCollector implements
 
     @Override
     public Object visit(AddOntologyAnnotationData data) {
-        data.getAnnotation().accept(this);
+        // We don't need to count annotation properties and datatypes as entities
         return null;
     }
 
     @Override
     public Object visit(RemoveOntologyAnnotationData data) {
-        data.getAnnotation().accept(this);
+        // We don't need to count annotation properties and datatypes as entities
         return null;
     }
 
