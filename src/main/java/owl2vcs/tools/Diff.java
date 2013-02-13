@@ -169,7 +169,7 @@ public final class Diff {
                     provider, settings.format);
 
             // Calculate and display prefixes
-            if (settings.prefixes)
+            if (settings.prefixes) {
                 if (parentFormat.isPrefixOWLOntologyFormat()
                         && childFormat.isPrefixOWLOntologyFormat()) {
                     t.start("xp");
@@ -181,12 +181,14 @@ public final class Diff {
                         System.out.print(e.getKey() + "=");
                         System.out.println("<" + e.getValue() + ">");
                     }
-                    System.out.println();
-                    System.out.println();
                 }
+                System.out.println();
+                System.out.println();
+            }
             // Display changes
             if (settings.changes) {
                 displayEntitylessChanges(cs, changeRenderer);
+                System.out.println();
                 if (settings.entities) {
                     t.start("cc");
                     final ChangeClassifier changesByEntity = new ChangeClassifier(
