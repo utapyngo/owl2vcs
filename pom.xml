@@ -82,28 +82,16 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2.1</version>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.6</version>
 				<executions>
 					<execution>
 						<goals>
-							<goal>exec</goal>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
 						</goals>
 					</execution>
 				</executions>
-				<configuration>
-					<executable>gcupload.cmd</executable>
-					<arguments>
-						<argument>-s</argument>
-						<argument>Binaries</argument>
-						<argument>-p</argument>
-						<argument>ontovcs</argument>
-						<argument>-l</argument>
-						<argument>Type-Archive,OpSys-All</argument>
-						<argument>${project.build.directory}/${project.name}-${buildVersion}-bin.zip</argument>
-					</arguments>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>com.code54.mojo</groupId>
@@ -186,7 +174,6 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -211,6 +198,11 @@
 				<groupId>net.sourceforge.owlapi</groupId>
 				<artifactId>owlapi-distribution</artifactId>
 				<version>3.4.2</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.11</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
