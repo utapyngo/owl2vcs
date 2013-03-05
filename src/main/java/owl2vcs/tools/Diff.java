@@ -22,6 +22,7 @@ import org.kohsuke.args4j.Option;
 import org.semanticweb.owlapi.change.AxiomChangeData;
 import org.semanticweb.owlapi.change.OWLOntologyChangeData;
 import org.semanticweb.owlapi.io.FileDocumentSource;
+import org.semanticweb.owlapi.io.OWLOntologyInputSourceException;
 import org.semanticweb.owlapi.io.UnparsableOntologyException;
 import org.semanticweb.owlapi.model.OWLAnnotationProperty;
 import org.semanticweb.owlapi.model.OWLAnonymousIndividual;
@@ -168,7 +169,7 @@ public final class Diff {
                     provider, settings.format);
 
             // Calculate and display prefixes
-            if (settings.prefixes)
+            if (settings.prefixes) {
                 if (parentFormat.isPrefixOWLOntologyFormat()
                         && childFormat.isPrefixOWLOntologyFormat()) {
                     t.start("xp");
@@ -180,11 +181,14 @@ public final class Diff {
                         System.out.print(e.getKey() + "=");
                         System.out.println("<" + e.getValue() + ">");
                     }
-                    System.out.println();
                 }
+                System.out.println();
+                System.out.println();
+            }
             // Display changes
             if (settings.changes) {
                 displayEntitylessChanges(cs, changeRenderer);
+                System.out.println();
                 if (settings.entities) {
                     t.start("cc");
                     final ChangeClassifier changesByEntity = new ChangeClassifier(
@@ -216,6 +220,13 @@ public final class Diff {
             }
 
             return cs.size();
+        } catch (final OWLOntologyInputSourceException e) {
+            if (e.getCause() != null)
+                System.err.println("Bad input source: " + e.getCause().getMessage());
+            else
+                System.err.println("Bad input source: " + e.getMessage());
+        } catch (final FileNotFoundException e) {
+            System.err.println("File not found: " + e.getMessage());
         } catch (final IOException e) {
             e.printStackTrace(System.err);
         } catch (final UnparsableOntologyException e) {
@@ -427,9 +438,9 @@ public final class Diff {
 
             final File parent = new File(settings.parentFilename);
             final File child = new File(settings.childFilename);
-            if (!parent.exists())
+            if (!parent.canRead())
                 throw new FileNotFoundException(settings.parentFilename);
-            if (!child.exists())
+            if (!child.canRead())
                 throw new FileNotFoundException(settings.childFilename);
             if (parent.isDirectory() && child.isDirectory())
                 showDirectoriesDiff(parent, child, settings);
