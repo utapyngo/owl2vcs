@@ -7,6 +7,8 @@ Contents
 
 -   owl2diff - a command line diff tool for OWL 2 ontologies;
 
+-   owl2merge - a three-way merge tool for OWL 2 ontologies;
+
 -   a set of scripts to integrate the tools with [Git][git], [Mercurial][hg] and [Subversion][svn].
 
 
