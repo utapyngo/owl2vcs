@@ -30,6 +30,7 @@ import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyFormat;
+import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.util.ShortFormProvider;
 import org.semanticweb.owlapi.util.SimpleIRIShortFormProvider;
 import org.semanticweb.owlapi.util.SimpleShortFormProvider;
@@ -53,7 +54,7 @@ import owl2vcs.utils.TimeTracker;
 
 import com.google.common.collect.Iterables;
 
-class Settings {
+class DiffSettings {
 
     @Argument(required = true, index = 0, metaVar = "parent.owl", usage = "Parent version")
     public String parentFilename;
@@ -79,18 +80,15 @@ class Settings {
 
 public final class Diff {
 
-    private Diff() {
-    };
-
     /**
-     * Binary compare.
+     * Binary compare two document sources.
      *
      * @param parentSource
      * @param childSource
      * @return true if files are identical, false otherwise
      * @throws IOException
      */
-    private static boolean binaryCompareSources(
+    public static boolean binaryCompareSources(
             final FileDocumentSource parentSource,
             final FileDocumentSource childSource) throws IOException {
         final Reader sr = parentSource.getReader();
@@ -106,8 +104,11 @@ public final class Diff {
         return false;
     }
 
+    private Diff() {
+    };
+
     private static int showFilesDiff(final String parent, final String child,
-            final Settings settings) {
+            final DiffSettings settings) {
         try {
             System.err.println("diff " + parent + " " + child);
             if (parent.equals(child)) {
@@ -164,7 +165,7 @@ public final class Diff {
             t.end("total");
 
             final ShortFormProvider provider = createShortFormProvider(
-                    settings.iriFormat, o1, parentFormat, childFormat);
+                    settings.iriFormat, o1, o2);
             final ChangeRenderer changeRenderer = new FunctionalChangeRenderer(
                     provider, settings.format);
 
@@ -222,7 +223,8 @@ public final class Diff {
             return cs.size();
         } catch (final OWLOntologyInputSourceException e) {
             if (e.getCause() != null)
-                System.err.println("Bad input source: " + e.getCause().getMessage());
+                System.err.println("Bad input source: "
+                        + e.getCause().getMessage());
             else
                 System.err.println("Bad input source: " + e.getMessage());
         } catch (final FileNotFoundException e) {
@@ -303,7 +305,7 @@ public final class Diff {
             System.out.println(changeRenderer.render(c));
     }
 
-    private static Map<String, String> extractPrefixes(
+    public static Map<String, String> extractPrefixes(
             final Set<OWLEntity> entities,
             final OWLOntologyFormat parentFormat,
             final OWLOntologyFormat childFormat) {
@@ -317,10 +319,9 @@ public final class Diff {
         return prefixes;
     }
 
-    private static ShortFormProvider createShortFormProvider(
-            final IriFormat iriFormat, final OWLOntology ontology,
-            final OWLOntologyFormat parentFormat,
-            final OWLOntologyFormat childFormat) {
+    public static ShortFormProvider createShortFormProvider(
+            final IriFormat iriFormat, final OWLOntology o1,
+            final OWLOntology o2) {
         ShortFormProvider provider;
         switch (iriFormat) {
         case SIMPLE:
@@ -331,6 +332,10 @@ public final class Diff {
             break;
         case QNAME:
             final List<Map<String, String>> prefix2NamespaceMaps = new ArrayList<Map<String, String>>();
+            OWLOntologyFormat parentFormat = o1.getOWLOntologyManager()
+                    .getOntologyFormat(o1);
+            OWLOntologyFormat childFormat = o2.getOWLOntologyManager()
+                    .getOntologyFormat(o2);
             if (parentFormat.isPrefixOWLOntologyFormat()) {
                 prefix2NamespaceMaps.add(parentFormat
                         .asPrefixOWLOntologyFormat().getPrefixName2PrefixMap());
@@ -342,11 +347,11 @@ public final class Diff {
             provider = new QNameMultiMapShortFormProvider(prefix2NamespaceMaps);
             break;
         case LABEL:
+            OWLOntologyManager manager = o1.getOWLOntologyManager();
             final List<OWLAnnotationProperty> annotationProperties = new ArrayList<OWLAnnotationProperty>();
-            annotationProperties.add(ontology.getOWLOntologyManager()
-                    .getOWLDataFactory().getRDFSLabel());
-            provider = new QuotedAnnotationValueShortFormProvider(
-                    ontology.getOWLOntologyManager(),
+            annotationProperties
+                    .add(manager.getOWLDataFactory().getRDFSLabel());
+            provider = new QuotedAnnotationValueShortFormProvider(manager,
                     new SimpleShortFormProvider(),
                     new SimpleIRIShortFormProvider(), annotationProperties,
                     new HashMap<OWLAnnotationProperty, List<String>>());
@@ -358,7 +363,7 @@ public final class Diff {
     }
 
     private static int showDirectoriesDiff(final File parent, final File child,
-            final Settings settings) {
+            final DiffSettings settings) {
         int changesCount = 0;
         for (final File file : parent.listFiles()) {
             final String relative = parent.toURI().relativize(file.toURI())
@@ -431,7 +436,7 @@ public final class Diff {
     }
 
     public static void main(final String[] args) {
-        final Settings settings = new Settings();
+        final DiffSettings settings = new DiffSettings();
         final CmdLineParser parser = new CmdLineParser(settings);
         try {
             parser.parseArgument(args);
@@ -452,7 +457,7 @@ public final class Diff {
         } catch (final CmdLineException e) {
             String version = getVersion();
             if (version != null)
-                System.err.println("owl2diff " + getVersion());
+                System.err.println("owl2diff " + version);
             else
                 System.err.println("owl2diff");
             System.err.print("Usage: owl2diff");

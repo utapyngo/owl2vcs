@@ -6,23 +6,23 @@ import owl2vcs.changeset.CustomOntologyChangeVisitor;
 
 public class ModifyPrefix extends PrefixChange {
 
-    private final String newPrefix;
+    private final String oldPrefix;
 
     public ModifyPrefix(final OWLOntology ont, final String prefixName,
-            final String originalPrefix, final String newPrefix) {
-        super(ont, prefixName, originalPrefix);
-        this.newPrefix = newPrefix;
+            final String oldPrefix, final String newPrefix) {
+        super(ont, prefixName, newPrefix);
+        this.oldPrefix = oldPrefix;
     }
 
-    public String getNewPrefix() {
-        return newPrefix;
+    public String getOldPrefix() {
+        return oldPrefix;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("MODIFY PREFIX: ");
-        sb.append(getPrefixName().toString() + "=" + getNewPrefix().toString());
+        sb.append(getPrefixName().toString() + "=" + getPrefix().toString());
         return sb.toString();
     }
 
@@ -31,7 +31,7 @@ public class ModifyPrefix extends PrefixChange {
         final int prime = 31;
         int result = super.hashCode();
         result = prime * result
-                + ((newPrefix == null) ? 0 : newPrefix.hashCode());
+                + ((oldPrefix == null) ? 0 : oldPrefix.hashCode());
         return result;
     }
 
@@ -44,10 +44,10 @@ public class ModifyPrefix extends PrefixChange {
         if (!(obj instanceof ModifyPrefix))
             return false;
         ModifyPrefix other = (ModifyPrefix) obj;
-        if (newPrefix == null) {
-            if (other.newPrefix != null)
+        if (oldPrefix == null) {
+            if (other.oldPrefix != null)
                 return false;
-        } else if (!newPrefix.equals(other.newPrefix))
+        } else if (!oldPrefix.equals(other.oldPrefix))
             return false;
         return true;
     }
@@ -59,6 +59,6 @@ public class ModifyPrefix extends PrefixChange {
 
     @Override
     public ModifyPrefixData getChangeData() {
-        return new ModifyPrefixData(getPrefixName(), getPrefix(), getNewPrefix());
+        return new ModifyPrefixData(getPrefixName(), getOldPrefix(), getPrefix());
     }
 }
