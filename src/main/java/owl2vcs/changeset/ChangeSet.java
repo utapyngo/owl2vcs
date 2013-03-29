@@ -259,18 +259,18 @@ public abstract class ChangeSet {
                     assert oldPrefixMap.get(mc.getPrefixName()) != null;
                     // and it should not be equal to new prefix
                     String oldPrefix = oldPrefixMap.get(mc.getPrefixName());
-                    assert !oldPrefix.equals(mc.getNewPrefix());
-                    newPrefixMap.put(mc.getPrefixName(), mc.getNewPrefix());
+                    assert !oldPrefix.equals(mc.getPrefix());
+                    newPrefixMap.put(mc.getPrefixName(), mc.getPrefix());
                     // rename entities
                     // don't add changes to the "changes" ArrayList but apply them at once
                     for (OWLEntity e : ontology.getSignature()) {
-                        if (e.getIRI().getStart().equals(mc.getPrefix()))
-                            manager.applyChanges(renamer.changeIRI(e, IRI.create(mc.getNewPrefix(), e.getIRI().getFragment())));
+                        if (e.getIRI().getStart().equals(mc.getOldPrefix()))
+                            manager.applyChanges(renamer.changeIRI(e, IRI.create(mc.getPrefix(), e.getIRI().getFragment())));
                     }
                 } else if (c instanceof RenamePrefixData) {
                     String prefixToFind = c.getPrefix();
                     String oldPrefixName = null;
-                    String newPrefixName = ((RenamePrefixData) c).getNewPrefixName();
+                    String newPrefixName = ((RenamePrefixData) c).getPrefixName();
                     for (Map.Entry<String, String> e : oldPrefixMap.entrySet()) {
                         if (e.getValue().equals(prefixToFind)) {
                             oldPrefixName = e.getKey();

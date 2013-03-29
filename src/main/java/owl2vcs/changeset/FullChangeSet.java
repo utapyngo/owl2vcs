@@ -114,10 +114,10 @@ public class FullChangeSet extends ChangeSet {
             for (PrefixChangeData c : getPrefixChanges()) {
                 if (c instanceof ModifyPrefixData) {
                     ModifyPrefixData mc = (ModifyPrefixData) c;
-                    String prefix = mc.getPrefix();
-                    String newPrefix = mc.getNewPrefix();
+                    String oldPrefix = mc.getOldPrefix();
+                    String newPrefix = mc.getPrefix();
                     for (OWLEntity e : modifiedParent.getSignature()) {
-                        if (e.getIRI().getStart().equals(prefix)) {
+                        if (e.getIRI().getStart().equals(oldPrefix)) {
                             IRI newIRI = IRI.create(newPrefix, e.getIRI().getFragment());
                             // System.out.println("Renaming " + e.getIRI() + " to " + newIRI);
                             manager.applyChanges(renamer.changeIRI(e, newIRI));

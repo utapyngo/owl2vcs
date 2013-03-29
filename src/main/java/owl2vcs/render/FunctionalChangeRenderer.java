@@ -37,7 +37,7 @@ public class FunctionalChangeRenderer implements ChangeRenderer {
     public final String render(final OWLOntologyChangeData change) {
         if (change == null)
             return null;
-        // Standard changes
+        // Custom changes
         if (change instanceof SetOntologyFormatData)
             return render((SetOntologyFormatData) change);
         else if (change instanceof AddPrefixData)
@@ -48,7 +48,7 @@ public class FunctionalChangeRenderer implements ChangeRenderer {
             return render((ModifyPrefixData) change);
         else if (change instanceof RenamePrefixData)
             return render((RenamePrefixData) change);
-        // Custom changes
+        // Standard changes
         else if (change instanceof SetOntologyIDData)
             return render((SetOntologyIDData) change);
         else if (change instanceof AddImportData)
@@ -84,12 +84,12 @@ public class FunctionalChangeRenderer implements ChangeRenderer {
 
     public final String render(final ModifyPrefixData change) {
         return indentString("*", "Prefix(" + change.getPrefixName() + "=<"
-                + change.getPrefix() + "> <" + change.getNewPrefix() + ">)");
+                + change.getOldPrefix() + "> <" + change.getPrefix() + ">)");
     }
 
     public final String render(final RenamePrefixData change) {
-        return indentString("#", "Prefix(" + change.getPrefixName() + " "
-                + change.getNewPrefixName() + "=<"
+        return indentString("#", "Prefix(" + change.getOldPrefixName() + " "
+                + change.getPrefixName() + "=<"
                 + change.getPrefix() + ">)");
     }
 
@@ -187,4 +187,37 @@ public class FunctionalChangeRenderer implements ChangeRenderer {
             return prefix + " " + indentedString;
     }
 
+    @Override
+    public Character getSymbol(OWLOntologyChangeData change) {
+        if (change == null)
+            return '?';
+        // Standard changes
+        if (change instanceof SetOntologyFormatData)
+            return '*';
+        else if (change instanceof AddPrefixData)
+            return '+';
+        else if (change instanceof RemovePrefixData)
+            return '-';
+        else if (change instanceof ModifyPrefixData)
+            return '*';
+        else if (change instanceof RenamePrefixData)
+            return '#';
+        // Custom changes
+        else if (change instanceof SetOntologyIDData)
+            return '*';
+        else if (change instanceof AddImportData)
+            return '+';
+        else if (change instanceof RemoveImportData)
+            return '-';
+        else if (change instanceof AddOntologyAnnotationData)
+            return '+';
+        else if (change instanceof RemoveOntologyAnnotationData)
+            return '-';
+        else if (change instanceof AddAxiomData)
+            return '+';
+        else if (change instanceof RemoveAxiomData)
+            return '-';
+        else
+            return '?';
+    }
 }

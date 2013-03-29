@@ -6,16 +6,16 @@ import owl2vcs.changeset.CustomOntologyChangeVisitor;
 
 public class RenamePrefix extends PrefixChange {
 
-    private final String newPrefixName;
+    private final String oldPrefixName;
 
-    public RenamePrefix(final OWLOntology ont, final String prefixName,
+    public RenamePrefix(final OWLOntology ont, final String oldPrefixName,
             final String prefix, final String newPrefixName) {
-        super(ont, prefixName, prefix);
-        this.newPrefixName = newPrefixName;
+        super(ont, newPrefixName, prefix);
+        this.oldPrefixName = oldPrefixName;
     }
 
-    public String getNewPrefixName() {
-        return newPrefixName;
+    public String getOldPrefixName() {
+        return oldPrefixName;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class RenamePrefix extends PrefixChange {
         final int prime = 31;
         int result = super.hashCode();
         result = prime * result
-                + ((newPrefixName == null) ? 0 : newPrefixName.hashCode());
+                + ((oldPrefixName == null) ? 0 : oldPrefixName.hashCode());
         return result;
     }
 
@@ -36,10 +36,10 @@ public class RenamePrefix extends PrefixChange {
         if (!(obj instanceof RenamePrefix))
             return false;
         RenamePrefix other = (RenamePrefix) obj;
-        if (newPrefixName == null) {
-            if (other.newPrefixName != null)
+        if (oldPrefixName == null) {
+            if (other.oldPrefixName != null)
                 return false;
-        } else if (!newPrefixName.equals(other.newPrefixName))
+        } else if (!oldPrefixName.equals(other.oldPrefixName))
             return false;
         return true;
     }
@@ -48,7 +48,7 @@ public class RenamePrefix extends PrefixChange {
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("RENAME PREFIX: ");
-        sb.append(getNewPrefixName().toString() + "=" + getPrefix().toString());
+        sb.append(getPrefixName().toString() + "=" + getPrefix().toString());
         return sb.toString();
     }
 
@@ -59,6 +59,6 @@ public class RenamePrefix extends PrefixChange {
 
     @Override
     public RenamePrefixData getChangeData() {
-        return new RenamePrefixData(getPrefixName(), getPrefix(), getNewPrefixName());
+        return new RenamePrefixData(getOldPrefixName(), getPrefix(), getPrefixName());
     }
 }
