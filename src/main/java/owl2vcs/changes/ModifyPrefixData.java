@@ -10,11 +10,11 @@ public class ModifyPrefixData extends PrefixChangeData {
 
     private static final long serialVersionUID = -4830654067341708579L;
 
-    private final String newPrefix;
+    private final String oldPrefix;
 
-    public ModifyPrefixData(String prefixName, String prefix, String newPrefix) {
-        super(prefixName, prefix);
-        this.newPrefix = newPrefix;
+    public ModifyPrefixData(String prefixName, String oldPrefix, String newPrefix) {
+        super(prefixName, newPrefix);
+        this.oldPrefix = oldPrefix;
     }
 
     @Override
@@ -28,22 +28,22 @@ public class ModifyPrefixData extends PrefixChangeData {
         if (ontology == null) {
             throw new NullPointerException("ontology must not be null");
         }
-        return new ModifyPrefix(ontology, getPrefixName(), getPrefix(), getNewPrefix());
+        return new ModifyPrefix(ontology, getPrefixName(), getOldPrefix(), getPrefix());
     }
 
     /**
      * @return the newPrefix
      */
-    public String getNewPrefix() {
-        return newPrefix;
+    public String getOldPrefix() {
+        return oldPrefix;
     }
 
     @Override
     public int hashCode() {
         return "ModifyPrefixData".hashCode()
                 + getPrefixName().hashCode()
-                + getPrefix().hashCode()
-                + getNewPrefix().hashCode();
+                + getOldPrefix().hashCode()
+                + getPrefix().hashCode();
     }
 
     @Override
@@ -56,8 +56,8 @@ public class ModifyPrefixData extends PrefixChangeData {
         }
         ModifyPrefixData other = (ModifyPrefixData) obj;
         return getPrefixName().equals(other.getPrefixName())
-                && getPrefix().equals(other.getPrefix())
-                && getNewPrefix().equals(other.getNewPrefix());
+                && getOldPrefix().equals(other.getOldPrefix())
+                && getPrefix().equals(other.getPrefix());
     }
 
     @Override
@@ -67,9 +67,9 @@ public class ModifyPrefixData extends PrefixChangeData {
         sb.append("(");
         sb.append(getPrefixName().toString());
         sb.append("=");
-        sb.append(getPrefix().toString());
+        sb.append(getOldPrefix().toString());
         sb.append(" ");
-        sb.append(getNewPrefix().toString());
+        sb.append(getPrefix().toString());
         sb.append(")");
         return sb.toString();
     }
@@ -77,7 +77,7 @@ public class ModifyPrefixData extends PrefixChangeData {
     @Override
     public Collection<String> getPrefixSignature() {
         final Collection<String> sig = super.getPrefixSignature();
-        sig.add(getNewPrefix());
+        sig.add(getOldPrefix());
         return sig;
     }
 }

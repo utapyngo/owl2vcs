@@ -9,11 +9,11 @@ import owl2vcs.changeset.CustomOntologyChangeDataVisitor;
 public class RenamePrefixData extends PrefixChangeData {
 
     private static final long serialVersionUID = -3363060595690396626L;
-    private final String newPrefixName;
+    private final String oldPrefixName;
 
-    public RenamePrefixData(String prefixName, String prefix, String newPrefixName) {
-        super(prefixName, prefix);
-        this.newPrefixName = newPrefixName;
+    public RenamePrefixData(String oldPrefixName, String prefix, String newPrefixName) {
+        super(newPrefixName, prefix);
+        this.oldPrefixName = oldPrefixName;
     }
 
     @Override
@@ -27,14 +27,14 @@ public class RenamePrefixData extends PrefixChangeData {
         if (ontology == null) {
             throw new NullPointerException("ontology must not be null");
         }
-        return new RenamePrefix(ontology, getPrefixName(), getPrefix(), getNewPrefixName());
+        return new RenamePrefix(ontology, getOldPrefixName(), getPrefix(), getPrefixName());
     }
 
     /**
      * @return the newPrefixName
      */
-    public String getNewPrefixName() {
-        return newPrefixName;
+    public String getOldPrefixName() {
+        return oldPrefixName;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class RenamePrefixData extends PrefixChangeData {
         return "RenamePrefixData".hashCode()
                 + getPrefixName().hashCode()
                 + getPrefix().hashCode()
-                + getNewPrefixName().hashCode();
+                + getOldPrefixName().hashCode();
     }
 
     @Override
@@ -56,7 +56,7 @@ public class RenamePrefixData extends PrefixChangeData {
         RenamePrefixData other = (RenamePrefixData) obj;
         return getPrefixName().equals(other.getPrefixName())
                 && getPrefix().equals(other.getPrefix())
-                && getNewPrefixName().equals(other.getNewPrefixName());
+                && getOldPrefixName().equals(other.getOldPrefixName());
     }
 
     @Override
@@ -64,9 +64,9 @@ public class RenamePrefixData extends PrefixChangeData {
         StringBuilder sb = new StringBuilder();
         sb.append("RenamePrefixData");
         sb.append("(");
-        sb.append(getPrefixName().toString());
+        sb.append(getOldPrefixName().toString());
         sb.append(" ");
-        sb.append(getNewPrefixName().toString());
+        sb.append(getPrefixName().toString());
         sb.append("=");
         sb.append(getPrefix().toString());
         sb.append(")");
@@ -76,7 +76,7 @@ public class RenamePrefixData extends PrefixChangeData {
     @Override
     public Collection<String> getPrefixSignature() {
         final Collection<String> sig = super.getPrefixSignature();
-        sig.add(getNewPrefixName());
+        sig.add(getOldPrefixName());
         return sig;
     }
 }

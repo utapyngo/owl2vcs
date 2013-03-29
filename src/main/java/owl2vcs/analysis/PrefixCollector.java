@@ -89,14 +89,14 @@ public class PrefixCollector implements
     @Override
     public Object visit(ModifyPrefixData data) {
         visitPrefixChange(data);
-        values.add(data.getNewPrefix());
+        values.add(data.getOldPrefix());
         return null;
     }
 
     @Override
     public Object visit(RenamePrefixData data) {
         visitPrefixChange(data);
-        values.add(data.getNewPrefixName());
+        values.add(data.getOldPrefixName());
         return null;
     }
 
