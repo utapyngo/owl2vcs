@@ -1,6 +1,7 @@
 package owl2vcs.changeset;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 
 import org.semanticweb.owlapi.change.AxiomChangeData;
@@ -51,12 +52,21 @@ public class MutableChangeSet extends ChangeSet {
     }
 
     @Override
+    public Collection<PrefixChangeData> getPrefixChanges() {
+        return Collections.unmodifiableCollection(super.getPrefixChanges());
+    }
+
+    @Override
     public void setPrefixChanges(final Collection<PrefixChangeData> prefixChanges) {
         super.setPrefixChanges(prefixChanges);
     }
 
     public void addPrefixChange(final PrefixChangeData prefixChange) {
-        getPrefixChanges().add(prefixChange);
+        super.getPrefixChanges().add(prefixChange);
+    }
+
+    public void removePrefixChange(final PrefixChangeData prefixChange) {
+        super.getPrefixChanges().remove(prefixChange);
     }
 
     @Override
@@ -65,12 +75,26 @@ public class MutableChangeSet extends ChangeSet {
     }
 
     @Override
+    public Collection<ImportChangeData> getImportChanges() {
+        return Collections.unmodifiableCollection(super.getImportChanges());
+    }
+
+    @Override
     public void setImportChanges(final Collection<ImportChangeData> importChanges) {
         super.setImportChanges(importChanges);
     }
 
     public void addImportChange(final ImportChangeData importChange) {
-        getImportChanges().add(importChange);
+        super.getImportChanges().add(importChange);
+    }
+
+    public void removeImportChange(final ImportChangeData importChange) {
+        super.getImportChanges().remove(importChange);
+    }
+
+    @Override
+    public Collection<OWLOntologyChangeData> getAnnotationChanges() {
+        return Collections.unmodifiableCollection(super.getAnnotationChanges());
     }
 
     @Override
@@ -81,7 +105,17 @@ public class MutableChangeSet extends ChangeSet {
 
     public void addAnnotationChange(
             final OWLOntologyChangeData annotationChange) {
-        getAnnotationChanges().add(annotationChange);
+        super.getAnnotationChanges().add(annotationChange);
+    }
+
+    public void removeAnnotationChange(
+            final OWLOntologyChangeData annotationChange) {
+        super.getAnnotationChanges().remove(annotationChange);
+    }
+
+    @Override
+    public Collection<AxiomChangeData> getAxiomChanges() {
+        return Collections.unmodifiableCollection(super.getAxiomChanges());
     }
 
     @Override
@@ -90,6 +124,10 @@ public class MutableChangeSet extends ChangeSet {
     }
 
     public void addAxiomChange(final AxiomChangeData axiomChange) {
-        getAxiomChanges().add(axiomChange);
+        super.getAxiomChanges().add(axiomChange);
+    }
+
+    public void removeAxiomChange(final AxiomChangeData axiomChange) {
+        super.getAxiomChanges().remove(axiomChange);
     }
 }
