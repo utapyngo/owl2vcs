@@ -1,7 +1,9 @@
 <assembly>
     <id>bin</id>
+    <baseDirectory>owl2vcs</baseDirectory>
     <formats>
         <format>zip</format>
+        <format>tar.gz</format>
     </formats>
     <fileSets>
         <fileSet>
@@ -20,8 +22,25 @@
             <directory>scripts</directory>
             <outputDirectory></outputDirectory>
             <includes>
+                <include>javamem</include>
+                <include>owl2diff</include>
+                <include>owl2enable</include>
+                <include>*.sh</include>
+            </includes>
+            <fileMode>0755</fileMode>
+        </fileSet>
+        <fileSet>
+            <directory>scripts</directory>
+            <outputDirectory></outputDirectory>
+            <includes>
                 <include>*</include>
             </includes>
+            <excludes>
+                <exclude>javamem</exclude>
+                <exclude>owl2diff</exclude>
+                <exclude>owl2enable</exclude>
+                <exclude>*.sh</exclude>
+            </excludes>
         </fileSet>
     </fileSets>
 </assembly>
